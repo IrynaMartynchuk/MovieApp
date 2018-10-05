@@ -1,0 +1,53 @@
+﻿@model MovieApp.Models.Customer
+
+@{
+    ViewBag.Title = "Login";
+}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="container text-center" style="margin: 5% 5% 5% 5%">
+            <div class="row">
+                <div class="col-xs-12 col-md-9" id="form" style="margin: 5% 5% 5% 5%">
+                    <div class="form-group">
+                        <hr />
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email required" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password requided" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Log in" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        if (ViewBag.message == null && ViewBag.triedOnce == true)
+        {
+            <h4>Username or password are incorrect. Please try to log in again or sign up @Html.ActionLink("here", "Register", "Home").</h4>
+        }
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+
+</body>

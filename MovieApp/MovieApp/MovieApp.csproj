@@ -99,6 +99,14 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\aquaman.jpg" />
+    <Content Include="Images\avengers.jpg" />
+    <Content Include="Images\godfather.jpg" />
+    <Content Include="Images\inception.jpg" />
+    <Content Include="Images\inception1.jpg" />
+    <Content Include="Images\pulpFiction.jpg" />
+    <Content Include="Images\shawshank.jpg" />
+    <Content Include="Images\wonderWoman.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -107,6 +115,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\RegistrationOK.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
