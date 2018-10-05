@@ -1,0 +1,110 @@
+﻿@model List<MovieApp.Models.Movie>
+
+@{
+    ViewBag.Title = "ListMovies";
+}
+
+<head>
+    <title></title>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#spnCart').on('click', function () {
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; charset = utf-8',
+                    url: '/Cart/cart',
+                    success: function (data) {
+                        var result = "";
+                        $("#exampleModal").html('');
+                        $.each(data.movies, function (id, movie) {
+                            result += '<b> Title: </b>' + movie.Title + '<br/>' +
+                                '<b> Genre: </b>' + movie.Genre + '<br/>' +
+                                '<b> Price: </b>' + movie.Price + '<br/>';
+                        });
+                        $('#exampleModal').html(result + '<b>  Total price: </b>' + data.sum + '<br/>');
+
+                        $('#exampleModal').modal({
+                            backdrop: false
+                        });
+                    },
+                    error: function (data) {
+                        alert(data);
+                    }
+                });
+            });
+
+            $(".add").click(function () {
+                var MovieId = $(this).attr("data");
+                $.ajax({
+                    type: "POST",
+                    contentType: 'application/json; charset=utf-8',
+                    url: "/Cart/addToCart",
+                    data: "{ 'movieid':' " + MovieId + "' }",
+                    success: onSuccess,
+                    failure: function (response) {
+                        alert(response.d);
+                    }
+                });
+            });
+
+
+        });
+        function onSuccess(response) {
+            $('#example').html(response);
+        }
+    </script>
+</head>
+
+<h2>ListMovies</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Image
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Genre
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.ImageAddress)" style="width: 100px; height: auto" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => @item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                <button class="add" data="@item.Id">Add to cart</button>
+            </td>
+        </tr>
+    }
+</table>
+
+<button id="spnCart">Go to cart <div id="example"></div></button>
+
+<div class="modal" style="background-color:white" id="exampleModal" tabindex="1000" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+</div>
+
