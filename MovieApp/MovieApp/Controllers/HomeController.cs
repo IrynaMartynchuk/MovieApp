@@ -165,7 +165,7 @@ namespace MovieApp.Controllers
         {
             if (Session["customer"] != null)
             {
-                return RedirectToAction("Index", "Home", new { customer = Session["customer"].ToString() });
+                return RedirectToAction("ListMovies", "Home", new { customer = Session["customer"].ToString() });
             }
             else
             {
@@ -182,13 +182,14 @@ namespace MovieApp.Controllers
             if (loggedIn != null)
             {
                 ViewBag.triedOnce = true;
-                Session["customer"] = true;
-
-                return RedirectToAction("Index", "Home", new { customer = Customer.Id });
+                Session["customer"] = Customer.Id;
+                ViewBag.Message = true;
+                return RedirectToAction("ListMovies", "Home", new { customer = loggedIn.Id });
             }
             else
             {
                 ViewBag.triedOnce = true;
+        
                 return View(); //if failed - error message 
             }
         }
@@ -198,11 +199,11 @@ namespace MovieApp.Controllers
             if (Session["customer"] != null)
             {
                 Session["customer"] = null;
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ListMovies", "Home");
             }
             else
             {
-                return RedirectToAction("Index", "Home", new { customer = Session["customer"].ToString() });
+                return RedirectToAction("ListMovies", "Home", new { customer = Session["customer"].ToString() });
             }
 
         }
