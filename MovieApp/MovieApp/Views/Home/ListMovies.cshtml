@@ -1,72 +1,141 @@
 ﻿@model List<MovieApp.Models.Movie>
 
+
+
 @{
+
     ViewBag.Title = "ListMovies";
+
 }
- 
+
+
+
 <head>
+
     <meta charset="utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
     <script src="~/Scripts/jquery-3.3.1.js"></script>
+
     <script type="text/javascript">
+
+
 
         $(function () {
 
+
+
             $(".add").click(function () {
+
                 var MovieId = $(this).attr("data");
+
                 $.ajax({
+
                     type: "POST",
+
                     contentType: 'application/json; charset=utf-8',
+
                     url: "/Home/addToCart",
+
                     data: "{ 'movieid':' " + MovieId + "' }",
+
                     success: onSuccess,
-                    failure: function (response) { 
+
+                    failure: function (response) {
+
                         alert(response.d);
+
                     }
+
                 });
+
             });
 
 
+
+
+
         });
+
         function onSuccess(response) {
+
             $('#example').html(response);
+
         }
+
     </script>
+
 </head>
+
 <!--Movie cards-->
+
 <body>
 
+
+
     <h1>New releases</h1>
+
     <hr />
+
+
 
     <div class="container" style="margin: 5% 5% 5% 5%; display: flex; flex-wrap:wrap">
 
+
+
         @foreach (var item in Model)
+
         {
+
             <div class="col-sm-4">
+
                 <div class="img__wrap">
+
                     <img class="img-responsive" src="@Html.DisplayFor(modelItem => item.ImageAddress)" style="width: 100%; height: 100%; padding-top: 10px" alt="Image" />
+
                     <p class="img__description">
+
                         @Html.DisplayFor(modelItem => item.Description)
+
                     </p>
+
                 </div>
+
                 <div class="caption">
+
                     <h4 class="group inner list-group-item-heading">
+
                         @Html.DisplayFor(modelItem => item.Title)
+
                     </h4>
+
                     <div style="margin-top: 2%" class="row">
+
                         <div class="col-xs-12 col-md-6">
+
                             <button class="add" data="@item.Id">Add to cart</button>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         }
+
+
 
     </div>
 
+
+
     @Html.ActionLink("Go to cart", "Cart")<div id="example"></div>
 
-</body>
 
+
+</body>
