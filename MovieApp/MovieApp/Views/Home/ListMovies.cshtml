@@ -53,11 +53,6 @@
                 });
 
             });
-
-
-
-
-
         });
 
         function onSuccess(response) {
@@ -73,69 +68,42 @@
 <!--Movie cards-->
 
 <body>
-
-
-
-    <h1>New releases</h1>
-
-    <hr />
-
-
-
     <div class="container" style="margin: 5% 5% 5% 5%; display: flex; flex-wrap:wrap">
-
-
-
         @foreach (var item in Model)
 
         {
 
-            <div class="col-sm-4">
+        <div class="col-sm-4">
+            <div class="img__wrap">
 
-                <div class="img__wrap">
+                <img class="img-responsive" src="@Html.DisplayFor(modelItem => item.ImageAddress)" style="width: 100%; height: 100%; padding-top: 10px" alt="Image" />
 
-                    <img class="img-responsive" src="@Html.DisplayFor(modelItem => item.ImageAddress)" style="width: 100%; height: 100%; padding-top: 10px" alt="Image" />
+                <p class="img__description">
 
-                    <p class="img__description">
+                    @Html.DisplayFor(modelItem => item.Title) <br/><br/>
+                    @Html.DisplayFor(modelItem => item.Description)
 
-                        @Html.DisplayFor(modelItem => item.Description)
+                </p>
 
-                    </p>
+            </div>
 
-                </div>
+            <div class="caption">
+                <div style="margin-top: 2%" class="row">
 
-                <div class="caption">
+                    <div class="col-xs-12 col-md-6">
 
-                    <h4 class="group inner list-group-item-heading">
-
-                        @Html.DisplayFor(modelItem => item.Title)
-
-                    </h4>
-
-                    <div style="margin-top: 2%" class="row">
-
-                        <div class="col-xs-12 col-md-6">
-
-                            <button class="add" data="@item.Id">Add to cart</button>
-
-                        </div>
+                        <button class="add btn btn-default btn-xs" data="@item.Id" >
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                        </button>
 
                     </div>
 
                 </div>
-
             </div>
-
+        </div>
         }
-
-
-
     </div>
 
-
-
     @Html.ActionLink("Go to cart", "Cart")<div id="example"></div>
-
-
 
 </body>

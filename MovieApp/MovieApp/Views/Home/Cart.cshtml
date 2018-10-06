@@ -3,8 +3,13 @@
 @{
     ViewBag.Title = "Cart";
 }
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script type="text/javascript">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Style.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
         $(document).ready(function () {
 
             $('#delete').click(function () {
@@ -34,7 +39,7 @@
                             alert(message);
                             url: '@Url.Action("Index", "Home")',
                             success: function () {
-                                
+
                                 window.location.reload();
                             }
                             });
@@ -42,8 +47,8 @@
                 });
             });
         });
-</script>
-
+    </script>
+</head>
 <h2>Cart</h2>
 
 <table class="table">
