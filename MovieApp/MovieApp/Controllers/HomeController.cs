@@ -183,13 +183,12 @@ namespace MovieApp.Controllers
             {
                 ViewBag.triedOnce = true;
                 Session["customer"] = Customer.Id;
-                ViewBag.Message = true;
+                ViewBag.Message = "You are logged in";
                 return RedirectToAction("ListMovies", "Home", new { customer = loggedIn.Id });
             }
             else
             {
                 ViewBag.triedOnce = true;
-        
                 return View(); //if failed - error message 
             }
         }
