@@ -176,15 +176,13 @@ namespace MovieApp.Controllers
         [HttpPost]
         public ActionResult Login(Customer Customer)
         {
-            var db = new DBContext();
+            DBContext db = new DBContext();
             var loggedIn = db.Customers.SingleOrDefault(c => c.Email == Customer.Email && c.Password == Customer.Password);
 
             if (loggedIn != null)
             {
-                ViewBag.message = "You are logged in";
                 ViewBag.triedOnce = true;
-
-                Session["customer"] = Customer.Id; //??
+                Session["customer"] = true;
 
                 return RedirectToAction("Index", "Home", new { customer = Customer.Id });
             }
