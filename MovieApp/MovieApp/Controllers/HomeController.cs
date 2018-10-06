@@ -13,7 +13,7 @@ namespace MovieApp.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("ListMovies");
         }
 
         public ActionResult Register()
