@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "ListMovies";
 }
-
+ 
 <head>
     <title></title>
     <script src="~/Scripts/jquery-3.3.1.js"></script>
@@ -18,7 +18,7 @@
                     url: "/Home/addToCart",
                     data: "{ 'movieid':' " + MovieId + "' }",
                     success: onSuccess,
-                    failure: function (response) {
+                    failure: function (response) { 
                         alert(response.d);
                     }
                 });
