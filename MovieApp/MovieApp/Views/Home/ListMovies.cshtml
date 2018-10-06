@@ -34,57 +34,40 @@
         }
     </script>
 </head>
-
-<h2>ListMovies</h2>
+<!--Movie cards-->
 <body>
-<table class="table">
-    <tr>
-        <th>
-            Image
-        </th>
-        <th>
-            Title
-        </th>
-        <th>
-            Description
-        </th>
-        <th>
-            Price
-        </th>
-        <th>
-            Genre
-        </th>
-        <th></th>
-    </tr>
+    <div class="container text-center" style="margin: 5% 5% 5% 5%">
+        <hr />
+        <h1>New releases</h1>
+        <hr />
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                <img src="@Html.DisplayFor(modelItem => item.ImageAddress)" style="width: 100px; height: auto" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => @item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-            <td>
-                <button class="add" data="@item.Id">Add to cart</button>
-            </td>
-        </tr>
-    }
-</table>
+        @foreach (var item in Model)
+        {
 
-@Html.ActionLink("Go to cart", "Cart")<div id="example"></div>
+            <div class>
+                <div class="col-sm-4">
+                    <div class="img__wrap">
+                        <img src="@Html.DisplayFor(modelItem => item.ImageAddress)" style="width: auto; height: auto" class="img-responsive" style="width:100%" alt="Image" />
+                        <p class="img__description">
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </p>
+                    </div>
+                    <div class="caption">
+                        <h4 class="group inner list-group-item-heading">
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </h4>
+                        <div style="margin-top: 2%" class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <a class="btn btn-default" href="">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
 
+        @Html.ActionLink("Go to cart", "Cart")<div id="example"></div>
 
-<div class="modal" style="background-color:white" id="exampleModal" tabindex="1000" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-</div>
+    </div>
 </body>
+
