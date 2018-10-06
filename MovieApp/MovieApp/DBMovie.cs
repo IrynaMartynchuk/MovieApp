@@ -13,16 +13,16 @@ namespace MovieApp
         {
             using (var db = new DBContext())
             {
-                List<Movie> allMovies = db.Movies.Select(k => new Movie()
-                {
-                    Id = k.Id,
-                    ImageAddress = k.ImageAddress,
-                    Title = k.Title,
-                    Description = k.Description,
-                    Price = k.Price,
-                    Genre = k.Genre
-                }
-                                    ).ToList();
+                List<Movie> allMovies = (from movies in db.Movies.AsEnumerable()
+                                         select new Movie()
+                                         {
+                                             Id = movies.Id,
+                                             ImageAddress = movies.ImageAddress,
+                                             Title = movies.Title,
+                                             Description = movies.Description,
+                                             Price = movies.Price,
+                                             Genre = movies.Genre
+                                         }).ToList();
                 return allMovies;
             }
 
