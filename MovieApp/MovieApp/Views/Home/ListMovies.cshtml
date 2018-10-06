@@ -12,37 +12,13 @@
     <script type="text/javascript">
 
         $(function () {
-            $('#spnCart').on('click', function () {
-                $.ajax({
-                    type: 'POST',
-                    contentType: 'application/json; charset = utf-8',
-                    url: '/Cart/cart',
-                    success: function (data) {
-                        var result = "";
-                        $("#exampleModal").html('');
-                        $.each(data.movies, function (id, movie) {
-                            result += '<b> Title: </b>' + movie.Title + '<br/>' +
-                                '<b> Genre: </b>' + movie.Genre + '<br/>' +
-                                '<b> Price: </b>' + movie.Price + '<br/>';
-                        });
-                        $('#exampleModal').html(result + '<b>  Total price: </b>' + data.sum + '<br/>');
-
-                        $('#exampleModal').modal({
-                            backdrop: false
-                        });
-                    },
-                    error: function (data) {
-                        alert(data);
-                    }
-                });
-            });
 
             $(".add").click(function () {
                 var MovieId = $(this).attr("data");
                 $.ajax({
                     type: "POST",
                     contentType: 'application/json; charset=utf-8',
-                    url: "/Cart/addToCart",
+                    url: "/Home/addToCart",
                     data: "{ 'movieid':' " + MovieId + "' }",
                     success: onSuccess,
                     failure: function (response) {
@@ -106,7 +82,8 @@
     }
 </table>
 
-<button id="spnCart">Go to cart <div id="example"></div></button>
+@Html.ActionLink("Go to cart", "Cart")<div id="example"></div>
+
 
 <div class="modal" style="background-color:white" id="exampleModal" tabindex="1000" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 </div>
