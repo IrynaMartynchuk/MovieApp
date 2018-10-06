@@ -165,7 +165,7 @@ namespace MovieApp.Controllers
         {
             if (Session["customer"] != null)
             {
-                return RedirectToAction("Index", "Home", new { customer = Session["customer"].ToString() });
+                return RedirectToAction("ListMovies", "Home", new { customer = Session["customer"].ToString() });
             }
             else
             {
@@ -173,20 +173,20 @@ namespace MovieApp.Controllers
             }
         }
 
+        
+
         [HttpPost]
         public ActionResult Login(Customer Customer)
         {
-            var db = new DBContext();
+            DBContext db = new DBContext();
             var loggedIn = db.Customers.SingleOrDefault(c => c.Email == Customer.Email && c.Password == Customer.Password);
 
             if (loggedIn != null)
             {
-                ViewBag.message = "You are logged in";
                 ViewBag.triedOnce = true;
-
-                Session["customer"] = Customer.Id; //??
-
-                return RedirectToAction("Index", "Home", new { customer = Customer.Id });
+                Session["customer"] = Customer.Id;
+                ViewBag.Message = "You are logged in";
+                return RedirectToAction("ListMovies", "Home", new { customer = loggedIn.Id });
             }
             else
             {
@@ -200,11 +200,11 @@ namespace MovieApp.Controllers
             if (Session["customer"] != null)
             {
                 Session["customer"] = null;
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ListMovies", "Home");
             }
             else
             {
-                return RedirectToAction("Index", "Home", new { customer = Session["customer"].ToString() });
+                return RedirectToAction("ListMovies", "Home", new { customer = Session["customer"].ToString() });
             }
 
         }
