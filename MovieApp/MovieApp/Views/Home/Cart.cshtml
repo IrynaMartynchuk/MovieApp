@@ -3,6 +3,39 @@
 @{
     ViewBag.Title = "Cart";
 }
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#delete').click(function () {
+                var dataid = $(this).attr('dataid');
+                $.ajax({
+                    url: "/Home/Delete",
+                    data: { id: dataid },  // en parameter inn i slett(id)-metoden i kunde-kontrolleren (JSON-objekt)
+                    success: function () {
+                        // må kalle liste-metoden for å vise den nye listen av kunder
+                        $.ajax({
+                            url: '@Url.Action("Cart", "Home")',
+                            success: function () {
+                                // så må siden reloades!
+                                window.location.reload();
+                                alert("ok");
+                            }
+                        });
+                    }
+                });
+            });
+
+            $('#confirm').click(function () {
+                $.ajax({
+                    url: "/Home/Confirmation",
+                    success: function (data) {
+                        alert(data);
+                    }
+                });
+            });
+        });
+</script>
 
 <h2>Cart</h2>
 
@@ -23,26 +56,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImageAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Genre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImageAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
 
-        <td>
-        <td><button class="btn btn-large btn-danger" id="delete" dataid="@item.Id">Remove</button></td>
-        </td>
-    </tr>
-}
+            <td>
+            <td><button class="btn btn-large btn-danger" id="delete" dataid="@item.Id">Remove</button></td>
+            </td>
+        </tr>
+    }
 
 </table>
-<a href="" class="btn btn-success">Confirm order</a>
+<button id="confirm">@Html.ActionLink("Confirm your order", "Confirmation")</button>

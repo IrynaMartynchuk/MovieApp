@@ -13,7 +13,7 @@ namespace MovieApp.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("ListMovies");
         }
 
         public ActionResult Register()
@@ -86,7 +86,7 @@ namespace MovieApp.Controllers
                 }
                 else
                 {
-                    return ViewBag.Error = "Item is already added to your cart!";
+                    ViewBag.Error = "Item is already added to your cart!";
                 }
 
             }
@@ -207,6 +207,14 @@ namespace MovieApp.Controllers
 
         }
 
+        public ActionResult Confirmation()
+        {
+            if(Session["customer"] == null)
+            {
+
+            }
+            return View();
+        }
 
 
     }
