@@ -27,6 +27,8 @@ nav {
 
 .img__wrap {
     position: relative;
+    width:80%;
+    height:80%;
 }
 
 .img__description {
@@ -54,10 +56,14 @@ nav {
     font-family: 'Yu Gothic';
 }
 
-
 .container text-center {
     font-family: 'Yu Gothic';
 }
+
+h1 {
+    margin: 5% 5% 1% 5%;
+}
+
 
 
 
