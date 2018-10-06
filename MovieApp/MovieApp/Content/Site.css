@@ -1,25 +1,20 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: black;
+    color: coral;
+    font-family: 'Yu Gothic';
 }
 
-/* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
 textarea {
     max-width: 280px;
-}
-
-body {
-    background-color: black;
-    color: coral;
-    font-family: 'Yu Gothic';
 }
 
 nav {
@@ -32,6 +27,8 @@ nav {
 
 .img__wrap {
     position: relative;
+    width:80%;
+    height:80%;
 }
 
 .img__description {
@@ -44,7 +41,6 @@ nav {
     color: lightcyan;
     visibility: hidden;
     opacity: 0;
-    /* transition effect. not necessary */
     transition: opacity .2s, visibility .2s;
 }
 
@@ -60,13 +56,14 @@ nav {
     font-family: 'Yu Gothic';
 }
 
-.form-group {
-
-}
-
 .container text-center {
     font-family: 'Yu Gothic';
 }
+
+h1 {
+    margin: 5% 5% 1% 5%;
+}
+
 
 
 

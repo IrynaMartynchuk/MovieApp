@@ -28,9 +28,9 @@
 
             $('#confirm').click(function () {
                 $.ajax({
-                    url: "/Home/Confirmation",
-                    success: function (data) {
-                        alert(data);
+                    url: '@Url.Action("Confirmation", "Home")',
+                    success: function (message) {
+                        alert(message);
                     }
                 });
             });
