@@ -10,7 +10,7 @@
             $('#delete').click(function () {
                 var dataid = $(this).attr('dataid');
                 $.ajax({
-                    url: "/Home/Delete",
+                    url: "/Home/Delete", // why different format here?
                     data: { id: dataid },  // en parameter inn i slett(id)-metoden i kunde-kontrolleren (JSON-objekt)
                     success: function () {
                         // må kalle liste-metoden for å vise den nye listen av kunder
@@ -81,7 +81,6 @@
 
             <td>
             <td><button class="btn btn-large btn-danger" id="delete" dataid="@item.Id">Remove</button></td>
-            </td>
         </tr>
     }
 

@@ -40,12 +40,12 @@
 
         if (ViewBag.message == null && ViewBag.triedOnce == true)
         {
-            <h4>Username or password are incorrect. Please try to log in again or sign up @Html.ActionLink("here", "Register", "Home").</h4>
+            <h4>Wrong email or password. Please try to log in again or sign up @Html.ActionLink("here", "Register", "Home").</h4>
         }
     }
 
     <div>
-        @Html.ActionLink("Back to the Main Page", "Index")
+        @Html.ActionLink("Back to Main Menu", "Index", new { empty = ""}, new { @class = "btn btn-primary" } )
     </div>
 
 

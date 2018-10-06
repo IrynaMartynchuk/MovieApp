@@ -173,6 +173,8 @@ namespace MovieApp.Controllers
             }
         }
 
+        
+
         [HttpPost]
         public ActionResult Login(Customer Customer)
         {
