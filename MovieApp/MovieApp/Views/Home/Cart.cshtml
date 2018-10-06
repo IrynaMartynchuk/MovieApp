@@ -30,7 +30,14 @@
                 $.ajax({
                     url: '@Url.Action("Confirmation", "Home")',
                     success: function (message) {
-                        alert(message);
+                        $.ajax({
+                            alert(message);
+                            url: '@Url.Action("Index", "Home")',
+                            success: function () {
+                                
+                                window.location.reload();
+                            }
+                            });
                     }
                 });
             });
