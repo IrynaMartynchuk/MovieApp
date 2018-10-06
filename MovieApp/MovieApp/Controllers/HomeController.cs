@@ -209,13 +209,15 @@ namespace MovieApp.Controllers
 
         }
 
-        public ActionResult Confirmation()
+        public string Confirmation()
         {
             if(Session["customer"] == null)
             {
-
+                var message = "In order to procceed you need to log in!";
+                return message;
             }
-            return View();
+            var ok = "You will receive confirmation email with receipt!";
+            return ok;
         }
 
 
