@@ -29,7 +29,9 @@
             <div class="collapse navbar-collapse" id="navbar-collapse-main">
                 <ul class="nav navbar-nav">
                     <li style="float: left; padding: 10px; height: 100%; text-transform: uppercase; letter-spacing: 4px; line-height: 60px ;font-size: 20px;"><a style="color:black" class="active" href="@Url.Action("Index", "Home")"><span class="glyphicon glyphicon-home"></span>Home</a></li>
-                    <li style="float: left; padding: 10px; height: 100%; text-transform: uppercase; letter-spacing: 4px; line-height: 60px; font-size: 20px;"><a style="color:black" class="active" href="@Url.Action("ListMovies", "Home")"><span class="glyphicon glyphicon-film"></span>Genres</a></li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
 
                     @{
                         if (Session["customer"] == null)
@@ -38,8 +40,6 @@
                         }
                     }
 
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
                     <li style="float: left; padding: 10px; height: 100%; text-transform: uppercase; letter-spacing: 4px; line-height: 60px; font-size: 20px;"><a style="color:black" class="active" href="@Url.Action("Cart", "Home")"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
 
                     @{
