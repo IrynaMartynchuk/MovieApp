@@ -18,23 +18,30 @@ namespace MovieApp
         {
             using (var db = new DBContext())
             {
-                try
+                var existingCustomer = db.Customers.Where(a => a.Email == innKunde.Email).SingleOrDefault();
+                if (existingCustomer == null)
                 {
-                    var newCustomer = new Models.Customer();
-                    newCustomer.Name = innKunde.Name;
-                    newCustomer.Surname = innKunde.Surname;
-                    newCustomer.Email = innKunde.Email;
-                    newCustomer.Password = innKunde.Password;
+                    try
+                    {
+                        var newCustomer = new Models.Customer();
+                        newCustomer.Name = innKunde.Name;
+                        newCustomer.Surname = innKunde.Surname;
+                        newCustomer.Email = innKunde.Email;
+                        newCustomer.Password = innKunde.Password;
 
-                    db.Customers.Add(newCustomer);
-                    db.SaveChanges();
+                        db.Customers.Add(newCustomer);
+                        db.SaveChanges();
 
-                    return true;
+                        return true;
+                    }
+                    catch (Exception feil)
+                    {
+                        return false;
+                    }
                 }
-                catch (Exception feil)
-                {
+                else
                     return false;
-                }
+                    
             }
         }
 

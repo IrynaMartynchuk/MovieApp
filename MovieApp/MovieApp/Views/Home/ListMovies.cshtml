@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "ListMovies";
 }
-
+ 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,7 +21,7 @@
                     url: "/Home/addToCart",
                     data: "{ 'movieid':' " + MovieId + "' }",
                     success: onSuccess,
-                    failure: function (response) {
+                    failure: function (response) { 
                         alert(response.d);
                     }
                 });

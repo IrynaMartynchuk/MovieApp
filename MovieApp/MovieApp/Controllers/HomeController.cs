@@ -63,11 +63,6 @@ namespace MovieApp.Controllers
             return View(allMovies);
         }
 
-        public ActionResult Login()
-        {
-            return View();
-        }
-
         public int addToCart(int MovieId)
         {
 
@@ -165,6 +160,56 @@ namespace MovieApp.Controllers
             }
 
         }
+
+        public ActionResult Login()
+        {
+            if (Session["customer"] != null)
+            {
+                return RedirectToAction("Index", "Home", new { customer = Session["customer"].ToString() });
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Login(Customer Customer)
+        {
+            var db = new DBContext();
+            var loggedIn = db.Customers.SingleOrDefault(c => c.Email == Customer.Email && c.Password == Customer.Password);
+
+            if (loggedIn != null)
+            {
+                ViewBag.message = "You are logged in";
+                ViewBag.triedOnce = true;
+
+                Session["customer"] = Customer.Id; //??
+
+                return RedirectToAction("Index", "Home", new { customer = Customer.Id });
+            }
+            else
+            {
+                ViewBag.triedOnce = true;
+                return View(); //if failed - error message 
+            }
+        }
+
+        public ActionResult Logout()
+        {
+            if (Session["customer"] != null)
+            {
+                Session["customer"] = null;
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home", new { customer = Session["customer"].ToString() });
+            }
+
+        }
+
+
 
     }
 }
