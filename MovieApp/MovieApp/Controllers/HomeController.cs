@@ -179,7 +179,7 @@ namespace MovieApp.Controllers
         {
             if (Session["customer"] != null)
             {
-                return RedirectToAction("Index", "Home", new { customer = Session["customer"].ToString() });
+                return RedirectToAction("ListMovies", "Home", new { customer = Session["customer"].ToString() });
             }
             else
             {
@@ -200,7 +200,7 @@ namespace MovieApp.Controllers
 
                 Session["customer"] = Customer.Id;
                 
-                return RedirectToAction("Index", "Home", new { customer = Customer.Id });
+                return RedirectToAction("ListMovies", "Home", new { customer = Customer.Id });
             }
             else
             {
@@ -214,11 +214,11 @@ namespace MovieApp.Controllers
             if (Session["customer"] != null)
             {
                 Session["customer"] = null;
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ListMovies", "Home");
             }
             else
             {
-                return RedirectToAction("Index", "Home", new { customer = Session["customer"].ToString() });
+                return RedirectToAction("ListMovies", "Home", new { customer = Session["customer"].ToString() });
             }
 
         }
