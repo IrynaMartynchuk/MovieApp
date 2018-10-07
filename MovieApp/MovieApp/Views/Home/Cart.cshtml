@@ -6,8 +6,8 @@
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script type="text/javascript">
         $(document).ready(function () {
-
-            $('#delete').click(function () {
+            
+            $('.delete').click(function () {
                 var dataid = $(this).attr('dataid');
                 $.ajax({
                     url: "/Home/Delete",
@@ -19,28 +19,21 @@
                             success: function () {
                                 // så må siden reloades!
                                 window.location.reload();
-                                alert("ok");
                             }
                         });
                     }
                 });
             });
 
-            $('#confirm').click(function () {
-                $.ajax({
+           $('#confirm').click(function () {
+               $.ajax({
                     url: '@Url.Action("Confirmation", "Home")',
-                    success: function (message) {
-                        $.ajax({
-                            alert(message);
-                            url: '@Url.Action("Index", "Home")',
-                            success: function () {
-                                
-                                window.location.reload();
-                            }
-                            });
-                    }
-                });
-            });
+                   success: function (message) {
+                               alert(message);
+                              window.location.reload();
+                           }
+});
+          });
         });
 </script>
 
@@ -80,10 +73,12 @@
             </td>
 
             <td>
-            <td><button class="btn btn-large btn-danger" id="delete" dataid="@item.Id">Remove</button></td>
+            <td><button class="btn btn-large btn-danger delete" dataid="@item.Id">Remove</button></td>
             </td>
         </tr>
+        <tr>
+            <button id="confirm">@Html.ActionLink("Confirm your order", "changeConfirmationStatus", new { id = item.Id })</button>
+        </tr>
     }
-
+        
 </table>
-<button id="confirm">@Html.ActionLink("Confirm your order", "Confirmation")</button>

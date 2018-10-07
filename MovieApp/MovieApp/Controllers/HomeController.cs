@@ -65,11 +65,11 @@ namespace MovieApp.Controllers
 
         public int addToCart(int MovieId)
         {
-
+            var totalAmount = 0;
             var db = new DBContext();
-            var amountOflines = 0;
             if (Session["Cart"] != null)
             {
+
                 var newOrderline = new Orderline
                 {
                     Antall = 1,
@@ -78,11 +78,10 @@ namespace MovieApp.Controllers
                 };
                 if (checkOrderline(newOrderline))
                 {
-                    var count = 0;
+                    
                     var orderlines = new List<Orderline>();
                     orderlines.Add(newOrderline);
-                    count++;
-                    count = amountOflines;
+                    totalAmount = totalAmount + 1;
                 }
                 else
                 {
@@ -90,7 +89,7 @@ namespace MovieApp.Controllers
                 }
 
             }
-            return amountOflines;
+            return totalAmount;
         }
 
         public bool checkOrderline(Orderline newOrderline)
@@ -119,6 +118,9 @@ namespace MovieApp.Controllers
         public ActionResult Cart()
         {
             var db = new DBContext();
+
+   
+            
             var orderId = (from order in db.Orders where this.Session.SessionID == order.SessionId select order.Id).First();
             var orderlines = (from list in db.Orderlines where list.OrderId == orderId select list.MovieId).ToList();
             var movies = (from movie in db.Movies.AsEnumerable()
@@ -132,33 +134,23 @@ namespace MovieApp.Controllers
                               Genre = movie.Genre
 
                           }).ToList();
-            var sum = 0;
-            foreach (var movie in movies)
-            {
-                ViewBag.TotalPrice = sum + movie.Price;
-            }
             return View(movies);
         }
 
         public bool Delete(int id)
         {
-            using (var db = new DBContext())
+            var db = new DBContext();
+            Orderline orderline = db.Orderlines.Single(x => x.MovieId == id);
+            try
             {
-
-                try
-                {
-                    var orderlineId = (from lines in db.Orderlines where lines.MovieId == id select lines.Id);
-                    var line = db.Orderlines.Find(orderlineId);
-                    db.Orderlines.Remove(line);
-                    db.SaveChanges();
-                    return true;
-                }
-                catch (Exception error)
-                {
-                    return false;
-                }
+                db.Orderlines.Remove(orderline);
+                db.SaveChanges();
+                return true;
             }
-
+            catch(Exception error)
+            {
+                return false;
+            }
         }
 
         public ActionResult Login()
@@ -178,9 +170,11 @@ namespace MovieApp.Controllers
         {
             var db = new DBContext();
             var loggedIn = db.Customers.SingleOrDefault(c => c.Email == Customer.Email && c.Password == Customer.Password);
-
+            
             if (loggedIn != null)
             {
+                
+
                 ViewBag.message = "You are logged in";
                 ViewBag.triedOnce = true;
 
@@ -211,7 +205,7 @@ namespace MovieApp.Controllers
 
         public string Confirmation()
         {
-            if(Session["customer"] == null)
+            if (Session["customer"] == null)
             {
                 var message = "In order to procceed you need to log in!";
                 return message;
@@ -219,6 +213,20 @@ namespace MovieApp.Controllers
             var ok = "You will receive confirmation email with receipt!";
             return ok;
         }
+
+        public void changeConfirmationStatus(int id)
+        {
+            if (Session["customer"] != null)
+            {
+                var db = new DBContext();
+                var orderline = (from lines in db.Orderlines where lines.MovieId == id select lines.OrderId).First();
+                Order order = db.Orders.Single(x => x.Id == orderline);
+                order.Confirmed = true;
+                db.SaveChanges();
+            }
+        }
+
+
 
 
     }
