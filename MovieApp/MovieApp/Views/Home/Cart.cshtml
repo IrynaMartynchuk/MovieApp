@@ -45,7 +45,7 @@
 </head>
 <body>
 
-    <div class="panel panel-defaul" style="margin: 15% 2% 2% 2%; background-color:burlywood; color: black; font-size:20px ">
+    <div class="panel panel-defaul" style="margin: 15% 2% 2% 2%; background-color:burlywood; color: black; font-size:15px ">
         <div class="panel-body">
             <table class="table table-hover">
                 <tr>
@@ -76,7 +76,7 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Price)
                         </td>
-                        <td><button class="btn btn-danger delete" dataid="@item.Id">Remove</button></td>
+                        <td><button class="btn btn-danger delete col-sm-offset-2 col-sm-10" dataid="@item.Id">Remove</button></td>
                     </tr>
                     <tr>
                         <button id="confirm">@Html.ActionLink("Confirm your order", "changeConfirmationStatus", new { id = item.Id })</button>
