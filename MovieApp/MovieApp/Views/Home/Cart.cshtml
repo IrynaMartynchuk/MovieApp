@@ -3,10 +3,15 @@
 @{
     ViewBag.Title = "Cart";
 }
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script type="text/javascript">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Style.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
         $(document).ready(function () {
-            
+
             $('.delete').click(function () {
                 var dataid = $(this).attr('dataid');
                 $.ajax({
@@ -35,50 +40,56 @@
 });
           });
         });
-</script>
 
-<h2>Cart</h2>
+    </script>
+</head>
+<body>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Genre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th></th>
-    </tr>
+    <div class="panel panel-defaul" style="margin: 15% 2% 2% 2%; background-color:burlywood; color: black; font-size:20px ">
+        <div class="panel-body">
+            <table class="table table-hover">
+                <tr>
+                    <th style="text-align:left">TITLE</th>
+                    <th style="text-align:left">GENRE</th>
+                    <th style="text-align:right">PRICE</th>
+                </tr>
+                @{
+                    double total = 0;
+                }
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
+                @foreach (var movie in Model)
+                {
+                    var moviePrice = movie.Price;
+                    total = total + moviePrice;
 
-            <td>
-            <td><button class="btn btn-large btn-danger delete" dataid="@item.Id">Remove</button></td>
-            </td>
-        </tr>
-        <tr>
-            <button id="confirm">@Html.ActionLink("Confirm your order", "changeConfirmationStatus", new { id = item.Id })</button>
-        </tr>
-    }
-        
-</table>
+                }
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Genre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td><button class="btn btn-danger delete" dataid="@item.Id">Remove</button></td>
+                    </tr>
+                    <tr>
+                        <button id="confirm">@Html.ActionLink("Confirm your order", "changeConfirmationStatus", new { id = item.Id })</button>
+                    </tr>
+                }
+
+            </table>
+            <h2>
+                Total sum: @(total) NOK
+                <br />
+                <br />
+                @Html.ActionLink("Check Out", "changeConfirmationStatus", "Order", new { area = "" }, htmlAttributes: new { @class = "btn btn-large btn-primary" })
+            </h2>
+    </div>
+</div>
+</body>
