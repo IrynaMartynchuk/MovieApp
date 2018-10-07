@@ -44,8 +44,10 @@
     </script>
 </head>
 <body>
-   <div class="panel panel-defaul" style="margin: 15% 2% 2% 2%; background-color:ghostwhite; color: black; font-size:15px ">
+
+    <div class="panel panel-defaul" style="margin: 5% 2% 2% 2%; background-color:ghostwhite; color: black; font-size:15px ">
         <div class="panel-body">
+            <h1>Shopping cart</h1>
             <table class="table table-hover">
                 <tr>
                     <th style="text-align:left">TITLE</th>
@@ -77,18 +79,15 @@
                         </td>
                         <td><button class="btn btn-danger delete col-sm-offset-2 col-sm-10" dataid="@item.Id">Remove</button></td>
                     </tr>
-                    <tr>
-                        <button id="confirm">@Html.ActionLink("Confirm your order", "changeConfirmationStatus", new { id = item.Id })</button>
-                    </tr>
-                }
 
+                }
             </table>
             <h2>
                 Total sum: @(total) NOK
                 <br />
                 <br />
-                @Html.ActionLink("Check Out", "changeConfirmationStatus", "Order", new { area = "" }, htmlAttributes: new { @class = "btn btn-large btn-primary" })
+                <button class="btn btn-large btn-primary" id="confirm">@Html.ActionLink("Confirm your order", "changeConfirmationStatus")</button>
             </h2>
-        </div>
     </div>
+</div>
 </body>
