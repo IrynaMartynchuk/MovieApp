@@ -2,7 +2,7 @@
     padding-top: 50px;
     padding-bottom: 20px;
     background-color: black;
-    color: coral;
+    color: black;
     font-family: 'Yu Gothic';
 }
 
@@ -18,7 +18,7 @@ textarea {
 }
 
 nav {
-    background-color: coral;
+    background-color: black;
 }
 
 .active {
@@ -56,7 +56,7 @@ nav {
 #form {
     margin: 0 auto;
     width: 70%;
-    color: coral;
+    color: white;
     font-family: 'Yu Gothic';
 }
 
@@ -69,23 +69,95 @@ h1 {
 }
 
 .add {
+    color: white;
     background-color: black;
-    color: white
 }
 
 .form-group {
     margin-top: 15%;
     margin-left: 25%;
     margin-bottom: 15%;
+    color:white;
 }
 
 .account {
     margin-top: 40%;
     margin-left: 25%;
     font-size: 20px;
-    color:brown;
+    color:dimgrey;
 }
 
 table{
     margin-top: 15%;
+}
+
+footer{
+    font:white;
+}
+
+
+.slide-image {
+    width: 50%;
+    margin: auto
+}
+
+
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-inner {
+    width:100% ;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+
+
+
+.caption {
+    height: 130px;
+    overflow: hidden;
+}
+
+
+
+    .caption h4 {
+        white-space: nowrap;
+    }
+
+
+
+.thumbnail img {
+    width: 100%;
+}
+
+
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+
+
+.thumbnail {
+    padding: 0;
+}
+
+
+
+    .thumbnail .caption-full {
+        padding: 9px;
+        color: #333;
+    }
+
+
+
+footer {
+    margin: 50px 0;
 }
