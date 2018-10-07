@@ -246,8 +246,6 @@ namespace MovieApp.Controllers
             }
         }
 
-
-
-
+ 
     }
 }
