@@ -44,52 +44,74 @@ namespace MovieApp.Controllers
 
         public ActionResult ListMovies()
         {
-            if (Session["Cart"] == null || (bool)Session["Cart"] == false)
-            {
-                string sessionId = this.Session.SessionID;
-                Order newOrder = new Order
+            var db = new DBContext();
+                var order = (from orde in db.Orders where orde.Confirmed == false select orde.Id).ToList();
+                if (order.Count > 3)
                 {
-                    Date = DateTime.Now,
-                    Confirmed = false,
-                    SessionId = sessionId
-                };
-                var db = new DBContext();
-                db.Orders.Add(newOrder);
-                db.SaveChanges();
-                Session["Cart"] = true;
+                    Order orders = new Order();
+                foreach(var lines in order)
+                {
+                    var delete = db.Orders.Find(lines);
+                    db.Orders.Remove(delete);
+                    db.SaveChanges();
+                }
+                        
+                }
+            else
+            {
+                if (Session["Cart"] == null || (bool)Session["Cart"] == false)
+                {
+                    //var db = new DBContext();
+                    string sessionId = this.Session.SessionID;
+                    db.SaveChanges();
+                    Order newOrder = new Order
+                    {
+                        Date = DateTime.Now,
+                        Confirmed = false,
+                        SessionId = sessionId
+                    };
+
+                    db.Orders.Add(newOrder);
+                    db.SaveChanges();
+                    Session["Cart"] = true;
+                }
             }
+            
+            
+            
+                
             var Db = new DBMovie();
             List<Movie> allMovies = Db.retrieveAll();
             return View(allMovies);
         }
 
         public int addToCart(int MovieId)
-        {
-            var totalAmount = 0;
-            var db = new DBContext();
-            if (Session["Cart"] != null)
             {
+                var totalAmount = 0;
+                var db = new DBContext();
+                if (Session["Cart"] != null)
+                {
 
-                var newOrderline = new Orderline
-                {
-                    Antall = 1,
-                    MovieId = MovieId,
-                    OrderId = (from order in db.Orders where this.Session.SessionID == order.SessionId select order.Id).First()
-                };
-                if (checkOrderline(newOrderline))
-                {
-                    
-                    var orderlines = new List<Orderline>();
-                    orderlines.Add(newOrderline);
-                    totalAmount = totalAmount + 1;
-                }
-                else
-                {
-                    ViewBag.Error = "Item is already added to your cart!";
-                }
+                    var newOrderline = new Orderline
+                    {
+                        Antall = 1,
+                        MovieId = MovieId,
+                        OrderId = (from order in db.Orders where order.SessionId == this.Session.SessionID select order.Id).First()
+                    };
+                    if (checkOrderline(newOrderline))
+                    {
 
-            }
-            return totalAmount;
+                        var orderlines = new List<Orderline>();
+                        orderlines.Add(newOrderline);
+                        totalAmount = totalAmount + 1;
+                    }
+                    else
+                    {
+                        ViewBag.Error = "Item is already added to your cart!";
+                    }
+
+                }
+                return totalAmount;
         }
 
         public bool checkOrderline(Orderline newOrderline)
@@ -121,7 +143,7 @@ namespace MovieApp.Controllers
 
    
             
-            var orderId = (from order in db.Orders where this.Session.SessionID == order.SessionId select order.Id).First();
+            var orderId = (from order in db.Orders where order.SessionId == this.Session.SessionID && order.Confirmed == false select order.Id).SingleOrDefault();
             var orderlines = (from list in db.Orderlines where list.OrderId == orderId select list.MovieId).ToList();
             var movies = (from movie in db.Movies.AsEnumerable()
                           where orderlines.Contains(movie.Id)
@@ -140,7 +162,7 @@ namespace MovieApp.Controllers
         public bool Delete(int id)
         {
             var db = new DBContext();
-            Orderline orderline = db.Orderlines.Single(x => x.MovieId == id);
+            Orderline orderline = db.Orderlines.First(x => x.MovieId == id);
             try
             {
                 db.Orderlines.Remove(orderline);
@@ -173,13 +195,11 @@ namespace MovieApp.Controllers
             
             if (loggedIn != null)
             {
-                
-
                 ViewBag.message = "You are logged in";
                 ViewBag.triedOnce = true;
 
-                Session["customer"] = Customer.Id; //??
-
+                Session["customer"] = Customer.Id;
+                
                 return RedirectToAction("Index", "Home", new { customer = Customer.Id });
             }
             else
