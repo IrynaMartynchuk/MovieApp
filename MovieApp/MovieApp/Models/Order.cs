@@ -9,7 +9,7 @@ namespace MovieApp.Models
     {
         public int Id { get; set; }
         public System.DateTime Date { get; set; }
-        public string Confirmed { get; set; }
+        public bool Confirmed { get; set; }
         public string SessionId { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual List<Orderline> OrderLines { get; set; }

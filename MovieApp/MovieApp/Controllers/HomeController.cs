@@ -45,7 +45,7 @@ namespace MovieApp.Controllers
         public ActionResult ListMovies()
         {
             var db = new DBContext();
-                var order = (from orde in db.Orders where orde.Confirmed == "false" select orde.Id).ToList();
+                var order = (from orde in db.Orders where orde.Confirmed == false select orde.Id).ToList();
                 if (order.Count > 3)
                 {
                     Order orders = new Order();
@@ -67,7 +67,7 @@ namespace MovieApp.Controllers
                     Order newOrder = new Order
                     {
                         Date = DateTime.Now,
-                        Confirmed = "false",
+                        Confirmed = false,
                         SessionId = sessionId
                     };
 
@@ -143,7 +143,7 @@ namespace MovieApp.Controllers
 
    
             
-            var orderId = (from order in db.Orders where order.SessionId == this.Session.SessionID && order.Confirmed == "false" select order.Id).SingleOrDefault();
+            var orderId = (from order in db.Orders where order.SessionId == this.Session.SessionID && order.Confirmed == false select order.Id).SingleOrDefault();
             var orderlines = (from list in db.Orderlines where list.OrderId == orderId select list.MovieId).ToList();
             var movies = (from movie in db.Movies.AsEnumerable()
                           where orderlines.Contains(movie.Id)
@@ -241,7 +241,7 @@ namespace MovieApp.Controllers
                 var db = new DBContext();
                 var orderline = (from lines in db.Orderlines where lines.MovieId == id select lines.OrderId).First();
                 Order order = db.Orders.Single(x => x.Id == orderline);
-                order.Confirmed = "true";
+                order.Confirmed = true;
                 db.SaveChanges();
             }
         }
