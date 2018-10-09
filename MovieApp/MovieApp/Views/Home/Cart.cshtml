@@ -11,28 +11,30 @@
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-
             $('.delete').click(function () {
-                var dataid = $(this).attr('dataid');
+                var id = $(this).attr('dataid');
                 $.ajax({
                     url: "/Home/Delete",
-                    data: { id: dataid },  // en parameter inn i slett(id)-metoden i kunde-kontrolleren (JSON-objekt)
+                    data: { id: id },
                     success: function () {
-                        // må kalle liste-metoden for å vise den nye listen av kunder
                         $.ajax({
                             url: '@Url.Action("Cart", "Home")',
                             success: function () {
-                                // så må siden reloades!
-                                window.location.reload();
+                                $.ajax({
+                                    url: '@Url.Action("Index","Home")',
+                                    success: function () {
+                                        window.location.reload();
+                                    }
+                                });
                             }
                         });
                     }
                 });
             });
 
-           $('#confirm').click(function () {
+            $('#confirm').click(function () {
                $.ajax({
-                    url: '@Url.Action("Confirmation", "Home")',
+                   url: '@Url.Action("Confirmation", "Home")',
                    success: function (message) {
                                alert(message);
                               window.location.reload();
@@ -86,7 +88,7 @@
                 Total sum: @(total) NOK
                 <br />
                 <br />
-                <button class="btn btn-large btn-primary" id="confirm">@Html.ActionLink("Confirm your order", "changeConfirmationStatus")</button>
+                <button class="btn btn-large btn-primary" id="confirm">@Html.ActionLink("Confirm your order", "Confirmation")</button>
             </h2>
     </div>
 </div>
