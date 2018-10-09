@@ -53,10 +53,11 @@ namespace MovieApp.Controllers
                 db.SaveChanges();
                 
             }
-                if (Session["Cart"] == null || (bool)Session["Cart"] == false)
+            string sessionId = this.Session.SessionID;
+            if (Session["Cart"] == null || (bool)Session["Cart"] == false)
                 {
-                    string sessionId = this.Session.SessionID;
-                var orderExist = db.Orders.Where(x => x.Confirmed == false).SingleOrDefault();
+                    
+                var orderExist = db.Orders.Where(x => x.Confirmed == false || x.SessionId == this.Session.SessionID).SingleOrDefault();
                 if (orderExist == null)
                 {
                     Order newOrder = new Order
@@ -69,7 +70,23 @@ namespace MovieApp.Controllers
                     db.SaveChanges();
                     Session["Cart"] = true;
                 }
+                
                 }
+            else
+            {
+                var orderExist2 = db.Orders.Where(x => x.Confirmed == false).SingleOrDefault();
+                if (orderExist2 == null)
+                {
+                    Order newOrder = new Order
+                    {
+                        Date = DateTime.Now,
+                        Confirmed = false,
+                        SessionId = sessionId
+                    };
+                    db.Orders.Add(newOrder);
+                    db.SaveChanges();
+                }
+            }
             var Db = new DBMovie();
             List<Movie> allMovies = Db.retrieveAll();
             return View(allMovies);
