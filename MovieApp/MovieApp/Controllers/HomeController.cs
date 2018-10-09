@@ -46,7 +46,7 @@ namespace MovieApp.Controllers
         {
 
             var db = new DBContext();
-            Order falseOrder = db.Orders.SingleOrDefault(x => x.SessionId != this.Session.SessionID && x.Confirmed == false);
+            Order falseOrder = db.Orders.SingleOrDefault(x => x.SessionId != this.Session.SessionID && x.Confirmed == false); 
             if(falseOrder != null)
             {
                 db.Orders.Remove(falseOrder);
