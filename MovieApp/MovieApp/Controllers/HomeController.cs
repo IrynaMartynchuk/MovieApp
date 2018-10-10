@@ -200,6 +200,9 @@ namespace MovieApp.Controllers
         {
             var db = new DBContext();
             var loggedIn = db.Customers.SingleOrDefault(c => c.Email == Customer.Email && c.Password == Customer.Password);
+            var orders = db.Orders.SingleOrDefault(o => o.Confirmed == false);
+            loggedIn.Orders.Add(orders);
+            db.SaveChanges();
 
             if (loggedIn != null)
             {
@@ -207,8 +210,6 @@ namespace MovieApp.Controllers
                 ViewBag.triedOnce = true;
 
                 Session["customer"] = Customer.Id;
-                Order order = db.Orders.SingleOrDefault(x => x.Confirmed == false);
-                order.Customer = Customer;
                 return RedirectToAction("Index", "Home", new { customer = Customer.Id });
             }
             else
