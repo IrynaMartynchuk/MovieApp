@@ -44,144 +44,61 @@ namespace MovieApp.Controllers
 
         public ActionResult ListMovies()
         {
-
-            var db = new DBContext();
-            Order falseOrder = db.Orders.SingleOrDefault(x => x.SessionId != this.Session.SessionID && x.Confirmed == false); 
-            if(falseOrder != null)
-            {
-                db.Orders.Remove(falseOrder);
-                db.SaveChanges();
-                
-            }
+            var DB = new DBContext();
             string sessionId = this.Session.SessionID;
+           // Order oldOrder = DB.Orders.SingleOrDefault(x => x.SessionId != this.Session.SessionID && x.Confirmed == false);
+            var db = new DBOrder();
+            db.checkIfOldOrderExists(sessionId);
+            
+            //if(falseOrder != null)
+            //{
+            //    db.Orders.Remove(falseOrder);
+            //    db.SaveChanges();
+
+            //}
+            
+            
             if (Session["Cart"] == null || (bool)Session["Cart"] == false)
                 {
-                    
-                var orderExist = db.Orders.Where(x => x.Confirmed == false || x.SessionId == this.Session.SessionID).SingleOrDefault();
-                if (orderExist == null)
-                {
-                    Order newOrder = new Order
-                    {
-                        Date = DateTime.Now,
-                        Confirmed = false,
-                        SessionId = sessionId
-                    };
-                    db.Orders.Add(newOrder);
-                    db.SaveChanges();
-                    Session["Cart"] = true;
-                }
-                
-                }
+                db.createOrder(sessionId);
+                Session["Cart"] = true;
+                //var orderExist = DB.Orders.Where(x => x.Confirmed == false || x.SessionId == this.Session.SessionID).SingleOrDefault();
+                ////if (orderExist == null)
+                // {
+                // Order newOrder = new Order
+                // {
+                //    Date = DateTime.Now,
+                //    Confirmed = false,
+                //    SessionId = sessionId
+                // };
+                //  DB.Orders.Add(newOrder);
+                //  DB.SaveChanges();
+                //  Session["Cart"] = true;
+                //  }
+
+            }
             else
             {
-                var orderExist2 = db.Orders.Where(x => x.Confirmed == false).SingleOrDefault();
-                if (orderExist2 == null)
-                {
-                    Order newOrder = new Order
-                    {
-                        Date = DateTime.Now,
-                        Confirmed = false,
-                        SessionId = sessionId
-                    };
-                    db.Orders.Add(newOrder);
-                    db.SaveChanges();
-                }
+                db.createOrder(sessionId);
+               // var orderExist2 = DB.Orders.Where(x => x.Confirmed == false).SingleOrDefault();
+               // if (orderExist2 == null)
+               // {
+               //     Order newOrder = new Order
+               //     {
+                //        Date = DateTime.Now,
+                //        Confirmed = false,
+                //        SessionId = sessionId
+                //    };
+                //    DB.Orders.Add(newOrder);
+                //    DB.SaveChanges();
+               // }
             }
             var Db = new DBMovie();
             List<Movie> allMovies = Db.retrieveAll();
             return View(allMovies);
         }
 
-        public int addToCart(int MovieId)
-        {
-            var totalAmount = 0;
-            var db = new DBContext();
-            if (Session["Cart"] != null)
-            {
-
-                var newOrderline = new Orderline
-                {
-                    Antall = 1,
-                    MovieId = MovieId,
-                    OrderId = (from order in db.Orders where this.Session.SessionID == order.SessionId && order.Confirmed == false select order.Id).SingleOrDefault()
-                };
-                if (checkOrderline(newOrderline))
-                {
-
-                    var orderlines = new List<Orderline>();
-                    orderlines.Add(newOrderline);
-                    totalAmount = totalAmount + 1;
-                }
-                else
-                {
-                    ViewBag.Error = "Item is already added to your cart!";
-                }
-
-            }
-            return totalAmount;
-        }
-
-        public bool checkOrderline(Orderline newOrderline)
-        {
-            var db = new DBContext();
-            var existingMovieId = db.Orderlines.Where(a => a.MovieId == newOrderline.MovieId && a.OrderId == newOrderline.OrderId).SingleOrDefault();
-            if (existingMovieId == null)
-            {
-                try
-                {
-                    db.Orderlines.Add(newOrderline);
-                    db.SaveChanges();
-                }
-                catch (Exception error)
-                {
-
-                }
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public ActionResult Cart()
-        {
-            var db = new DBContext();
-
-
-
-            var orderId = (from order in db.Orders where order.SessionId == this.Session.SessionID && order.Confirmed == false select order.Id).SingleOrDefault();
-            var orderlines = (from list in db.Orderlines where list.OrderId == orderId select list.MovieId).ToList();
-            var movies = (from movie in db.Movies.AsEnumerable()
-                          where orderlines.Contains(movie.Id)
-                          select new Movie
-                          {
-                              Id = movie.Id,
-                              ImageAddress = movie.ImageAddress,
-                              Title = movie.Title,
-                              Price = movie.Price,
-                              Genre = movie.Genre
-
-                          }).ToList();
-            return View(movies);
-        }
-
-        public bool Delete(int id)
-        {
-            var db = new DBContext();
-            Orderline orderline = db.Orderlines.First(x => x.MovieId == id);
-            try
-            {
-                db.Orderlines.Remove(orderline);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception error)
-            {
-                return false;
-            }
         
-        }
 
         public ActionResult Login()
         {
@@ -214,6 +131,8 @@ namespace MovieApp.Controllers
             }
             else
             {
+                loggedIn.Orders.Add(orders);
+                db.SaveChanges();
                 ViewBag.triedOnce = true;
                 return View(); //if failed - error message 
             }
@@ -233,36 +152,6 @@ namespace MovieApp.Controllers
 
         }
 
-        public string Confirmation()
-        {
-            if (Session["customer"] == null)
-            {
-                var message = "In order to procceed you need to log in!";
-                return message;
-            }
-            else
-            {
-                var ok = "You will receive confirmation email with receipt!";
-                changeConfirmationStatus();
-                return ok;
-            }
-            
-
-
-        } 
         
-
-        public void changeConfirmationStatus()
-        {
-            if (Session["customer"] != null)
-            {
-                var db = new DBContext();
-                Order order = db.Orders.Single(x => x.Confirmed == false);
-                order.Confirmed = true;
-                db.SaveChanges();
-            }
-        }
-
- 
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MovieApp.Models.Movie>
+﻿@model List<MovieApp.Models.Movie>
 
 @{
     ViewBag.Title = "Cart";
@@ -14,11 +14,11 @@
             $('.delete').click(function () {
                 var id = $(this).attr('dataid');
                 $.ajax({
-                    url: "/Home/Delete",
+                    url: "/Cart/Delete",
                     data: { id: id },
                     success: function () {
                         $.ajax({
-                            url: '@Url.Action("Cart", "Home")',
+                            url: '@Url.Action("Cart", "Cart")',
                             success: function () {
                                 $.ajax({
                                     url: '@Url.Action("Index","Home")',
@@ -34,7 +34,7 @@
 
             $('#confirm').click(function () {
                $.ajax({
-                   url: '@Url.Action("Confirmation", "Home")',
+                   url: '@Url.Action("Confirmation", "Cart")',
                    success: function (message) {
                                alert(message);
                               window.location.reload();
@@ -90,6 +90,6 @@
                 <br />
                 <button class="btn btn-large btn-primary" id="confirm">@Html.ActionLink("Confirm your order", "Confirmation")</button>
             </h2>
+        </div>
     </div>
-</div>
 </body>
