@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
-using MovieApp.Models;
+using MovieApp.BLL;
+using MovieApp.Model;
 
 namespace MovieApp.Controllers
 {
@@ -26,8 +27,8 @@ namespace MovieApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var Db = new DBCustomer();
-                bool insertOK = Db.saveCustomer(inCustomer);
+                var db = new HomeBLL();
+                bool insertOK = db.saveCustomer(inCustomer);
                 if (insertOK)
                 {
                     return RedirectToAction("RegistrationOK");
@@ -37,7 +38,7 @@ namespace MovieApp.Controllers
             return View();
         }
 
-        public ActionResult RegistrationOK()
+        public ActionResult RegistrationOK() 
         {
             return View();
         }
@@ -46,52 +47,19 @@ namespace MovieApp.Controllers
         {
             var DB = new DBContext();
             string sessionId = this.Session.SessionID;
-           // Order oldOrder = DB.Orders.SingleOrDefault(x => x.SessionId != this.Session.SessionID && x.Confirmed == false);
             var db = new DBOrder();
             db.checkIfOldOrderExists(sessionId);
             
-            //if(falseOrder != null)
-            //{
-            //    db.Orders.Remove(falseOrder);
-            //    db.SaveChanges();
-
-            //}
-            
-            
             if (Session["Cart"] == null || (bool)Session["Cart"] == false)
                 {
+
                 db.createOrder(sessionId);
                 Session["Cart"] = true;
-                //var orderExist = DB.Orders.Where(x => x.Confirmed == false || x.SessionId == this.Session.SessionID).SingleOrDefault();
-                ////if (orderExist == null)
-                // {
-                // Order newOrder = new Order
-                // {
-                //    Date = DateTime.Now,
-                //    Confirmed = false,
-                //    SessionId = sessionId
-                // };
-                //  DB.Orders.Add(newOrder);
-                //  DB.SaveChanges();
-                //  Session["Cart"] = true;
-                //  }
-
+    
             }
             else
             {
                 db.createOrder(sessionId);
-               // var orderExist2 = DB.Orders.Where(x => x.Confirmed == false).SingleOrDefault();
-               // if (orderExist2 == null)
-               // {
-               //     Order newOrder = new Order
-               //     {
-                //        Date = DateTime.Now,
-                //        Confirmed = false,
-                //        SessionId = sessionId
-                //    };
-                //    DB.Orders.Add(newOrder);
-                //    DB.SaveChanges();
-               // }
             }
             var Db = new DBMovie();
             List<Movie> allMovies = Db.retrieveAll();
