@@ -45,9 +45,9 @@ namespace MovieApp.Controllers
 
         public ActionResult ListMovies()
         {
-            var DB = new DBContext();
+            var db = new HomeBLL();
             string sessionId = this.Session.SessionID;
-            var db = new DBOrder();
+            //var db = new DBOrder();
             db.checkIfOldOrderExists(sessionId);
             
             if (Session["Cart"] == null || (bool)Session["Cart"] == false)
@@ -61,8 +61,8 @@ namespace MovieApp.Controllers
             {
                 db.createOrder(sessionId);
             }
-            var Db = new DBMovie();
-            List<Movie> allMovies = Db.retrieveAll();
+            //var Db = new DBMovie();
+            List<Movie> allMovies = db.retrieveAll();
             return View(allMovies);
         }
 
@@ -83,11 +83,8 @@ namespace MovieApp.Controllers
         [HttpPost]
         public ActionResult Login(Customer Customer)
         {
-            var db = new DBContext();
-            var loggedIn = db.Customers.SingleOrDefault(c => c.Email == Customer.Email && c.Password == Customer.Password);
-            var orders = db.Orders.SingleOrDefault(o => o.Confirmed == false);
-            loggedIn.Orders.Add(orders);
-            db.SaveChanges();
+            var db = new HomeBLL();
+            var loggedIn = db.login(Customer);
 
             if (loggedIn != null)
             {
@@ -99,8 +96,6 @@ namespace MovieApp.Controllers
             }
             else
             {
-                loggedIn.Orders.Add(orders);
-                db.SaveChanges();
                 ViewBag.triedOnce = true;
                 return View(); //if failed - error message 
             }

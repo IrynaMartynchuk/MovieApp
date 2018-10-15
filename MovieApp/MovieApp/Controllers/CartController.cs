@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using MovieApp.Models;
+using MovieApp.BLL;
+using MovieApp.Model;
 
 namespace MovieApp.Controllers
 {
@@ -17,7 +18,7 @@ namespace MovieApp.Controllers
 
         public void addToCart(int MovieId)
         {
-            var db = new DBOrder();
+            var db = new CartBLL();
             if (Session["Cart"] != null)
             {
                 db.addOrderline(this.Session.SessionID, MovieId);
@@ -26,14 +27,14 @@ namespace MovieApp.Controllers
 
         public ActionResult Cart()
         {
-            var db = new DBOrder();
+            var db = new CartBLL();
             List<Movie> allItems = db.showCartItems(this.Session.SessionID);
             return View(allItems);
         }
 
         public void Delete(int id)
         {
-            var db = new DBOrder();
+            var db = new CartBLL();
             db.deleteCartItem(id);
         }
 
@@ -47,7 +48,8 @@ namespace MovieApp.Controllers
             else
             {
                 var ok = "You will receive confirmation email with receipt!";
-                changeConfirmationStatus();
+                var db = new CartBLL();
+                db.changeConfirmationStatus();
                 return ok;
             }
 
@@ -56,13 +58,13 @@ namespace MovieApp.Controllers
         }
 
 
-        public void changeConfirmationStatus()
+        /*public void changeConfirmationStatus()
         {
             if (Session["customer"] != null)
             {
                 var db = new DBOrder();
                 db.changeConfirmedToTrue();
             }
-        }
+        }*/
     }
 }

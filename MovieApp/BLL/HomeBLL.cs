@@ -16,6 +16,33 @@ namespace MovieApp.BLL
             bool insertOK = CustomerDAL.saveCustomer(inCustomer);
             return insertOK;
         }
-        
+
+        public void checkIfOldOrderExists(string sessionId)
+        {
+            var OrderDAL = new OrderDAL();
+            OrderDAL.checkIfOldOrderExists(sessionId);
+        }
+
+        public void createOrder(string Id)
+        {
+            var OrderDAL = new OrderDAL();
+            OrderDAL.createOrder(Id);
+        }
+
+        public List<Movie> retrieveAll()
+        {
+            var MovieDAL = new MovieDAL();
+            List<Movie> allMovies = MovieDAL.retrieveAll();
+            return allMovies;
+        }
+
+        public Customer login(Customer Customer)
+        {
+            var CustomerDAL = new CustomerDAL();
+            var loggedIn = CustomerDAL.login(Customer);
+            return loggedIn;
+        }
+
+
     }
 }
