@@ -23,6 +23,7 @@ namespace MovieApp.DAL
     public class Admins
     {
         public int adminID { get; set; }
+        public string adminUser { get; set; }
         public byte [] passwordAdmin { get; set; }
     }
 

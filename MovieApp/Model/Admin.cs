@@ -19,7 +19,7 @@ namespace MovieApp.Model
         [Display(Name = "Password")]
         [Required(ErrorMessage = "Password should be filled in")]
         [DataType(DataType.Password)]
-        public byte [] PasswordAdmin { get; set; }
+        public string PasswordAdmin { get; set; }
     }
 }
  
