@@ -15,7 +15,7 @@
     <!--sdjfhkjasfh-->
     <!--Menu-Navigation-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <nav class=" navbar navbar-default navbar-fixed-top" role="navigation" style="background-color:black">
+    <nav class=" navbar navbar-default navbar-fixed-top" role="navigation" style="background-color:#37474f ">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-collapse-main">
@@ -27,33 +27,57 @@
                 <a class="navbar-brand" href="#"><img /></a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse-main">
-                <ul class="nav navbar-nav">
-                    <li style="float: left; padding: 10px; height: 100%; text-transform: uppercase; letter-spacing: 4px; line-height: 60px ;font-size: 20px;"><a style="color:white" class="active" href="@Url.Action("Index", "Home")"><span class="glyphicon glyphicon-home"></span>Home</a></li>
 
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
+                @{
+                    if (Session["admin"] == null)
+                    {
 
-                    @{
-                        if (Session["customer"] == null)
-                        {
-                            <li style="float: left; padding: 10px; height: 100%; text-transform: uppercase; letter-spacing: 4px; line-height: 60px; font-size: 20px;"><a style="color:lightgray" class="active" href="@Url.Action("Register", "Home")"><span class="glyphicon glyphicon-user"></span>Register</a></li>
-                        }
+
+                        <ul class="nav navbar-nav">
+                            <li style="float: left; padding: 10px; height: 100%; text-transform: uppercase; letter-spacing: 4px; line-height: 60px ;font-size: 20px;"><a style="color:white" class="active" href="@Url.Action("Index", "Home")"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+
+                            @{
+                                if (Session["customer"] == null)
+                                {
+                                    <li style="float: left; padding: 10px; height: 100%; text-transform: uppercase; letter-spacing: 4px; line-height: 60px; font-size: 20px;"><a style="color:lightgray" class="active" href="@Url.Action("Register", "Home")"><span class="glyphicon glyphicon-user"></span>Register</a></li>
+                                }
+                            }
+
+                            <li style="float: left; padding: 10px; height: 100%; text-transform: uppercase; letter-spacing: 4px; line-height: 60px; font-size: 20px;"><a style="color:lightgray" class="active" href="@Url.Action("Cart", "Cart")"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+
+                            @{
+                                if (Session["customer"] == null)
+                                {
+                                    <li style="float: left; padding: 10px; height: 100%; text-transform: uppercase; letter-spacing: 4px; line-height: 60px; font-size: 20px;"><a style="color:lightgray" class="active" href="@Url.Action("Login", "Home")"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                }
+                                else
+                                {
+                                    <li style="float: left; padding: 10px; height: 100%; text-transform: uppercase; letter-spacing: 4px; line-height: 60px; font-size: 20px;"><a style="color:lightgray" class="active" href="@Url.Action("Logout", "Home")"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                                }
+                            }
+
+
+                            <li style="float: left; padding: 10px; height: 100%; text-transform: uppercase; letter-spacing: 4px; line-height: 60px; font-size: 20px;"><a style="color:lightgray" class="active" href="@Url.Action("AdminLogin", "Admin")"><span class="glyphicon glyphicon-cog"></span> Admin</a></li>
+
+                        </ul>
                     }
+                    else
+                    {
 
-                    <li style="float: left; padding: 10px; height: 100%; text-transform: uppercase; letter-spacing: 4px; line-height: 60px; font-size: 20px;"><a style="color:lightgray" class="active" href="@Url.Action("Cart", "Cart")"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                        <ul class="nav navbar-nav">
+                            <li style="float: left; padding: 10px; height: 100%; text-transform: uppercase; letter-spacing: 4px; line-height: 60px ;font-size: 20px;"><a style="color:white" class="active" href="@Url.Action("AdminIndex", "Admin")"><span class="glyphicon glyphicon-home"></span>AdminHome</a></li>
+                        </ul>
 
-                    @{
-                        if (Session["customer"] == null)
-                        {
-                            <li style="float: left; padding: 10px; height: 100%; text-transform: uppercase; letter-spacing: 4px; line-height: 60px; font-size: 20px;"><a style="color:lightgray" class="active" href="@Url.Action("Login", "Home")"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                        }
-                        else
-                        {
-                            <li style="float: left; padding: 10px; height: 100%; text-transform: uppercase; letter-spacing: 4px; line-height: 60px; font-size: 20px;"><a style="color:lightgray" class="active" href="@Url.Action("Logout", "Home")"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-                        }
+                        <ul class="nav navbar-nav navbar-right">
+                            <li style="float: left; padding: 10px; height: 100%; text-transform: uppercase; letter-spacing: 4px; line-height: 60px; font-size: 20px;"><a style="color:lightgray" class="active" href="@Url.Action("Logout", "Admin")"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                        </ul>
+
+
                     }
-
-                </ul>
+                }
             </div>
         </div>
     </nav>
