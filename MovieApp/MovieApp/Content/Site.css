@@ -1,14 +1,19 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: #78909c;
+    background-color: black;
+    color: black;
     font-family: 'Yu Gothic';
 }
+
+
 
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
 }
+
+
 
 input,
 select,
@@ -17,15 +22,25 @@ textarea {
 }
 
 
+nav {
+    background-color: black;
+}
+
+
+
 .active {
     color: black;
 }
 
+
+
 .img__wrap {
     position: relative;
-    width:80%;
-    height:80%;
+    width: 80%;
+    height: 80%;
 }
+
+
 
 .img__description {
     position: absolute;
@@ -40,14 +55,17 @@ textarea {
     transition: opacity .2s, visibility .2s;
     font-size: 20px;
     text-align: center;
-    font-weight:bold;
+    font-weight: bold;
 }
+
+
 
 .img__wrap:hover .img__description {
     visibility: visible;
     opacity: 1;
-
 }
+
+
 
 #form {
     margin: 0 auto;
@@ -56,30 +74,35 @@ textarea {
     font-family: 'Yu Gothic';
 }
 
+
+
 .container text-center {
     font-family: 'Yu Gothic';
 }
 
+
+
 h1 {
     margin: 5% 5% 1% 5%;
 }
+
+
 
 .add {
     color: white;
     background-color: black;
 }
 
+
+
 .form-group {
     margin-top: 15%;
     margin-left: 25%;
     margin-bottom: 15%;
     color: white;
-    font-family: 'Yu Gothic';
 }
 
-.form-control {
-    margin-bottom:5%;
-}
+
 
 .account {
     margin-top: 40%;
@@ -88,13 +111,20 @@ h1 {
     color: dimgrey;
 }
 
-table{
+
+
+table {
     margin-top: 15%;
 }
 
-footer{
-    font:white;
+
+
+footer {
+    font: white;
 }
+
+
+
 
 
 .slide-image {
@@ -104,18 +134,30 @@ footer{
 
 
 
+
+
+
+
 .carousel-holder {
     margin-bottom: 30px;
 }
 
+
+
 .carousel-inner {
-    width:100% ;
+    width: 100%;
 }
+
+
 
 .carousel-control,
 .item {
     border-radius: 4px;
 }
+
+
+
+
 
 
 
@@ -126,15 +168,24 @@ footer{
 
 
 
+
     .caption h4 {
         white-space: nowrap;
     }
 
 
 
+
+
+
+
 .thumbnail img {
     width: 100%;
 }
+
+
+
+
 
 
 
@@ -146,9 +197,17 @@ footer{
 
 
 
+
+
+
+
 .thumbnail {
     padding: 0;
 }
+
+
+
+
 
 
 
@@ -159,15 +218,21 @@ footer{
 
 
 
+
+
+
+
 footer {
     margin: 50px 0;
 }
 
-#confirm{
-    color:white;
+
+
+#confirm {
+    color: white;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto+Condensed:400,400i,700,700i');
+
 
 section {
     padding: 100px 0;

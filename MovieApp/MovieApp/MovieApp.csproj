@@ -99,9 +99,8 @@
     <Content Include="App_Data\WebApplication_log.ldf">
       <DependentUpon>WebApplication.mdf</DependentUpon>
     </Content>
-    <Content Include="App_Data\Content\bootstrap.css" />
-    <Content Include="App_Data\Content\bootstrap.min.css" />
-    <Content Include="App_Data\Content\Site.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\aquaman.jpg" />
@@ -125,6 +124,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Content\Site.css" />
     <Content Include="Web.config" />
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
@@ -155,7 +155,6 @@
     <Content Include="Views\Cart\Cart.cshtml" />
     <Content Include="Views\Admin\AdminLogin.cshtml" />
     <Content Include="Views\Admin\AdminIndex.cshtml" />
-    <Content Include="Views\Shared\LayoutAdmin.cshtml" />
     <Content Include="Views\Admin\Admin.cshtml" />
     <Content Include="Views\Customer\ListCustomers.cshtml" />
     <Content Include="Views\Customer\ViewDetails.cshtml" />
