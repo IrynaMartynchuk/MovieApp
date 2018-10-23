@@ -105,6 +105,7 @@
     <Content Include="Global.asax" />
     <Content Include="Images\aquaman.jpg" />
     <Content Include="Images\avengers.jpg" />
+    <Content Include="Images\background.jpg" />
     <Content Include="Images\godfather.jpg" />
     <Content Include="Images\inception.jpg" />
     <Content Include="Images\inception1.jpg" />
@@ -137,6 +138,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -161,6 +163,9 @@
     <Content Include="Views\Customer\DeleteCustomer.cshtml" />
     <Content Include="Views\Customer\EditCustomer.cshtml" />
     <Content Include="Views\Customer\RegisterCustomer.cshtml" />
+    <Content Include="Views\Order\ListOrders.cshtml" />
+    <Content Include="Views\Order\DeleteOrder.cshtml" />
+    <Content Include="Views\Order\EditOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

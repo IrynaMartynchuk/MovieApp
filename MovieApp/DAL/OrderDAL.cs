@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using MovieApp.Model;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace MovieApp.DAL
 {
@@ -124,6 +125,81 @@ namespace MovieApp.DAL
             db.SaveChanges();
         }
 
+        public List<Order> ListOrders()
+        {
+            using (var db = new DBContext())
+            {
+                List<Order> allOrders = (from order in db.Orders.AsEnumerable()
+                                               select new Order()
+                                               {
+                                                   Date = order.Date,
+                                                   Id = order.Id,
+                                               }).ToList();
+                return allOrders;
+            }
+        }
+
+        public Order viewOrderDetails(int id)
+        {
+            using (var db = new DBContext())
+            {
+                var order = db.Orders.Find(id);
+
+                if (order == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    var details = new Order()
+                    {
+                        Id = order.Id,
+                        Date = order.Date,
+                    };
+                    return details;
+                }
+            }
+        }
+
+        public bool DeleteOrder(int id)
+        {
+            using (var db = new DBContext())
+            {
+                try
+                {
+                    Order order = db.Orders.Find(id);
+                    db.Orders.Remove(order);
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool editOrder(int id, Order order)
+        {
+            var db = new DBContext();
+            var result = db.Orders.Find(id);
+
+            if (result != null)
+            {
+                result.Id = order.Id;
+                result.Date = order.Date;
+                try
+                {
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
 
     }
 }
