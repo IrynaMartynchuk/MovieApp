@@ -4,6 +4,10 @@
     ViewBag.Title = "ListCustomers";
 }
 
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap.min.js"></script>
+
     <h2>Customers</h2>
 
     <p>
@@ -40,10 +44,47 @@
                     @Html.ActionLink("Edit", "EditCustomer", new { id = item.Id }, new { @class = "btn btn-success" })
                     @Html.ActionLink("Details", "ViewDetails", new { id = item.Id }, new { @class = "btn btn-primary" })
                     @Html.ActionLink("Delete", "DeleteCustomer", new { id = item.Id }, new { @class = "btn btn-danger" })
-                    <button id="modal-openner" class="btn btn-success">Show order details</button>
+                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal" data="@item.Id" id="btnSubmit">Open modal</a>
                 </td>
             </tr>
         }
 
     </table>
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Modal Title</h3>
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                <a href="#" class="btn btn-success">Submit</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#btnSubmit").click(function () {
+            var id = $(this).attr("data");
+            $.ajax({
+                type: "POST",
+                contentType: 'application/json; charset=utf-8',
+                url: "/Cart/addToCart",
+                data: "{ 'id':' " + id + "' }",
+                success: function (response) {
+
+                },
+                failure: function (response) {
+                    alert(response);
+                }
+            });
+        })
+    })
+</script>
 
