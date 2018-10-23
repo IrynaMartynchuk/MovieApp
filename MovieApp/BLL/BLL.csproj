@@ -41,8 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminBLL.cs" />
     <Compile Include="CartBLL.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="CustomerBLL.cs" />
     <Compile Include="HomeBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
