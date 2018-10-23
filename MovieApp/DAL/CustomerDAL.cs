@@ -79,7 +79,6 @@ namespace MovieApp.DAL
                     Surname = c.Surname,
                     Email = c.Email
                 }).ToList(); */
-
                 List<Customer> allCustomers = (from customer in db.Customers.AsEnumerable()
                                                select new Customer()
                                                {
@@ -103,6 +102,7 @@ namespace MovieApp.DAL
                 }
                 else
                 {
+                    var orders = (from order in db.Orders where order.Customer.Id == id select order).ToList();
                     var details = new Customer()
                     {
                         Id = customer.Id,

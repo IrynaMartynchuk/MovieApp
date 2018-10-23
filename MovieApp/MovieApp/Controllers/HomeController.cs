@@ -85,14 +85,14 @@ namespace MovieApp.Controllers
         {
             var db = new HomeBLL();
             var loggedIn = db.login(Customer);
-
+            int id = Customer.Id;
             if (loggedIn != null)
             {
                 ViewBag.message = "You are logged in";
                 ViewBag.triedOnce = true;
 
-                Session["customer"] = Customer.Id;
-                return RedirectToAction("Index", "Home", new { customer = Customer.Id });
+                Session["customer"] = id;
+                return RedirectToAction("Index", "Home", new { customer = id });
             }
             else
             {
