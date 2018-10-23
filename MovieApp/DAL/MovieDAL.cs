@@ -95,5 +95,37 @@ namespace MovieApp.DAL
                 }
             }
         }
+
+        public bool saveMovie(Movie inMovie)
+        {
+            using (var db = new DBContext())
+            {
+                var existingMovie = db.Movies.Where(a => a.Title == inMovie.Title).SingleOrDefault();
+                if (existingMovie == null)
+                {
+                    try
+                    {
+                        var newMovie = new Movie();
+                        newMovie.ImageAddress = inMovie.ImageAddress;
+                        newMovie.Title = inMovie.Title;
+                        newMovie.Description = inMovie.Description;
+                        newMovie.Genre = inMovie.Genre;
+                        newMovie.Price = inMovie.Price;
+
+                        db.Movies.Add(newMovie);
+                        db.SaveChanges();
+
+                        return true;
+                    }
+                    catch (Exception feil)
+                    {
+                        return false;
+                    }
+                }
+                else
+                    return false;
+
+            }
+        }
     }
 }

@@ -4,43 +4,46 @@
     ViewBag.Title = "ListCustomers";
 }
 
-<h2>Customers</h2>
+    <h2>Customers</h2>
 
-<p>
-    @Html.ActionLink("New Customer", "RegisterCustomer", "Customer", new { @class = "btn btn-primary"})
-</p>
-<table class="table" style="background-color: white">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model[0].Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model[0].Surname)
-        </th> 
-        <th>
-            @Html.DisplayNameFor(model => model[0].Email)
-        </th>
-        <th></th>
-    </tr>
+    <p>
+        @Html.ActionLink("New Customer", "RegisterCustomer", "Customer", new { @class = "btn btn-primary" })
+    </p>
+    <table class="table" style="background-color: white">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model[0].Email)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Surname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
 
-            @Html.ActionLink("Edit", "EditCustomer", new { id = item.Id }, new { @class = "btn btn-success" })
-            @Html.ActionLink("Details", "ViewDetails", new { id = item.Id }, new { @class = "btn btn-primary" })
-            @Html.ActionLink("Delete", "DeleteCustomer", new { id = item.Id }, new { @class = "btn btn-danger" })
-        </td>
-    </tr>
-}
+                    @Html.ActionLink("Edit", "EditCustomer", new { id = item.Id }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Details", "ViewDetails", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Delete", "DeleteCustomer", new { id = item.Id }, new { @class = "btn btn-danger" })
+                    <button id="modal-openner" class="btn btn-success">Show order details</button>
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+

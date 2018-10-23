@@ -165,6 +165,7 @@
     <Content Include="Views\Movie\ListMovies.cshtml" />
     <Content Include="Views\Movie\EditMovie.cshtml" />
     <Content Include="Views\Movie\DeleteMovie.cshtml" />
+    <Content Include="Views\Movie\AddMovie.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

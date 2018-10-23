@@ -77,5 +77,26 @@ namespace MovieApp.Controllers
             ViewBag.Message = "Some mistake occured";
             return View();
         }
+
+        public ActionResult AddMovie()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddMovie(Movie inMovie)
+        {
+            if (ModelState.IsValid)
+            {
+                var db = new MovieBLL();
+                bool insertOK = db.saveMovie(inMovie);
+                if (insertOK)
+                {
+                    return RedirectToAction("ListMovies");
+                }
+            }
+            ViewBag.Message = "Some mistake occured or user with such email already exists!";
+            return View();
+        }
     }
 }

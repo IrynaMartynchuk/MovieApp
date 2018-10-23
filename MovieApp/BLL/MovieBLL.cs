@@ -34,5 +34,12 @@ namespace MovieApp.BLL
             var MovieDAL = new MovieDAL();
             return MovieDAL.deleteMovie(id);
         }
+
+        public bool saveMovie(Movie inMovie)
+        {
+            var MovieDAL = new MovieDAL();
+            bool insertOK = MovieDAL.saveMovie(inMovie);
+            return insertOK;
+        }
     }
 }
