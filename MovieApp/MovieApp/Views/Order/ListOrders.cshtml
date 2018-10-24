@@ -11,38 +11,59 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css" />
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#myTable').dataTable();
+        });
+
+    </script>
     <title>ListOrders</title>
 </head>
-<body>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model[0].Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model[0].Id)
-            </th>
-            <th></th>
-        </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "EditOrder", new { id = item.Id }, new { @class = "btn btn-success" })
-                @Html.ActionLink("deleteOrder", "DeleteOrder", new { id = item.Id }, new { @class = "btn btn-danger" })
-            </td>
-        </tr>
-    }
-    
+<body style="background-color:#fafafa">
+    <table id="myTable" class="table table-responsive table-bordered table-hover" cellspacing="0" width="100%" style="color:black; background-color:#fafafa">
+        <thead>
+            <tr style="font-size: 25px;">
+                <th class="th-sm">
+                    #
+                    <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                </th>
+                <th class="th-sm">
+                    @Html.DisplayNameFor(model => model[0].Date)
+                    <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                </th>
+                <th class="th-sm">
+                    @Html.DisplayNameFor(model => model[0].Id)
+                    <i class="fa fa-sort float-right" aria-hidden="true"></i>
+                </th>
+                <th>
+                    Manage
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditOrder", new { id = item.Id }, new { @class = "btn btn-success" })
+                        @Html.ActionLink("Delete", "DeleteOrder", new { id = item.Id }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
 </body>
 </html>
