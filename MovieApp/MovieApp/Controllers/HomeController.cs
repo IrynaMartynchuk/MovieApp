@@ -57,6 +57,11 @@ namespace MovieApp.Controllers
                 Session["Cart"] = true;
     
             }
+            else if(Session["customer"] != null)
+            {
+                string id = (string)HttpContext.Session["customer"];
+                db.test(sessionId, id);
+            }
             else
             {
                 db.createOrder(sessionId);
@@ -85,14 +90,13 @@ namespace MovieApp.Controllers
         {
             var db = new HomeBLL();
             var loggedIn = db.login(Customer);
-
             if (loggedIn != null)
             {
                 ViewBag.message = "You are logged in";
                 ViewBag.triedOnce = true;
 
-                Session["customer"] = Customer.Id;
-                return RedirectToAction("Index", "Home", new { customer = Customer.Id });
+                Session["customer"] = Customer.Email;
+                return RedirectToAction("Index", "Home", new { customer = Customer.Email });
             }
             else
             {
