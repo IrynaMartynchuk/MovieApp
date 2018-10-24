@@ -45,6 +45,7 @@
     <Compile Include="CartBLL.cs" />
     <Compile Include="CustomerBLL.cs" />
     <Compile Include="HomeBLL.cs" />
+    <Compile Include="MovieBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,58 @@
+﻿@model List<MovieApp.Model.Movie>
+
+@{
+    ViewBag.Title = "ListMovies";
+}
+
+<h2>ListMovies</h2>
+
+<p>
+    @Html.ActionLink("Add New", "AddMovie")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model[0].ImageAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Genre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImageAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id })
+            @Html.ActionLink("Delete", "DeleteMovie", new { id=item.Id })
+
+        </td>
+    </tr>
+}
+
+</table>

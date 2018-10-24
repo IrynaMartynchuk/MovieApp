@@ -26,5 +26,73 @@ namespace MovieApp.DAL
             }
 
         }
+
+        public Movie viewDetails(int id)
+        {
+            using (var db = new DBContext())
+            {
+                var movie = db.Movies.Find(id);
+
+                if (movie == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    var details = new Movie()
+                    {
+                        Id = movie.Id,
+                        ImageAddress = movie.ImageAddress,
+                        Title = movie.Title,
+                        Description = movie.Description,
+                        Price = movie.Price
+                    };
+                    return details;
+                }
+            }
+        }
+
+        public bool editMovie(int id, Movie movie)
+        {
+            var db = new DBContext();
+            var result = db.Movies.Find(id);
+
+            if (result != null)
+            {
+                result.Id = movie.Id;
+                result.ImageAddress = movie.ImageAddress;
+                result.Title = movie.Title;
+                result.Description = movie.Description;
+                result.Price = movie.Price;
+                try
+                {
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        public bool deleteMovie(int id)
+        {
+            using (var db = new DBContext())
+            {
+                try
+                {
+                    Movie movie = db.Movies.Find(id);
+                    db.Movies.Remove(movie);
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
     }
 }
