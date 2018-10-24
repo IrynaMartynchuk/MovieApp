@@ -77,5 +77,12 @@ namespace MovieApp.Controllers
             }
             return View();
         }
+
+        public ActionResult getOrders(int id)
+        {
+            var db = new OrderBLL();
+            List<Order> allOrders = db.getOrders(id);
+            return View(allOrders);
+        }
     }
 }

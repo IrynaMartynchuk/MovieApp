@@ -34,5 +34,12 @@ namespace MovieApp.BLL
             var orderDAL = new OrderDAL();
             return orderDAL.editOrder(id, order);
         }
+
+        public List<Order> getOrders(int id)
+        {
+            var OrderDAL = new OrderDAL();
+            List<Order> allOrders = OrderDAL.getOrders(id);
+            return allOrders;
+        }
     }
 }

@@ -1,0 +1,21 @@
+﻿@model List<MovieApp.Model.Order>
+@{
+    ViewBag.Title = "getOrders";
+}
+<div class="container">
+    <h2 style="text-align: center; border-bottom: 1px solid #000000">Orders</h2>
+    <table>
+        <tr>
+            <th>Order Id</th>
+            <th>Date</th>
+        </tr>
+        @foreach (var item in Model)
+
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Date</td>
+            </tr>
+        }
+    </table>
+</div>

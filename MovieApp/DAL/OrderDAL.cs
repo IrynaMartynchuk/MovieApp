@@ -201,5 +201,13 @@ namespace MovieApp.DAL
             return false;
         }
 
+        public List<Order> getOrders(int id)
+        {
+            var db = new DBContext();
+            var orders = db.Orders.Where(o => o.Customer.Id == id).ToList();
+ 
+            return orders;
+        }
+
     }
 }

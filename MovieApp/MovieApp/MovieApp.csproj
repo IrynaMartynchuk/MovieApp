@@ -138,6 +138,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MovieController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -166,6 +167,10 @@
     <Content Include="Views\Movie\EditMovie.cshtml" />
     <Content Include="Views\Movie\DeleteMovie.cshtml" />
     <Content Include="Views\Movie\AddMovie.cshtml" />
+    <Content Include="Views\Order\DeleteOrder.cshtml" />
+    <Content Include="Views\Order\EditOrder.cshtml" />
+    <Content Include="Views\Order\ListOrders.cshtml" />
+    <Content Include="Views\Order\getOrders.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
