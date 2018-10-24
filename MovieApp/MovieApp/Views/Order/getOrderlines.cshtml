@@ -1,0 +1,36 @@
+﻿@model List < MovieApp.Model.Orderline>
+@{
+    ViewBag.Title = "getOrderlines";
+}
+
+<div class="container">
+    <h2 style="text-align: center; border-bottom: 1px solid #000000">Orders</h2>
+    <table>
+        <tr>
+            <th>Orderline Id</th>
+            <th>Movie Id</th>
+            <th>Movie title</th>
+            <th>Movie price</th>
+            <th>Customer id</th>
+            <th>Customer name</th>
+            <th>Customer surname</th>
+            <th>Customer email</th>
+        </tr>
+        @foreach (var item in Model)
+
+        {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.MovieId</td>
+            <td>@item.Movie.Title</td>
+            <td>@item.Movie.Price</td>
+            <td>@item.Order.Customer.Id</td>
+            <td>@item.Order.Customer.Name</td>
+            <td>@item.Order.Customer.Surname</td>
+            <td>@item.Order.Customer.Email</td>
+
+
+        </tr>
+        }
+    </table>
+</div>

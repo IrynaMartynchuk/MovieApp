@@ -84,5 +84,12 @@ namespace MovieApp.Controllers
             List<Order> allOrders = db.getOrders(id);
             return View(allOrders);
         }
+
+        public ActionResult getOrderlines(int id)
+        {
+            var db = new OrderBLL();
+            List<Orderline> allOrders = db.getOrderlines(id);
+            return View(allOrders);
+        }
     }
 }

@@ -8,8 +8,19 @@ using MovieApp.Model;
 
 namespace MovieApp.BLL
 {
-    public class CustomerBLL
+    public class CustomerBLL : BLL.ICustomerBLL
     {
+        private ICustomerRepository _repository;
+
+        public CustomerBLL()
+        {
+            _repository = new CustomerDAL();
+        }
+
+        public CustomerBLL(ICustomerRepository stub)
+        {
+            _repository = stub;
+        }
 
         public bool saveCustomer(Customer inCustomer)
         {
@@ -28,7 +39,7 @@ namespace MovieApp.BLL
         public List<Customer> listCustomers()
         {
             var CustomerDAL = new CustomerDAL();
-            List<Customer> allCustomers = CustomerDAL.listCustomers();
+            List<Customer> allCustomers = _repository.listCustomers();
             return allCustomers;
         }
 
@@ -41,7 +52,7 @@ namespace MovieApp.BLL
         public bool deleteCustomer(int id)
         {
             var customerDAL = new CustomerDAL();
-            return customerDAL.deleteCustomer(id);
+            return _repository.deleteCustomer(id);
         }
 
         public bool editCustomer(int id, Customer inCustomer)

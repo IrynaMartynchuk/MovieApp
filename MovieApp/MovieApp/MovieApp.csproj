@@ -171,6 +171,8 @@
     <Content Include="Views\Order\EditOrder.cshtml" />
     <Content Include="Views\Order\getOrders.cshtml" />
     <Content Include="Views\Order\ListOrders.cshtml" />
+    <Content Include="Views\Order\getOrderlines.cshtml" />
+    <Content Include="Views\Order\getOrders.cshtml" />
     <Content Include="Views\Movie\EditMovie.cshtml" />
     <Content Include="Views\Movie\AddMovie.cshtml" />
     <None Include="Web.Debug.config">

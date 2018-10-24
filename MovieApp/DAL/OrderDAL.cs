@@ -149,10 +149,10 @@ namespace MovieApp.DAL
             using (var db = new DBContext())
             {
                 List<Order> allOrders = (from order in db.Orders.AsEnumerable()
-                                               select new Order()
-                                               {
-                                                   Date = order.Date,
-                                                   Id = order.Id,
+                                         select new Order()
+                                         {
+                                             Date = order.Date,
+                                             Id = order.Id,
                                                }).ToList();
                 return allOrders;
             }
@@ -226,6 +226,13 @@ namespace MovieApp.DAL
             var orders = db.Orders.Where(o => o.Customer.Id == id).ToList();
  
             return orders;
+        }
+
+        public List<Orderline> getOrderlines(int id)
+        {
+            var db = new DBContext();
+            var orderlines = db.Orderlines.Where(o => o.OrderId == id);
+            return orderlines.ToList();
         }
 
     }
