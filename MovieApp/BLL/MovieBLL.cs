@@ -26,16 +26,25 @@ namespace MovieApp.BLL
 
         public bool editMovie(int id, Movie inMovie)
         {
-            var movieDAL = new MovieDAL();
-            return movieDAL.editMovie(id, inMovie);
+            var MovieDAL = new MovieDAL();
+            return MovieDAL.editMovie(id, inMovie);
         }
 
+        public bool addMovie(Movie newMovie)
+        {
+            var movieDAL = new MovieDAL();
+            bool insertOK = movieDAL.addMovie(newMovie);
+            return insertOK;
+        }
+
+        /*
         public bool deleteMovie(int id)
         {
             var movieDAL = new MovieDAL();
             return movieDAL.deleteMovie(id);
-        }
-        
+        } */
+
+
 
     }
 }

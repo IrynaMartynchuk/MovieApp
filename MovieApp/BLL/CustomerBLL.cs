@@ -10,6 +10,7 @@ namespace MovieApp.BLL
 {
     public class CustomerBLL
     {
+
         public bool saveCustomer(Customer inCustomer)
         {
             var CustomerDAL = new CustomerDAL();
@@ -47,25 +48,6 @@ namespace MovieApp.BLL
         {
             var customerDAL = new CustomerDAL();
             return customerDAL.editCustomer(id, inCustomer);
-        }
-
-        public void checkIfOldOrderExists(string sessionId)
-        {
-            var OrderDAL = new OrderDAL();
-            OrderDAL.checkIfOldOrderExists(sessionId);
-        }
-
-        public void createOrder(string Id)
-        {
-            var OrderDAL = new OrderDAL();
-            OrderDAL.createOrder(Id);
-        }
-
-        public List<Movie> retrieveAll()
-        {
-            var MovieDAL = new MovieDAL();
-            List<Movie> allMovies = MovieDAL.retrieveAll();
-            return allMovies;
         }
 
     }

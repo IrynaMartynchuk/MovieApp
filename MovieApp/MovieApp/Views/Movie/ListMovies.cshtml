@@ -1,7 +1,7 @@
 ﻿@model List<MovieApp.Model.Movie>
 
 @{
-    ViewBag.Title = "ListMovies";
+    ViewBag.Title = "List Movies";
 }
 
 <head>
@@ -10,10 +10,10 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
 </head>
 
-<h2>ListMovies</h2>
+<h2>List Movies</h2>
 
 <p>
-    @Html.ActionLink("Add New", "AddMovie")
+    @Html.ActionLink("Add New", "AddMovie", "Movie", new { @class="btn btl-lg btn-success"})
 </p>
 <table class="table" style="background-color: white">
     <tr>
@@ -53,7 +53,7 @@
             @Html.DisplayFor(modelItem => item.Genre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class="btn btn-success"})
+            @Html.ActionLink("Edit", "EditMovie", new { id = item.Id }, new { @class="btn btn-success"})
             @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
 
         </td>

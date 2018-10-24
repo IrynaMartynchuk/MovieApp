@@ -42,7 +42,7 @@ namespace MovieApp.DAL
                     return false;
 
             }
-        } 
+        }
 
         public bool addCustomer(Customer inCustomer)
         {
