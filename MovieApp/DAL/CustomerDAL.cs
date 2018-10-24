@@ -10,9 +10,9 @@ using System.Data.Entity;
 
 namespace MovieApp.DAL
 {
-    public class CustomerDAL
+    public class CustomerDAL : ICustomerRepository
     {
-
+        //integration test
         public bool saveCustomer(Customer innKunde)
         {
             using (var db = new DBContext())
