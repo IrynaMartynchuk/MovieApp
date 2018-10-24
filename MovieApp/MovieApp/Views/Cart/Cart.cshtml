@@ -46,14 +46,15 @@
     </script>
 </head>
 <body>
-    <div class="panel panel-defaul" style="margin: 5% 2% 2% 2%; background-color:ghostwhite; color: black; font-size:15px ">
+    <div class="panel panel-defaul" style="margin: 1% 2% 2% 2%; color: black; font-size:15px ">
         <div class="panel-body">
-            <h1>Shopping cart</h1>
-            <table class="table table-hover">
+            <table class="table table-responsive table-bordered table-hover" cellspacing="0" width="100%">
                 <tr>
+                    <th>#</th>
                     <th style="text-align:left">TITLE</th>
                     <th style="text-align:left">GENRE</th>
-                    <th style="text-align:right">PRICE</th>
+                    <th style="text-align:left">PRICE</th>
+                    <th style="text-align:left"></th>
                 </tr>
                 @{
                     double total = 0;
@@ -70,6 +71,9 @@
                 {
                     <tr>
                         <td>
+                            #
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.Title)
                         </td>
                         <td>
@@ -82,13 +86,19 @@
                     </tr>
 
                 }
+                <tr style="font-size:25px; font-style: oblique">
+                    <td align="left" colspan="3">
+                        TOTAL
+                    </td>
+                    <td align="right">
+                        @(total) NOK
+                    </td>
+                    <td>
+                        <button class="btn btn-confirm delete col-sm-offset-2 col-sm-10" id="confirm">@Html.ActionLink("Confirm your order", "Confirmation")</button>
+                    </td>
+                </tr>
             </table>
-            <h2>
-                Total sum: @(total) NOK
-                <br />
-                <br />
-                <button class="btn btn-large btn-primary" id="confirm">@Html.ActionLink("Confirm your order", "Confirmation")</button>
-            </h2>
+
         </div>
     </div>
 </body>
