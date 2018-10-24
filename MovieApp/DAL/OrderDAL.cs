@@ -38,6 +38,25 @@ namespace MovieApp.DAL
             }
         }
 
+        public void test(string sessionid, string id)
+        {
+            var db = new DBContext();
+            var customer = db.Customers.Single(c => c.Email == id);
+            var orderExist = db.Orders.SingleOrDefault(x => x.Confirmed == false);
+            if (orderExist == null)
+            {
+                Order newOrder = new Order
+                {
+                    Date = DateTime.Now,
+                    Confirmed = false,
+                    SessionId = sessionid,
+                    Customer = customer
+                };
+                db.Orders.Add(newOrder);
+                db.SaveChanges();
+            }
+        }
+
         public void addOrderline(string id, int movieId)
         {
             var db = new DBContext();
