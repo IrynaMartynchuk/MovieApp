@@ -105,6 +105,7 @@
     <Content Include="Global.asax" />
     <Content Include="Images\aquaman.jpg" />
     <Content Include="Images\avengers.jpg" />
+    <Content Include="Images\background.jpg" />
     <Content Include="Images\godfather.jpg" />
     <Content Include="Images\inception.jpg" />
     <Content Include="Images\inception1.jpg" />
@@ -170,7 +171,6 @@
     <Content Include="Views\Order\DeleteOrder.cshtml" />
     <Content Include="Views\Order\EditOrder.cshtml" />
     <Content Include="Views\Order\ListOrders.cshtml" />
-    <Content Include="Views\Order\getOrders.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
