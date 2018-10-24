@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Data.Entity;
 using MovieApp.BLL;
 using MovieApp.Model;
 
@@ -14,8 +13,7 @@ namespace MovieApp.Controllers
         // GET: Movie
         public ActionResult Index()
         {
-            return RedirectToAction("ListMovies");
-            //return View();
+            return View();
         }
 
         public ActionResult ListMovies()
@@ -25,7 +23,14 @@ namespace MovieApp.Controllers
             return View(allMovies);
         }
 
-        public ActionResult EditMovie(int id)
+        public ActionResult Details(int id)
+        {
+            var db = new MovieBLL(); //change to CustomerBLL
+            Movie movie = db.viewDetails(id);
+            return View(movie);
+        }
+
+        public ActionResult Edit(int id)
         {
             var db = new MovieBLL();
             Movie movie = db.viewDetails(id);
@@ -33,7 +38,7 @@ namespace MovieApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditMovie(int id, Movie inMovie)
+        public ActionResult Edit(int id, Movie inMovie)
         {
             if (ModelState.IsValid)
             {
@@ -41,7 +46,7 @@ namespace MovieApp.Controllers
                 bool changeOK = db.editMovie(id, inMovie);
                 if (changeOK)
                 {
-                    return RedirectToAction("ListMovies");
+                    return RedirectToAction("List<ovies");
                 }
                 else
                 {
@@ -54,11 +59,12 @@ namespace MovieApp.Controllers
             }
             return View();
         }
-
+        
         public ActionResult DeleteMovie(int id)
         {
             var db = new MovieBLL();
             Movie movie = db.viewDetails(id);
+            ViewData["test"] = "DeleteMovie OK";
             return View(movie);
         }
 
@@ -71,32 +77,16 @@ namespace MovieApp.Controllers
                 bool deleteOK = db.deleteMovie(id);
                 if (deleteOK)
                 {
+
+                    ViewData["test"] = "deleteOK";
                     return RedirectToAction("ListMovies");
                 }
             }
+
+            ViewData["test"] = "Delete NOT ok, some mistake occured";
             ViewBag.Message = "Some mistake occured";
             return View();
         }
 
-        public ActionResult AddMovie()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AddMovie(Movie inMovie)
-        {
-            if (ModelState.IsValid)
-            {
-                var db = new MovieBLL();
-                bool insertOK = db.saveMovie(inMovie);
-                if (insertOK)
-                {
-                    return RedirectToAction("ListMovies");
-                }
-            }
-            ViewBag.Message = "Some mistake occured or user with such email already exists!";
-            return View();
-        }
     }
 }

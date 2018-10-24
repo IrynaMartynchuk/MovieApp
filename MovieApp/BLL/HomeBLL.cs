@@ -10,38 +10,7 @@ namespace MovieApp.BLL
 {
     public class HomeBLL
     {
-        public bool saveCustomer(Customer inCustomer)
-        {
-            var CustomerDAL = new CustomerDAL();
-            bool insertOK = CustomerDAL.saveCustomer(inCustomer);
-            return insertOK;
-        }
-
-        public List<Customer> listCustomers()
-        {
-            var CustomerDAL = new CustomerDAL();
-            List<Customer> allCustomers = CustomerDAL.listCustomers();
-            return allCustomers;
-        }
-
-        public Customer viewDetails(int id)
-        {
-            var customerDAL = new CustomerDAL();
-            return customerDAL.viewDetails(id);     
-        }
-
-        public bool deleteCustomer(int id)
-        {
-            var customerDAL = new CustomerDAL();
-            return customerDAL.deleteCustomer(id);
-        }
-
-        public bool editCustomer(int id, Customer inCustomer)
-        {
-            var customerDAL = new CustomerDAL();
-            return customerDAL.editCustomer(id, inCustomer);
-        }
-
+        
         public void checkIfOldOrderExists(string sessionId)
         {
             var OrderDAL = new OrderDAL();

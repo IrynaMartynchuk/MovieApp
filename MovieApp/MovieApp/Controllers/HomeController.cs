@@ -27,7 +27,7 @@ namespace MovieApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var db = new HomeBLL();
+                var db = new CustomerBLL();
                 bool insertOK = db.saveCustomer(inCustomer);
                 if (insertOK)
                 {

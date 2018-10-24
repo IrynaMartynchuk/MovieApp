@@ -44,14 +44,15 @@ namespace MovieApp.DAL
             }
         } 
 
-        /*public bool saveCustomer(Customer inCustomer)
+        public bool addCustomer(Customer inCustomer)
         {
             var newCustomer = new Customer()
             {
                 Name = inCustomer.Name,
                 Surname = inCustomer.Surname,
-                Email = inCustomer.Email
-            };
+                Email = inCustomer.Email,
+                Password = inCustomer.Password
+        };
             
             using (var db = new DBContext())
             {
@@ -66,19 +67,12 @@ namespace MovieApp.DAL
                     return false;
                 }
             }
-        } */
+        }
  
         public List<Customer> listCustomers()
         {
             using (var db = new DBContext()) 
             {
-               /* List<Customer> allCustomers = db.Customers.Select(c => new Customer()
-                {
-                    Id = c.Id,
-                    Name = c.Name,
-                    Surname = c.Surname,
-                    Email = c.Email
-                }).ToList(); */
                 List<Customer> allCustomers = (from customer in db.Customers.AsEnumerable()
                                                select new Customer()
                                                {
@@ -115,6 +109,8 @@ namespace MovieApp.DAL
             }
         }
 
+
+
         public bool deleteCustomer(int id)
         {
             using (var db = new DBContext())
@@ -132,26 +128,6 @@ namespace MovieApp.DAL
                 }
             }
         }
-
-        /*public bool editCustomer(int id, Customer inCustomer)
-        {
-            using (var db = new DBContext())
-            {
-                try
-                {
-                    Customer changedCustomer = db.Customers.Find(id);
-                    changedCustomer.Name = inCustomer.Name;
-                    changedCustomer.Surname = inCustomer.Surname;
-                    changedCustomer.Email = inCustomer.Email;
-                    db.SaveChanges();
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
-            }
-        } */
 
         public bool editCustomer(int id, Customer customer)
         {
@@ -175,81 +151,6 @@ namespace MovieApp.DAL
             }
             return false;
         }
-
-
-
-        /* public bool editCustomer(Customer cust)
-        {
-            var db = new StoreEntities();
-
-            var result = db.Customers.Find(getCustomerId(cust.Email));
-            if (result != null)
-            {
-                result.Firstname = cust.Firstname;
-                result.Lastname = cust.Lastname;
-                result.Address = cust.Address;
-                result.ZipNumber = cust.ZipNumber;
-                result.ZipPlace = cust.ZipPlace;
-                result.Country = cust.Country;
-                result.Phonenumber = cust.Phonenumber;
-                try
-                {
-                    db.SaveChanges(user);
-                    return true;
-                }
-                catch (Exception e)
-                {
-                    var sw = new System.IO.StreamWriter(filename, true);
-                    sw.WriteLine(DateTime.Now.ToString() + " " + e.Message + e.StackTrace);
-                    sw.Close();
-                    return false;
-                }
-            }
-            return false;
-        }
-
-        public bool editCustomer(int id, Customer inCustomer)
-        {
-            using (var db = new DBContext())
-            {
-                try
-                {
-                    Customer customer = db.Customers.Find(id);
-                    customer.Name = inCustomer.Name;
-                    customer.Surname = inCustomer.Surname;
-                    customer.Email = inCustomer.Email;
-                    db.SaveChanges();
-                    return true;
-                }
-                catch (Exception e)
-                {
-                    return false;
-                }
-            }
-        }
-
-        public bool endreKunde(int id, Kunde innKunde)
-        {
-            using (var db = new KundeContext())
-            {
-
-
-                try
-                {
-                    Kunder endreKunde = db.Kunder.Find(id);
-                    endreKunde.Fornavn = innKunde.fornavn;
-                    endreKunde.Etternavn = innKunde.etternavn;
-                    endreKunde.Adresse = innKunde.adresse;
-                  
-                    db.SaveChanges();
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
-            }
-        } */
 
         public Customer login(Customer Customer)
         {

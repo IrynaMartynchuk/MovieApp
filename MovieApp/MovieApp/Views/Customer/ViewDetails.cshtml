@@ -6,7 +6,7 @@
 
 <h2>Customer Details</h2>
 
-<div style="background-color: white">
+<div>
     <h4>Customer No. @Html.DisplayFor(model => model.Id)</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -53,7 +53,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new {@class="btn btn-danger"})
+    @Html.ActionLink("Edit", "EditCustomer", new { id = Model.Id }, new {@class="btn btn-danger"})
     @Html.ActionLink("Back to List", "ListCustomers", new { tom = "" }, new { @class = "btn btn-primary" })
 </p>
  

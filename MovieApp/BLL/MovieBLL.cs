@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MovieApp.DAL;
 using MovieApp.Model;
 
+
 namespace MovieApp.BLL
 {
     public class MovieBLL
@@ -17,29 +18,24 @@ namespace MovieApp.BLL
             return allMovies;
         }
 
-        public bool editMovie(int id, Movie inMovie)
-        {
-            var MovieDAL = new MovieDAL();
-            return MovieDAL.editMovie(id, inMovie);
-        }
-
         public Movie viewDetails(int id)
         {
-            var MovieDAL = new MovieDAL();
-            return MovieDAL.viewDetails(id);
+            var movieDAL = new MovieDAL();
+            return movieDAL.viewDetails(id);
+        }
+
+        public bool editMovie(int id, Movie inMovie)
+        {
+            var movieDAL = new MovieDAL();
+            return movieDAL.editMovie(id, inMovie);
         }
 
         public bool deleteMovie(int id)
         {
-            var MovieDAL = new MovieDAL();
-            return MovieDAL.deleteMovie(id);
+            var movieDAL = new MovieDAL();
+            return movieDAL.deleteMovie(id);
         }
+        
 
-        public bool saveMovie(Movie inMovie)
-        {
-            var MovieDAL = new MovieDAL();
-            bool insertOK = MovieDAL.saveMovie(inMovie);
-            return insertOK;
-        }
     }
 }

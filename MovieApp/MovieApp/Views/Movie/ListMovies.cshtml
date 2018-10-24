@@ -4,55 +4,60 @@
     ViewBag.Title = "ListMovies";
 }
 
+<head>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</head>
+
 <h2>ListMovies</h2>
 
 <p>
-    @Html.ActionLink("Add Movie", "AddMovie", "Movie", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Add New", "AddMovie")
 </p>
 <table class="table" style="background-color: white">
     <tr>
         <th>
-            ImageAddress
+            @Html.DisplayNameFor(model => model[0].ImageAddress)
         </th>
         <th>
-            Title
+            @Html.DisplayNameFor(model => model[0].Title)
         </th>
         <th>
-            Description
+            @Html.DisplayNameFor(model => model[0].Description)
         </th>
         <th>
-            Price
+            @Html.DisplayNameFor(model => model[0].Price)
         </th>
         <th>
-            Genre
+            @Html.DisplayNameFor(model => model[0].Genre)
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                <img src="@Html.DisplayFor(modelItem => item.ImageAddress)" style="width: 60px; height:auto" />
-                @Html.DisplayFor(modelItem => item.ImageAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Genre)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "EditMovie", new { id = item.Id }, new { @class = "btn btn-success" }) |
-                @Html.ActionLink("Delete", "DeleteMovie", new { id = item.Id }, new { @class = "btn btn-danger" })
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImageAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class="btn btn-success"})
+            @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary" })
+
+        </td>
+    </tr>
+}
 
 </table>
