@@ -10,7 +10,7 @@ using System.Data.Entity;
 
 namespace MovieApp.DAL
 {
-    public class CustomerDAL : ICustomerRepository
+    public class CustomerDAL : DAL.ICustomerRepository
     {
         //integration test
         public bool saveCustomer(Customer innKunde)

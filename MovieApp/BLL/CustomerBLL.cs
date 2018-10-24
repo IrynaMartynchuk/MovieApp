@@ -8,7 +8,7 @@ using MovieApp.Model;
 
 namespace MovieApp.BLL
 {
-    public class CustomerBLL : ICustomerBLL
+    public class CustomerBLL : BLL.ICustomerBLL
     {
         private ICustomerRepository _repository;
 

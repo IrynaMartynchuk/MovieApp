@@ -7,7 +7,7 @@ using MovieApp.Model;
 
 namespace MovieApp.DAL
 {
-    public class CustomerRepositoryStub : ICustomerRepository
+    public class CustomerRepositoryStub : DAL.ICustomerRepository
     {
         public bool addCustomer(Customer inCustomer)
         {
