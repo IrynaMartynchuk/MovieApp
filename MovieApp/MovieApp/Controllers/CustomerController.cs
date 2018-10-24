@@ -10,6 +10,15 @@ namespace MovieApp.Controllers
 {
     public class CustomerController : Controller
     {
+        private ICustomerBLL _customerBLL;
+        public CustomerController()
+        {
+            _customerBLL = new CustomerBLL();
+        }
+        public CustomerController(ICustomerBLL stub)
+        {
+            _customerBLL = stub;
+        }
         // GET: Customer
         public ActionResult Index()
         {
@@ -39,8 +48,7 @@ namespace MovieApp.Controllers
 
         public ActionResult ListCustomers()
         {
-            var db = new CustomerBLL(); //change to CustomerBLL
-            List<Customer> allCustomers = db.listCustomers();
+            List<Customer> allCustomers = _customerBLL.listCustomers();
             return View(allCustomers);
         }
 
@@ -66,7 +74,7 @@ namespace MovieApp.Controllers
             if (ModelState.IsValid)
             {
                 var db = new CustomerBLL();
-                bool deleteOK = db.deleteCustomer(id);
+                bool deleteOK = _customerBLL.deleteCustomer(id);
                 if (deleteOK)
                 {
                     ViewData["test"] = "Delete2 OK";

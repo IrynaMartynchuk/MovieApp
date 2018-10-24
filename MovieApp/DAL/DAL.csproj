@@ -51,7 +51,9 @@
     <Compile Include="AdminDAL.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="CustomerDAL.cs" />
+    <Compile Include="CustomerRepositoryStub.cs" />
     <Compile Include="DB.cs" />
+    <Compile Include="ICustomerRepository.cs" />
     <Compile Include="OrderDAL.cs" />
     <Compile Include="MovieDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
