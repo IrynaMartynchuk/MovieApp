@@ -12,7 +12,6 @@
     
 <div class="form-horizontal">
     <h4>Customer No. @Html.DisplayFor(model => model.Id)</h4>
-    <p>@ViewData["test"]</p>
     <hr />
 
     <div>
@@ -50,9 +49,7 @@
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Save" class="btn btn-success" />
             @Html.ActionLink("Back to List", "ListCustomers", new { tom = "" }, new { @class = "btn btn-primary" })
-
         </div>
-
     </div>
 </div>
 }
