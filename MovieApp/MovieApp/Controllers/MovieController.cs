@@ -16,6 +16,26 @@ namespace MovieApp.Controllers
             return View();
         }
 
+        public ActionResult AddMovie()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddMovie(Movie newMovie)
+        {
+            if (ModelState.IsValid)
+            {
+                var db = new MovieBLL();
+                bool insertOK = db.addMovie(newMovie);
+                if (insertOK)
+                {
+                    return RedirectToAction("ListMovies");
+                }
+            }
+            return View();
+        }
+
         public ActionResult ListMovies()
         {
             var db = new MovieBLL();
@@ -30,15 +50,16 @@ namespace MovieApp.Controllers
             return View(movie);
         }
 
-        public ActionResult Edit(int id)
+        public ActionResult EditMovie(int id)
         {
             var db = new MovieBLL();
             Movie movie = db.viewDetails(id);
             return View(movie);
         }
 
+
         [HttpPost]
-        public ActionResult Edit(int id, Movie inMovie)
+        public ActionResult EditMovie(int id, Movie inMovie)
         {
             if (ModelState.IsValid)
             {
@@ -46,7 +67,7 @@ namespace MovieApp.Controllers
                 bool changeOK = db.editMovie(id, inMovie);
                 if (changeOK)
                 {
-                    return RedirectToAction("List<ovies");
+                    return RedirectToAction("ListMovies");
                 }
                 else
                 {
@@ -59,7 +80,8 @@ namespace MovieApp.Controllers
             }
             return View();
         }
-        
+
+        /*
         public ActionResult DeleteMovie(int id)
         {
             var db = new MovieBLL();
@@ -86,7 +108,7 @@ namespace MovieApp.Controllers
             ViewData["test"] = "Delete NOT ok, some mistake occured";
             ViewBag.Message = "Some mistake occured";
             return View();
-        }
+        } */
 
     }
 }

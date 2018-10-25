@@ -61,24 +61,5 @@ namespace MovieApp.BLL
             return customerDAL.editCustomer(id, inCustomer);
         }
 
-        public void checkIfOldOrderExists(string sessionId)
-        {
-            var OrderDAL = new OrderDAL();
-            OrderDAL.checkIfOldOrderExists(sessionId);
-        }
-
-        public void createOrder(string Id)
-        {
-            var OrderDAL = new OrderDAL();
-            OrderDAL.createOrder(Id);
-        }
-
-        public List<Movie> retrieveAll()
-        {
-            var MovieDAL = new MovieDAL();
-            List<Movie> allMovies = MovieDAL.retrieveAll();
-            return allMovies;
-        }
-
     }
 }

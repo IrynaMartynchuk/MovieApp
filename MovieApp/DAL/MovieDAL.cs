@@ -59,11 +59,11 @@ namespace MovieApp.DAL
 
             if (result != null)
             {
-                result.Id = movie.Id;
                 result.ImageAddress = movie.ImageAddress;
                 result.Title = movie.Title;
                 result.Description = movie.Description;
                 result.Price = movie.Price;
+                result.Genre = movie.Genre;
                 try
                 {
                     db.SaveChanges();
@@ -77,6 +77,34 @@ namespace MovieApp.DAL
             return false;
         }
 
+        public bool addMovie(Movie inMovie)
+        {
+            var newMovie = new Movie()
+            {
+                ImageAddress = inMovie.ImageAddress,
+                Title = inMovie.Title,
+                Description = inMovie.Description,
+                Price = inMovie.Price,
+                Genre = inMovie.Genre
+        };
+
+            using (var db = new DBContext())
+            {
+                try
+                {
+                    db.Movies.Add(newMovie);
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+        }
+
+
+        /*
         public bool deleteMovie(int id)
         {
             using (var db = new DBContext())
@@ -93,6 +121,6 @@ namespace MovieApp.DAL
                     return false;
                 }
             }
-        }
+        } */
     }
 }
