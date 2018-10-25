@@ -46,6 +46,7 @@
     <Compile Include="CustomerBLL.cs" />
     <Compile Include="HomeBLL.cs" />
     <Compile Include="ICustomerBLL.cs" />
+    <Compile Include="IOrderBLL.cs" />
     <Compile Include="MovieBLL.cs" />
     <Compile Include="OrderBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

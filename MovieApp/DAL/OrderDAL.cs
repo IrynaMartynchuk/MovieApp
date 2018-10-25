@@ -8,7 +8,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace MovieApp.DAL
 {
-    public class OrderDAL
+    public class OrderDAL : DAL.IOrderRepository
     {
         public void checkIfOldOrderExists(string sessionId)
         {
@@ -38,7 +38,7 @@ namespace MovieApp.DAL
             }
         }
 
-        public void test(string sessionid, string id)
+        public void createOrderCId(string sessionid, string id)
         {
             var db = new DBContext();
             var customer = db.Customers.Single(c => c.Email == id);

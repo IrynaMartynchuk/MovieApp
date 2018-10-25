@@ -23,10 +23,10 @@ namespace MovieApp.BLL
             OrderDAL.createOrder(Id);
         }
 
-        public void test(string sessionid, string id)
+        public void createOrderCId(string sessionid, string id)
         {
             var OrderDAL = new OrderDAL();
-            OrderDAL.test(sessionid, id);
+            OrderDAL.createOrderCId(sessionid, id);
         }
 
         public List<Movie> retrieveAll()

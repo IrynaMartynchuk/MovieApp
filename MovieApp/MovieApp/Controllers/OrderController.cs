@@ -10,6 +10,16 @@ namespace MovieApp.Controllers
 {
     public class OrderController : Controller
     {
+
+        private IOrderBLL _orderBLL;
+        public OrderController()
+        {
+            _orderBLL = new OrderBLL();
+        }
+        public OrderController(IOrderBLL stub)
+        {
+            _orderBLL = stub;
+        }
         // GET: Order
         public ActionResult Index()
         {
@@ -18,16 +28,16 @@ namespace MovieApp.Controllers
 
         public ActionResult ListOrders()
         {
-            var db = new OrderBLL(); //change to CustomerBLL
-            List<Order> allOrders = db.ListOrders();
+            //var db = new OrderBLL();
+            List<Order> allOrders = _orderBLL.ListOrders();
             return View(allOrders);
         }
 
         
         public ActionResult DeleteOrder(int id)
         {
-            var db = new OrderBLL();
-            Order order = db.viewOrderDetails(id);
+            //var db = new OrderBLL();
+            Order order = _orderBLL.viewOrderDetails(id);
             return View(order);
         }
         
@@ -37,8 +47,8 @@ namespace MovieApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var db = new OrderBLL();
-                bool deleteOK = db.DeleteOrder(id);
+               // var db = new OrderBLL();
+                bool deleteOK = _orderBLL.DeleteOrder(id);
                 if (deleteOK)
                 {
                     return RedirectToAction("ListOrders");
@@ -50,8 +60,8 @@ namespace MovieApp.Controllers
 
         public ActionResult EditOrder(int id)
         {
-            var db = new OrderBLL();
-            Order order = db.viewOrderDetails(id);
+            //var db = new OrderBLL();
+            Order order = _orderBLL.viewOrderDetails(id);
             return View(order);
         }
 
@@ -60,8 +70,8 @@ namespace MovieApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var db = new OrderBLL();
-                bool changeOK = db.editOrder(id, order);
+                //var db = new OrderBLL();
+                bool changeOK = _orderBLL.editOrder(id, order);
                 if (changeOK)
                 {
                     return RedirectToAction("ListOrders");
@@ -80,15 +90,15 @@ namespace MovieApp.Controllers
 
         public ActionResult getOrders(int id)
         {
-            var db = new OrderBLL();
-            List<Order> allOrders = db.getOrders(id);
+            //var db = new OrderBLL();
+            List<Order> allOrders = _orderBLL.getOrders(id);
             return View(allOrders);
         }
 
         public ActionResult getOrderlines(int id)
         {
-            var db = new OrderBLL();
-            List<Orderline> allOrders = db.getOrderlines(id);
+            //var db = new OrderBLL();
+            List<Orderline> allOrders = _orderBLL.getOrderlines(id);
             return View(allOrders);
         }
     }
