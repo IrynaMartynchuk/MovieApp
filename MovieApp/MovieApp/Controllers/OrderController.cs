@@ -33,7 +33,14 @@ namespace MovieApp.Controllers
             return View(allOrders);
         }
 
-        
+        public ActionResult ViewDetails(int id)
+        {
+            //var db = new OrderBLL();
+            Order order = _orderBLL.viewOrderDetails(id);
+            return View(order);
+        }
+
+
         public ActionResult DeleteOrder(int id)
         {
             //var db = new OrderBLL();
