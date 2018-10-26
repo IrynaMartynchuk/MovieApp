@@ -49,10 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminDAL.cs" />
+    <Compile Include="AdminRepositoryStub.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="CustomerDAL.cs" />
     <Compile Include="CustomerRepositoryStub.cs" />
     <Compile Include="DB.cs" />
+    <Compile Include="IAdminRepository.cs" />
     <Compile Include="ICustomerRepository.cs" />
     <Compile Include="IOrderRepository.cs" />
     <Compile Include="OrderDAL.cs" />

@@ -175,6 +175,11 @@
     <Content Include="Views\Order\getOrders.cshtml" />
     <Content Include="Views\Movie\EditMovie.cshtml" />
     <Content Include="Views\Movie\AddMovie.cshtml" />
+    <Content Include="Views\Admin\ListAdmins.cshtml" />
+    <Content Include="Views\Admin\EditAdmin.cshtml" />
+    <Content Include="Views\Admin\DeleteAdmin.cshtml" />
+    <Content Include="Views\Admin\Details.cshtml" />
+    <Content Include="Views\Admin\RegisterAdmin.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

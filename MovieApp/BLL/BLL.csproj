@@ -45,6 +45,7 @@
     <Compile Include="CartBLL.cs" />
     <Compile Include="CustomerBLL.cs" />
     <Compile Include="HomeBLL.cs" />
+    <Compile Include="IAdminBLL.cs" />
     <Compile Include="ICustomerBLL.cs" />
     <Compile Include="IOrderBLL.cs" />
     <Compile Include="MovieBLL.cs" />
