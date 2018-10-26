@@ -31,34 +31,28 @@ namespace MovieApp.BLL
 
         public bool addCustomer(Customer newCustomer)
         {
-            var customerDAL = new CustomerDAL();
-            bool insertOK = customerDAL.addCustomer(newCustomer);
+            bool insertOK = _repository.addCustomer(newCustomer);
             return insertOK;
         }
 
-        //test done
         public List<Customer> listCustomers()
         {
-            //var CustomerDAL = new CustomerDAL();
             List<Customer> allCustomers = _repository.listCustomers();
             return allCustomers;
         }
 
         public Customer viewDetails(int id)
         {
-            //var customerDAL = new CustomerDAL();
             return _repository.viewDetails(id);
         }
 
         public bool deleteCustomer(int id)
         {
-            //var customerDAL = new CustomerDAL();
             return _repository.deleteCustomer(id);
         }
 
         public bool editCustomer(int id, Customer inCustomer)
         {
-            //var customerDAL = new CustomerDAL();
             return _repository.editCustomer(id, inCustomer);
         }
 
