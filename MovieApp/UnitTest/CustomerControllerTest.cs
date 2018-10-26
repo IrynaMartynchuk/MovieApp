@@ -67,6 +67,7 @@ namespace UnitTest
         {
             //Arrange
             var controller = new CustomerController(new CustomerBLL(new CustomerRepositoryStub()));
+
             var in_customer = new Customer()
             {
                 Name = "Maja",

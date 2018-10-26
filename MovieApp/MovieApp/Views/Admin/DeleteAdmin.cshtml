@@ -6,44 +6,64 @@
 }
 
 <h2>Delete Admin</h2>
-<div>
-    <h4>Admin No. @Html.DisplayFor(model => model.AdminID)</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.AdminID)
-        </dt>
+<head>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css" type="text/css" />
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <!--<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script> -->
+    <script src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myTable").dataTable();
+        });
+    </script>
+</head>
+<body style="font-size: 20px">
+    <div>
+        <h4>Admin No. @Html.DisplayFor(model => model.AdminID)</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.AdminID)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AdminID)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.AdminID)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Adminuser)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Adminuser)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Adminuser)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Adminuser)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PasswordAdmin)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.PasswordAdmin)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PasswordAdmin)
-        </dd>
-    </dl>
-</div>
-<p>
+            <dd>
+                @Html.DisplayFor(model => model.PasswordAdmin)
+            </dd>
+        </dl>
+    </div>
+    <p>
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-danger" />
-            @Html.ActionLink("Back to List", "ListAdmins", new { tom = "" }, new { @class = "btn btn-primary" })
-        </div>
-    }
-</p>
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                @Html.ActionLink("Back to List", "ListAdmins", new { tom = "" }, new { @class = "btn btn-primary" })
+            </div>
+        }
+    </p>
+</body>

@@ -59,36 +59,7 @@ namespace MovieApp.DAL
                 return customer;
             }
         }
-
-        public Customer viewDetails1(int id)
-        {
-            var customer = new Customer()
-            {
-                Id = 1,
-                Name = "Maja",
-                Surname = "Kiszka",
-                Email = "kiszka.maja@gmail.com",
-                Password = "12345678cd",
-            };
-
-            if (id == 0)
-            {
-                return null;
-            }
-            else
-            {
-                var details = new Customer()
-                {
-                    Id = customer.Id,
-                    Name = customer.Name,
-                    Surname = customer.Surname,
-                    Email = customer.Email,
-                    Password = customer.Password
-                };
-                return details;
-            }
-        }
-
+        
             public bool deleteCustomer(int id)
         {
             if (id == 0)
