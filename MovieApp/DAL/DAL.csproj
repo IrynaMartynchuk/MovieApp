@@ -54,6 +54,8 @@
     <Compile Include="CustomerRepositoryStub.cs" />
     <Compile Include="DB.cs" />
     <Compile Include="ICustomerRepository.cs" />
+    <Compile Include="IMovieRepository.cs" />
+    <Compile Include="MovieRepositoryStub.cs" />
     <Compile Include="OrderDAL.cs" />
     <Compile Include="MovieDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
