@@ -164,7 +164,7 @@ namespace UnitTest
             var controller = new OrderController(new OrderBLL(new OrderRepositoryStub()));
 
             //Act
-            var actionResult = (ViewResult)controller.DeleteOrder(0);
+            var actionResult = (ViewResult)controller.ViewDetails(0);
 
             //Assert
             Assert.AreEqual(actionResult.ViewName, "");

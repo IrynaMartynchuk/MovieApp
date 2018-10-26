@@ -45,7 +45,7 @@ namespace MovieApp.Controllers
 
         public ActionResult Details(int id)
         {
-            var db = new MovieBLL(); //change to CustomerBLL
+            var db = new MovieBLL();
             Movie movie = db.viewDetails(id);
             return View(movie);
         }

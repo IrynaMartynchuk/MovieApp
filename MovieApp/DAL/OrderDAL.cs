@@ -74,7 +74,7 @@ namespace MovieApp.DAL
             }
             else
             {
-              //  ViewBag.Error = "Item is already added to your cart!";
+
             }
         }
 

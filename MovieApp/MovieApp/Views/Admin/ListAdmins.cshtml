@@ -1,0 +1,38 @@
+﻿@model List<MovieApp.Model.Admin>
+
+@{
+    ViewBag.Title = "List Admins";
+}
+
+<h2>List Admins</h2>
+
+<p>
+    @Html.ActionLink("Add new admin", "RegisterAdmin", "Admin", new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Adminuser)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].PasswordAdmin)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adminuser)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PasswordAdmin)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditAdmin", new { id = item.AdminID }, new { @class = "btn btn-success" })
+            @Html.ActionLink("Delete", "DeleteAdmin", new { id = item.AdminID }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>

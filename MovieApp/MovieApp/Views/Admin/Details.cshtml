@@ -1,0 +1,35 @@
+﻿@model MovieApp.Model.Admin
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Admin ID: @Html.DisplayFor(model => model.AdminID)</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Adminuser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Adminuser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PasswordAdmin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PasswordAdmin)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditAdmin", new { id = Model.AdminID }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Back to List", "ListAdmins", new { @class = "btn btn-primary" })
+</p>
+
