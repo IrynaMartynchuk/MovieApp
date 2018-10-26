@@ -217,6 +217,7 @@ namespace UnitTest
             var controller = new CustomerController(new CustomerBLL(new CustomerRepositoryStub()));
             var in_customer = new Customer()
             {
+                Id = 1,
                 Name = "Maja",
                 Surname = "Kiszka",
                 Email = "kiszka.maja@gmail.com",
