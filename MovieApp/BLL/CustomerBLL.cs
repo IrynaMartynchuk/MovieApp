@@ -36,9 +36,10 @@ namespace MovieApp.BLL
             return insertOK;
         }
 
+        //test done
         public List<Customer> listCustomers()
         {
-            var CustomerDAL = new CustomerDAL();
+            //var CustomerDAL = new CustomerDAL();
             List<Customer> allCustomers = _repository.listCustomers();
             return allCustomers;
         }
@@ -51,7 +52,7 @@ namespace MovieApp.BLL
 
         public bool deleteCustomer(int id)
         {
-            var customerDAL = new CustomerDAL();
+            //var customerDAL = new CustomerDAL();
             return _repository.deleteCustomer(id);
         }
 
