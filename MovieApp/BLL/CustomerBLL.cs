@@ -46,8 +46,8 @@ namespace MovieApp.BLL
 
         public Customer viewDetails(int id)
         {
-            var customerDAL = new CustomerDAL();
-            return customerDAL.viewDetails(id);
+            //var customerDAL = new CustomerDAL();
+            return _repository.viewDetails(id);
         }
 
         public bool deleteCustomer(int id)
@@ -58,8 +58,8 @@ namespace MovieApp.BLL
 
         public bool editCustomer(int id, Customer inCustomer)
         {
-            var customerDAL = new CustomerDAL();
-            return customerDAL.editCustomer(id, inCustomer);
+            //var customerDAL = new CustomerDAL();
+            return _repository.editCustomer(id, inCustomer);
         }
 
     }
