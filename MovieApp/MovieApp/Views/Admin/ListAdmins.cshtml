@@ -1,8 +1,8 @@
-﻿@model List<MovieApp.Model.Order>
-@{
-    ViewBag.Title = "getOrders";
-}
+﻿@model List<MovieApp.Model.dbAdmins>
 
+@{
+    ViewBag.Title = "List Admins";
+}
 <head>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -21,27 +21,39 @@
         });
     </script>
 </head>
-<body style="color:black">
+<body style="color: black">
     <div class="panel-body table-responsive" style="background-color:#eeeeee; margin: 7% 2% 2% 2%">
-        <table class="table table-responsive table-bordered table-hover" id="myTable" style="margin-top: -1%" cellspacing="0" width="100%">
+        <table table class="table table-responsive table-bordered table-hover" id="myTable" style="margin-top: -1%" cellspacing="0" width="100%">
+            <p>
+                @Html.ActionLink("Add new Admin user", "RegisterAdmin", "Admin", new { @class = "btn btn-default btn-lg btn-block" })
+            </p>
             <thead>
                 <tr>
-                    <th style="text-align:left">#</th>
-                    <th style="text-align:left">Order ID</th>
-                    <th style="text-align:left">Date</th>
-                    
+                    <th style="text-align:left">Username</th>
+                    <th style="text-align:left">Manage</th>
+                    @*<th style="text-align:left">Password</th>*@
+
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td></td>
-                        <td>@item.Id</td>
-                        <td>@item.Date</td>
-                    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.adminUser)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditAdmin", new { id = item.adminID }, new { @class = "btn btn-success" })
+                        @Html.ActionLink("Delete", "DeleteAdmin", new { id = item.adminID }, new { @class = "btn btn-danger" })
+                    </td>
+                    <td style="visibility:hidden">
+                        @Html.DisplayFor(modelItem => item.passwordAdmin)
+                    </td>
+
+                </tr>
                 }
             </tbody>
         </table>
     </div>
 </body>
+

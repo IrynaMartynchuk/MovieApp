@@ -1,0 +1,68 @@
+﻿@model MovieApp.Model.dbAdmins
+
+@{
+    ViewBag.Title = "EditAdmin";
+}
+
+<h2>Edit Admin Details</h2>
+
+<head>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css" type="text/css" />
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <!--<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script> -->
+    <script src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myTable").dataTable();
+        });
+    </script>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Admin No. @Html.DisplayFor(model => model.adminID)</h4>
+        <hr />
+
+        <div>
+            @Html.LabelFor(model => model.adminID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.adminID, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+            </div>
+        </div>
+
+
+        <div>
+            @Html.LabelFor(model => model.adminUser, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.adminUser, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.adminUser, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div style="visibility:hidden">
+            @Html.LabelFor(model => model.passwordAdmin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.passwordAdmin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.passwordAdmin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-success" />
+                @Html.ActionLink("Back to List", "ListAdmins", new { tom = "" }, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
+    }
+</body>

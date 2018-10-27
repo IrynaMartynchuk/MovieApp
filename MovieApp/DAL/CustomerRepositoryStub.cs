@@ -9,18 +9,6 @@ namespace MovieApp.DAL
 {
     public class CustomerRepositoryStub : DAL.ICustomerRepository
     {
-        public bool addCustomer(Customer inCustomer)
-        {
-           if(inCustomer.Surname == "")
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-
         public List<Customer> listCustomers()
         {
             var list_customers = new List<Customer>();
@@ -38,32 +26,41 @@ namespace MovieApp.DAL
             return list_customers;
         }
 
-      /*  public Customer viewDetails(int id)
+        public bool addCustomer(Customer inCustomer)
         {
-            using (var db = new DBContext())
+            if (inCustomer.Name == "")
             {
-                var customer = db.Customers.Find(id);
-
-                if (customer == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    var orders = (from order in db.Orders where order.Customer.Id == id select order).ToList();
-                    var details = new Customer()
-                    {
-                        Id = customer.Id,
-                        Name = customer.Name,
-                        Surname = customer.Surname,
-                        Email = customer.Email
-                    };
-                    return details;
-                }
+                return false;
             }
-        }*/ //noot sure
+            else
+            {
+                return true;
+            }
+        }
 
-        public bool deleteCustomer(int id)
+        public Customer viewDetails(int id)
+        {
+            if (id == 0)
+            {
+                var customer = new Customer();
+                customer.Id = 0;
+                return customer;
+            }
+            else
+            {
+                var customer = new Customer()
+                {
+                    Id = 1,
+                    Name = "Maja",
+                    Surname = "Kiszka",
+                    Email = "kiszka.maja@gmail.com",
+                    Password = "12345678cd",
+                };
+                return customer;
+            }
+        }
+        
+            public bool deleteCustomer(int id)
         {
             if (id == 0)
             {
@@ -86,19 +83,6 @@ namespace MovieApp.DAL
                 return true;
             }
         }
-
-        /*public Customer login(Customer Customer)
-        {
-            using (var db = new DBContext())
-            {
-                var loggedIn = db.Customers.SingleOrDefault(c => c.Email == Customer.Email && c.Password == Customer.Password);
-                var orders = db.Orders.SingleOrDefault(o => o.Confirmed == false);
-                loggedIn.Orders.Add(orders);
-                db.SaveChanges();
-                return loggedIn;
-            }
-        }*/
-        
     }
 
 }

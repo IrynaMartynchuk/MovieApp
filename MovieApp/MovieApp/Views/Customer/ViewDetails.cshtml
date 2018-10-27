@@ -5,55 +5,73 @@
 }
 
 <h2>Customer Details</h2>
+<head>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css" type="text/css" />
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <!--<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script> -->
+    <script src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myTable").dataTable();
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <h4>Customer No. @Html.DisplayFor(model => model.Id)</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Id)
+            </dt>
 
-<div>
-    <h4>Customer No. @Html.DisplayFor(model => model.Id)</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Id)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Id)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Surname)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Surname)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Surname)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Surname)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Orders)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Orders)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Orders)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Orders)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "EditCustomer", new { id = Model.Id }, new {@class="btn btn-danger"})
-    @Html.ActionLink("Back to List", "ListCustomers", new { tom = "" }, new { @class = "btn btn-primary" })
-</p>
- 
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "EditCustomer", new { id = Model.Id }, new { @class = "btn btn-danger" })
+        @Html.ActionLink("Back to List", "ListCustomers", new { tom = "" }, new { @class = "btn btn-primary" })
+    </p>
+</body>

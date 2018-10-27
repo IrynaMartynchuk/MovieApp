@@ -1,10 +1,11 @@
-﻿@model MovieApp.Model.Movie
+﻿
+@model MovieApp.Model.dbAdmins
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Delete";
 }
 
-<h2>Details</h2>
+<h2>Delete Admin</h2>
 <head>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -25,53 +26,44 @@
 </head>
 <body style="font-size: 20px">
     <div>
-        <h4>Movie ID: @Html.DisplayFor(model => model.Id)</h4>
+        <h4>Admin No. @Html.DisplayFor(model => model.adminID)</h4>
         <hr />
         <dl class="dl-horizontal">
             <dt>
-                @Html.DisplayNameFor(model => model.ImageAddress)
+                @Html.DisplayNameFor(model => model.adminID)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.ImageAddress)
+                @Html.DisplayFor(model => model.adminID)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.adminUser)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Title)
+                @Html.DisplayFor(model => model.adminUser)
             </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
+            <dt style="visibility:hidden">
+            @Html.DisplayNameFor(model => model.passwordAdmin)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Price)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Price)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Genre)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Genre)
-            </dd>
-
+        <dd style="visibility:hidden">
+            @Html.DisplayFor(model => model.passwordAdmin)
+        </dd>
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "EditMovie", new { id = Model.Id }, new { @class = "btn btn-success" })
-        @Html.ActionLink("Back to List", "ListMovies", "Movies", new { @class = "btn btn-primary" })
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                @Html.ActionLink("Back to List", "ListAdmins", new { tom = "" }, new { @class = "btn btn-primary" })
+            </div>
+        }
     </p>
 </body>

@@ -25,18 +25,19 @@ namespace MovieApp.Controllers
             return View();
         }
 
+        //TESTED
         public ActionResult RegisterCustomer()
         {
             return View();
         }
-
+        //TESTED
         [HttpPost]
         public ActionResult RegisterCustomer(Customer inCustomer)
         {
             if (ModelState.IsValid)
             {
-                var db = new CustomerBLL();
-                bool insertOK = db.addCustomer(inCustomer);
+                //var db = new CustomerBLL();
+                bool insertOK = _customerBLL.addCustomer(inCustomer);
                 if (insertOK)
                 {
                     return RedirectToAction("ListCustomers");
@@ -45,44 +46,41 @@ namespace MovieApp.Controllers
             ViewBag.Message = "Some mistake occured or user with such email already exists!";
             return View();
         }
-
+        //TESTED
         public ActionResult ListCustomers()
         {
             List<Customer> allCustomers = _customerBLL.listCustomers();
             return View(allCustomers);
         }
-
+        //TESTED
         public ActionResult ViewDetails(int id) {
-            var db = new CustomerBLL(); //change to CustomerBLL
-            Customer customer = db.viewDetails(id);
+            
+            Customer customer = _customerBLL.viewDetails(id);
             return View(customer);
         }
-
-
-
+        //TESTED
         public ActionResult DeleteCustomer(int id)
         {
-            var db = new CustomerBLL();
-            Customer customer = db.viewDetails(id);
-            ViewData["test"] = "Delete1 OK";
+        
+            Customer customer = _customerBLL.viewDetails(id);
+            //ViewData["test"] = "Delete1 OK";
             return View(customer);
         }
-
+        //TESTED
         [HttpPost]
         public ActionResult DeleteCustomer(int id, Customer customer)
         {
             if (ModelState.IsValid)
             {
-                var db = new CustomerBLL();
                 bool deleteOK = _customerBLL.deleteCustomer(id);
                 if (deleteOK)
                 {
-                    ViewData["test"] = "Delete2 OK";
+                    //ViewData["test"] = "Delete2 OK";
                     return RedirectToAction("ListCustomers");
                 }
-                ViewData["test"] = "Modal state NOT valid";
+                //ViewData["test"] = "Modal state NOT valid";
             }
-            ViewData["test"] = "Delete NOT OK";
+            //ViewData["test"] = "Delete NOT OK";
             return View();
         } 
 
@@ -111,22 +109,24 @@ namespace MovieApp.Controllers
             return View();
         } */
 
-
+        //TESTED
         public ActionResult EditCustomer(int id) {
-            var db = new CustomerBLL();
-            Customer customer = db.viewDetails(id);
-            ViewData["test"] = "edit ok";
+
+            //var db = new CustomerBLL();
+            Customer customer = _customerBLL.viewDetails(id);
+            //ViewData["test"] = "edit ok";
             return View(customer);
         }
 
+        //TESTED
         [HttpPost]
-        public ActionResult EditCustomer(Customer inCustomer)
+        public ActionResult EditCustomer(int id, Customer inCustomer)
         {
             ViewData["test"] = "test";
             if (ModelState.IsValid)
             {
-                var db = new CustomerBLL();
-                bool changeOK = db.editCustomer(inCustomer.Id, inCustomer);
+                //var db = new CustomerBLL();
+                bool changeOK = _customerBLL.editCustomer(inCustomer.Id, inCustomer);
                 if (changeOK)
                 {
                     return RedirectToAction("ListCustomers");
@@ -134,6 +134,7 @@ namespace MovieApp.Controllers
                 else
                 {
                     ViewData["test"] = "change is not ok";
+                    return View();
                 }
             }
             else

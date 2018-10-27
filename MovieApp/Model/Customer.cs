@@ -30,5 +30,20 @@ namespace MovieApp.Model
         [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)[A-za-z\d]{8,}$", ErrorMessage = "Password must be minimum eight characters, at least one letter and one number!")]
         public string Password { get; set; }
         public virtual List<Order> Orders { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Customer)
+            {
+                Customer other = (Customer)obj;
+                return Equals(other.Id, this.Id) && Equals(other.Name, this.Name) && Equals(other.Surname, this.Surname) &&
+                    Equals(other.Email, this.Email) && Equals(other.Password, this.Password);
+            }
+            return false;
+        }
+            public override int GetHashCode()
+        {
+            return Id;
+        }
     }
 }

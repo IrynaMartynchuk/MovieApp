@@ -13,6 +13,7 @@ namespace MovieApp.DAL
         List<Customer> listCustomers();
         bool deleteCustomer(int id);
         bool editCustomer(int id, Customer customer);
+        Customer viewDetails(int id);
 
     }
 }

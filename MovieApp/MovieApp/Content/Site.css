@@ -8,7 +8,9 @@
 
 }
 
-
+table{
+    color: black;
+}
 
 .body-content {
     padding-left: 15px;
@@ -357,7 +359,7 @@ a.btn-card {
 }
 
     .box-part:hover {
-        background: #4183D7;
+        background: #212121;
     }
 
         .box-part:hover .fa,

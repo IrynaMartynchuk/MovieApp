@@ -60,7 +60,7 @@ namespace MovieApp.Controllers
             else if(Session["customer"] != null)
             {
                 string id = (string)HttpContext.Session["customer"];
-                db.test(sessionId, id);
+                db.createOrderCId(sessionId, id);
             }
             else
             {
