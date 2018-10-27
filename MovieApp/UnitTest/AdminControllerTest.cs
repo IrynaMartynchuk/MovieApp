@@ -20,13 +20,13 @@ namespace UnitTest
         {
             //Arrange
             var controller = new AdminController(new AdminBLL(new AdminRepositoryStub()));
-            var expected_result = new List<Admin>();
+            var expected_result = new List<dbAdmins>();
 
-            var admin = new Admin()
+            var admin = new dbAdmins()
             {
-                AdminID = 1,
-                Adminuser = "Iryna",
-                PasswordAdmin = "password"
+                adminID = 1,
+                adminUser = "Iryna",
+                passwordAdmin = { }
             };
 
             expected_result.Add(admin);
@@ -35,16 +35,16 @@ namespace UnitTest
 
             //Act
             var result = (ViewResult)controller.ListAdmins();
-            var result_to_list = (List<Admin>)result.Model;
+            var result_to_list = (List<dbAdmins>)result.Model;
 
             //Assert
             Assert.AreEqual(result.ViewName, "");
 
             for (var i = 0; i < result_to_list.Count; i++)
             {
-                Assert.AreEqual(expected_result[i].AdminID, result_to_list[i].AdminID);
-                Assert.AreEqual(expected_result[i].Adminuser, result_to_list[i].Adminuser);
-                Assert.AreEqual(expected_result[i].PasswordAdmin, result_to_list[i].PasswordAdmin);
+                Assert.AreEqual(expected_result[i].adminID, result_to_list[i].adminID);
+                Assert.AreEqual(expected_result[i].adminUser, result_to_list[i].adminUser);
+                Assert.AreEqual(expected_result[i].passwordAdmin, result_to_list[i].passwordAdmin );
             }
 
         }
@@ -54,21 +54,21 @@ namespace UnitTest
         {
             //Arrange
             var controller = new AdminController(new AdminBLL(new AdminRepositoryStub()));
-            var expected_result = new Admin()
+            var expected_result = new dbAdmins()
             {
-                AdminID = 1,
-                Adminuser = "Iryna",
-                PasswordAdmin = "password"
+                adminID = 1,
+                adminUser = "Iryna",
+                passwordAdmin = { }
             };
             //Act
             var actionResult = (ViewResult)controller.Details(1);
-            var result = (Admin)actionResult.Model;
+            var result = (dbAdmins)actionResult.Model;
 
             //Assert
             Assert.AreEqual(actionResult.ViewName, "");
-            Assert.AreEqual(expected_result.AdminID, result.AdminID);
-            Assert.AreEqual(expected_result.Adminuser, result.Adminuser);
-            Assert.AreEqual(expected_result.PasswordAdmin, result.PasswordAdmin);
+            Assert.AreEqual(expected_result.adminID, result.adminID);
+            Assert.AreEqual(expected_result.adminUser, result.adminUser);
+            Assert.AreEqual(expected_result.passwordAdmin, result.passwordAdmin);
         }
 
         [TestMethod]
@@ -102,11 +102,11 @@ namespace UnitTest
         {
             //Arrange
             var controller = new AdminController(new AdminBLL(new AdminRepositoryStub()));
-            var admin = new Admin()
+            var admin = new dbAdmins()
             {
-                AdminID = 1,
-                Adminuser = "Iryna",
-                PasswordAdmin = "password"
+                adminID = 1,
+                adminUser = "Iryna",
+                passwordAdmin = { }
             };
 
             //Act
@@ -121,11 +121,11 @@ namespace UnitTest
         {
             //Arrange
             var controller = new AdminController(new AdminBLL(new AdminRepositoryStub()));
-            var admin = new Admin()
+            var admin = new dbAdmins()
             {
-                AdminID = 1,
-                Adminuser = "Iryna",
-                PasswordAdmin = "password"
+                adminID = 1,
+                adminUser = "Iryna",
+                passwordAdmin = { }
             };
             //Act
             var actionResultat = (RedirectToRouteResult)controller.EditAdmin(1, admin);

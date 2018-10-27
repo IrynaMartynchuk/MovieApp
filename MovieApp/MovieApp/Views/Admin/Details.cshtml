@@ -1,4 +1,4 @@
-﻿@model MovieApp.Model.Admin
+﻿@model MovieApp.Model.dbAdmins
 
 @{
     ViewBag.Title = "Details";
@@ -7,29 +7,29 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Admin ID: @Html.DisplayFor(model => model.AdminID)</h4>
+    <h4>Admin ID: @Html.DisplayFor(model => model.adminID)</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Adminuser)
+            @Html.DisplayNameFor(model => model.adminUser)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Adminuser)
+            @Html.DisplayFor(model => model.adminUser)
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PasswordAdmin)
+        <p>
+            @Html.ActionLink("Edit", "EditAdmin", new { id = Model.adminID }, new { @class = "btn btn-success" })
+            @Html.ActionLink("Back to List", "ListAdmins", new { @class = "btn btn-primary" })
+        </p>
+        <dt style="visibility:hidden">
+            @Html.DisplayNameFor(model => model.passwordAdmin)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PasswordAdmin)
+        <dd style="visibility:hidden">
+            @Html.DisplayFor(model => model.passwordAdmin)
         </dd>
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Edit", "EditAdmin", new { id = Model.AdminID }, new { @class = "btn btn-success" })
-    @Html.ActionLink("Back to List", "ListAdmins", new { @class = "btn btn-primary" })
-</p>
+
 

@@ -21,7 +21,12 @@ namespace MovieApp.DAL
             }
         }
 
-        public bool editAdmin(int id, Admin admin)
+        public bool DeleteAdmin(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool editAdmin(int id, dbAdmins admin)
         {
             if (id == 0)
             {
@@ -33,15 +38,15 @@ namespace MovieApp.DAL
             }
         }
 
-        public List<Admin> listAdmins()
+        public List<dbAdmins> listAdmins()
         {
-            var expected_result = new List<Admin>();
-
-            var admin = new Admin()
+            var expected_result = new List<dbAdmins>();
+            byte ten = 10;
+            var admin = new dbAdmins()
             {
-                AdminID = 1,
-                Adminuser = "Iryna",
-                PasswordAdmin = "password"
+                adminID = 1,
+                adminUser = "Iryna",
+                passwordAdmin = { }
             };
 
             expected_result.Add(admin);
@@ -50,7 +55,7 @@ namespace MovieApp.DAL
             return expected_result;
         }
 
-        public Admin login(Admin Admin)
+        public dbAdmins login(Admin Admin)
         {
             if (Admin.AdminID == 0)
             {
@@ -58,23 +63,23 @@ namespace MovieApp.DAL
             }
             else
             {
-                var admin = new Admin()
+                var admin = new dbAdmins()
                 {
-                    AdminID = 1,
-                    Adminuser = "ira",
-                    PasswordAdmin = "hello"
+                    adminID = 1,
+                    adminUser = "ira",
+                    passwordAdmin = { }
                 };
                 return admin;
             }
         }
 
-        public Admin viewDetails(int id)
+        public dbAdmins viewDetails(int id)
         {
-            var admin = new Admin()
+            var admin = new dbAdmins()
             {
-                AdminID = 1,
-                Adminuser = "Iryna",
-                PasswordAdmin = "password"
+                adminID = 1,
+                adminUser = "Iryna",
+                passwordAdmin = { }
             };
             if (id == 0)
             {
@@ -82,11 +87,11 @@ namespace MovieApp.DAL
             }
             else
             {
-                var details = new Admin()
+                var details = new dbAdmins()
                 {
-                    AdminID = admin.AdminID,
-                    Adminuser = admin.Adminuser,
-                    PasswordAdmin = admin.PasswordAdmin
+                    adminID = admin.adminID,
+                    adminUser = admin.adminUser,
+                    passwordAdmin = admin.passwordAdmin
                 };
                 return details;
             }

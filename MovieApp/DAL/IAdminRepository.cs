@@ -6,9 +6,10 @@ namespace MovieApp.DAL
     public interface IAdminRepository
     {
         bool addAdmin(Admin admin);
-        bool editAdmin(int id, Admin admin);
-        List<Admin> listAdmins();
-        Admin login(Admin Admin);
-        Admin viewDetails(int id);
+        bool editAdmin(int id, dbAdmins admin);
+        List<dbAdmins> listAdmins();
+        dbAdmins login(Admin Admin);
+        dbAdmins viewDetails(int id);
+        bool DeleteAdmin(int id);
     }
 }

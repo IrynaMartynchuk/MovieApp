@@ -1,4 +1,4 @@
-﻿@model MovieApp.Model.Admin
+﻿@model MovieApp.Model.dbAdmins
 
 @{
     ViewBag.Title = "EditAdmin";
@@ -29,40 +29,40 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            <h4>Admin No. @Html.DisplayFor(model => model.AdminID)</h4>
-            <hr />
+    <div class="form-horizontal">
+        <h4>Admin No. @Html.DisplayFor(model => model.adminID)</h4>
+        <hr />
 
-            <div>
-                @Html.LabelFor(model => model.AdminID, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.AdminID, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
-                </div>
-            </div>
-
-
-            <div>
-                @Html.LabelFor(model => model.Adminuser, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Adminuser, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Adminuser, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div>
-                @Html.LabelFor(model => model.PasswordAdmin, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PasswordAdmin, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PasswordAdmin, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-success" />
-                    @Html.ActionLink("Back to List", "ListAdmins", new { tom = "" }, new { @class = "btn btn-primary" })
-                </div>
+        <div>
+            @Html.LabelFor(model => model.adminID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.adminID, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
             </div>
         </div>
+
+
+        <div>
+            @Html.LabelFor(model => model.adminUser, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.adminUser, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.adminUser, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div style="visibility:hidden">
+            @Html.LabelFor(model => model.passwordAdmin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.passwordAdmin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.passwordAdmin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-success" />
+                @Html.ActionLink("Back to List", "ListAdmins", new { tom = "" }, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
     }
 </body>

@@ -73,52 +73,44 @@ namespace MovieApp.Controllers
 
         public ActionResult ListAdmins()
         {
-            List<Admin> allAdmins = _adminBLL.listAdmins();
+            List<dbAdmins> allAdmins = _adminBLL.listAdmins();
             return View(allAdmins);
         }
 
         public ActionResult DeleteAdmin(int id)
         {
-            var db = new AdminBLL();
-            Admin admin = db.viewDetails(id);
-            ViewData["test"] = "Delete1 OK";
+            dbAdmins admin = _adminBLL.viewDetails(id);
             return View(admin);
         }
-
-
         [HttpPost]
         public ActionResult DeleteAdmin(int id, Admin admin)
         {
 
             if (ModelState.IsValid)
             {
-                var db = new AdminBLL();
-                bool deleteOK = db.deleteAdmin(id);
+                bool deleteOK = _adminBLL.deleteAdmin(id);
                 if (deleteOK)
                 {
-                    ViewData["test"] = "Delete2 OK";
                     return RedirectToAction("ListAdmins");
                 }
-                ViewData["test"] = "Modal state NOT valid";
             }
-            ViewData["test"] = "Delete NOT OK";
             return View();
         }
 
         public ActionResult Details(int id)
         {
-            Admin admin = _adminBLL.viewDetails(id);
+            dbAdmins admin = _adminBLL.viewDetails(id);
             return View(admin);
         }
 
         public ActionResult EditAdmin(int id)
         {
-            Admin admin = _adminBLL.viewDetails(id);
+            dbAdmins admin = _adminBLL.viewDetails(id);
             return View(admin);
         }
 
         [HttpPost]
-        public ActionResult EditAdmin(int id, Admin admin)
+        public ActionResult EditAdmin(int id, dbAdmins admin)
         {
             if (ModelState.IsValid)
             {

@@ -20,12 +20,7 @@ namespace MovieApp.DAL
         public string password { get; set; }
     }
 
-    public class Admins
-    {
-        public int adminID { get; set; }
-        public string adminUser { get; set; }
-        public byte [] passwordAdmin { get; set; }
-    }
+    
 
     public class DBContext : DbContext
     {
@@ -35,7 +30,7 @@ namespace MovieApp.DAL
             Database.CreateIfNotExists();
         }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Admin> Admins { get; set; }
+        public DbSet<dbAdmins> Admins { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Orderline> Orderlines { get; set; }

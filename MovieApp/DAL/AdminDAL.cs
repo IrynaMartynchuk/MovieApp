@@ -13,26 +13,27 @@ namespace MovieApp.DAL
 {
     public class AdminDAL : DAL.IAdminRepository
     {
-        public Admin login(Admin Admin)
+        public dbAdmins login(Admin Admin)
         {
             using (var db = new DBContext())
             {
-                var loggedIn = db.Admins.SingleOrDefault(c => c.Adminuser == Admin.Adminuser && c.PasswordAdmin == Admin.PasswordAdmin);
+                byte[] password = makeHash(Admin.PasswordAdmin);
+                var loggedIn = db.Admins.SingleOrDefault(c => c.adminUser == Admin.Adminuser && c.passwordAdmin == password);
                 db.SaveChanges();
                 return loggedIn;
             }
         }
 
-        public List<Admin> listAdmins()
+        public List<dbAdmins> listAdmins()
         {
             using (var db = new DBContext())
             {
-                List<Admin> allAdmins = (from admin in db.Admins.AsEnumerable()
-                                               select new Admin()
+                List<dbAdmins> allAdmins = (from admin in db.Admins.AsEnumerable()
+                                               select new dbAdmins()
                                                {
-                                                   AdminID = admin.AdminID,
-                                                   Adminuser = admin.Adminuser,
-                                                   PasswordAdmin = admin.PasswordAdmin
+                                                   adminID = admin.adminID,
+                                                   adminUser = admin.adminUser,
+                                                   passwordAdmin = admin.passwordAdmin
                                                }).ToList();
                 return allAdmins;
             }
@@ -44,7 +45,7 @@ namespace MovieApp.DAL
             {
                 try
                 {
-                    Admin admin = db.Admins.Find(id);
+                    dbAdmins admin = db.Admins.Single(a => a.adminID == id);
                     db.Admins.Remove(admin);
                     db.SaveChanges();
                     return true;
@@ -56,7 +57,7 @@ namespace MovieApp.DAL
             }
         }
 
-        public Admin viewDetails(int id)
+        public dbAdmins viewDetails(int id)
         {
             using (var db = new DBContext())
             {
@@ -68,26 +69,26 @@ namespace MovieApp.DAL
                 }
                 else
                 {
-                    var details = new Admin()
+                    var details = new dbAdmins()
                     {
-                        AdminID = admin.AdminID,
-                        Adminuser = admin.Adminuser,
-                        PasswordAdmin = admin.PasswordAdmin
+                        adminID = admin.adminID,
+                        adminUser = admin.adminUser,
+                        passwordAdmin = admin.passwordAdmin
                     };
                     return details;
                 }
             }
         }
 
-        public bool editAdmin(int id, Admin admin)
+        public bool editAdmin(int id, dbAdmins admin)
         {
             var db = new DBContext();
             var result = db.Admins.Find(id);
 
             if (result != null)
             {
-                result.Adminuser = admin.Adminuser;
-                result.PasswordAdmin = admin.PasswordAdmin;
+                result.adminUser = admin.adminUser;
+                result.passwordAdmin = admin.passwordAdmin;
                 try
                 {
                     db.SaveChanges();
@@ -103,16 +104,15 @@ namespace MovieApp.DAL
 
         public bool addAdmin(Admin admin)
         {
-            var newAdmin = new Admin()
-            {
-                Adminuser = admin.Adminuser,
-                PasswordAdmin = admin.PasswordAdmin
-            };
-
+            
             using (var db = new DBContext())
             {
                 try
                 {
+                    var newAdmin = new dbAdmins();
+                    byte[] password = makeHash(admin.PasswordAdmin);
+                    newAdmin.passwordAdmin = password;
+                    newAdmin.adminUser = admin.Adminuser;
                     db.Admins.Add(newAdmin);
                     db.SaveChanges();
                     return true;
@@ -122,6 +122,15 @@ namespace MovieApp.DAL
                     return false;
                 }
             }
+        }
+
+        private static byte[] makeHash(string password)
+        {
+            byte[] inData, outData;
+            var algorithm = System.Security.Cryptography.SHA256.Create();
+            inData = Encoding.ASCII.GetBytes(password);
+            outData = algorithm.ComputeHash(inData);
+            return outData;
         }
     }
 }

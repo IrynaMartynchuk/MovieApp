@@ -21,5 +21,13 @@ namespace MovieApp.Model
         [DataType(DataType.Password)]
         public string PasswordAdmin { get; set; }
     }
+
+    public class dbAdmins
+    {
+        [Key]
+        public int adminID { get; set; }
+        public string adminUser { get; set; }
+        public byte[] passwordAdmin { get; set; }
+    }
 }
  

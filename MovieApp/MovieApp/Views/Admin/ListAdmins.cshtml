@@ -1,4 +1,4 @@
-﻿@model List<MovieApp.Model.Admin>
+﻿@model List<MovieApp.Model.dbAdmins>
 
 @{
     ViewBag.Title = "List Admins";
@@ -30,25 +30,27 @@
             <thead>
                 <tr>
                     <th style="text-align:left">Username</th>
-                    <th style="text-align:left">Password</th>
                     <th style="text-align:left">Manage</th>
+                    @*<th style="text-align:left">Password</th>*@
+
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Adminuser)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PasswordAdmin)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "EditAdmin", new { id = item.AdminID }, new { @class = "btn btn-success" })
-                            @Html.ActionLink("Delete", "DeleteAdmin", new { id = item.AdminID }, new { @class = "btn btn-danger" })
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.adminUser)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditAdmin", new { id = item.adminID }, new { @class = "btn btn-success" })
+                        @Html.ActionLink("Delete", "DeleteAdmin", new { id = item.adminID }, new { @class = "btn btn-danger" })
+                    </td>
+                    <td style="visibility:hidden">
+                        @Html.DisplayFor(modelItem => item.passwordAdmin)
+                    </td>
+
+                </tr>
                 }
             </tbody>
         </table>

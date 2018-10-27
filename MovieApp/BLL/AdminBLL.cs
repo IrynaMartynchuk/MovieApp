@@ -21,30 +21,29 @@ namespace MovieApp.BLL
         {
             _repository = stub;
         }
-        public Admin login(Admin Admin)
+        public dbAdmins login(Admin Admin)
         {
             var loggedIn = _repository.login(Admin);
             return loggedIn;
         }
 
-        public List<Admin> listAdmins()
+        public List<dbAdmins> listAdmins()
         {
-            List<Admin> allAdmins = _repository.listAdmins();
+            List<dbAdmins> allAdmins = _repository.listAdmins();
             return allAdmins;
         }
 
         public bool deleteAdmin(int id)
         {
-            var AdminDAL = new AdminDAL();
-            return AdminDAL.DeleteAdmin(id);
+            return _repository.DeleteAdmin(id);
         }
 
-        public Admin viewDetails(int id)
+        public dbAdmins viewDetails(int id)
         {
             return _repository.viewDetails(id);
         }
 
-        public bool editAdmin(int id, Admin admin)
+        public bool editAdmin(int id, dbAdmins admin)
         {
             return _repository.editAdmin(id, admin);
         }
