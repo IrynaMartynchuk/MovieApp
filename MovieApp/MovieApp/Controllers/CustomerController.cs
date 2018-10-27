@@ -84,31 +84,6 @@ namespace MovieApp.Controllers
             return View();
         } 
 
-        /*
-
-        public ActionResult DeleteCustomer(int id)
-        {
-            var db = new CustomerBLL();
-            Customer customer = db.viewDetails(id);
-            return View(customer);
-        }
-
-        [HttpPost]
-        public ActionResult DeleteCustomer(int id, Customer customer)
-        {
-            if (ModelState.IsValid)
-            {
-                var db = new CustomerBLL();
-                bool deleteOK = db.deleteCustomer(id);
-                if (deleteOK)
-                {
-                    return RedirectToAction("ListCustomers");
-                }
-            }
-            ViewBag.Message = "Some mistake occured";
-            return View();
-        } */
-
         //TESTED
         public ActionResult EditCustomer(int id) {
 

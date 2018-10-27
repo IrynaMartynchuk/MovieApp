@@ -6,9 +6,9 @@ using MovieApp.Model;
 
 namespace MovieApp.DAL
 {
-    public class MovieDAL
+    public class MovieDAL : DAL.IMovieRepository
     {
-        public List<Movie> retrieveAll()
+        public List<Movie> retrieveAll() //in stub
         {
             using (var db = new DBContext())
             {
@@ -45,7 +45,8 @@ namespace MovieApp.DAL
                         ImageAddress = movie.ImageAddress,
                         Title = movie.Title,
                         Description = movie.Description,
-                        Price = movie.Price
+                        Price = movie.Price,
+                        Genre = movie.Genre
                     };
                     return details;
                 }
@@ -77,7 +78,7 @@ namespace MovieApp.DAL
             return false;
         }
 
-        public bool addMovie(Movie inMovie)
+        public bool addMovie(Movie inMovie) //in stub
         {
             var newMovie = new Movie()
             {

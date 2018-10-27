@@ -10,11 +10,21 @@ namespace MovieApp.Controllers
 {
     public class MovieController : Controller
     {
-        // GET: Movie
+        private IMovieBLL _movieBLL;
+        public MovieController()
+        {
+            _movieBLL = new MovieBLL();
+        }
+        public MovieController(MovieBLL stub)
+        {
+            _movieBLL = stub;
+        }
+        // GET: Customer
         public ActionResult Index()
         {
             return View();
         }
+        // GET: Movie
 
         public ActionResult AddMovie()
         {
@@ -26,8 +36,8 @@ namespace MovieApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var db = new MovieBLL();
-                bool insertOK = db.addMovie(newMovie);
+                //var db = new MovieBLL();
+                bool insertOK = _movieBLL.addMovie(newMovie);
                 if (insertOK)
                 {
                     return RedirectToAction("ListMovies");
@@ -38,22 +48,22 @@ namespace MovieApp.Controllers
 
         public ActionResult ListMovies()
         {
-            var db = new MovieBLL();
-            List<Movie> allMovies = db.retrieveAll();
+            //var db = new MovieBLL();
+            List<Movie> allMovies = _movieBLL.retrieveAll();
             return View(allMovies);
         }
 
         public ActionResult Details(int id)
         {
-            var db = new MovieBLL();
-            Movie movie = db.viewDetails(id);
+           // var db = new MovieBLL();
+            Movie movie = _movieBLL.viewDetails(id);
             return View(movie);
         }
 
         public ActionResult EditMovie(int id)
         {
-            var db = new MovieBLL();
-            Movie movie = db.viewDetails(id);
+           // var db = new MovieBLL();
+            Movie movie = _movieBLL.viewDetails(id);
             return View(movie);
         }
 
@@ -63,20 +73,21 @@ namespace MovieApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var db = new MovieBLL();
-                bool changeOK = db.editMovie(id, inMovie);
+               // var db = new MovieBLL();
+                bool changeOK = _movieBLL.editMovie(id, inMovie);
                 if (changeOK)
                 {
                     return RedirectToAction("ListMovies");
                 }
                 else
                 {
-                    ViewBag.Message = "Some mistake occured";
+                    ViewData["test"] = "change is not ok";
+                    return View();
                 }
             }
             else
             {
-                ViewBag.Message = "Some mistake occured";
+                ViewData["test"] = "state is not valid";
             }
             return View();
         }

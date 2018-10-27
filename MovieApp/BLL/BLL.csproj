@@ -47,6 +47,7 @@
     <Compile Include="HomeBLL.cs" />
     <Compile Include="IAdminBLL.cs" />
     <Compile Include="ICustomerBLL.cs" />
+    <Compile Include="IMovieBLL.cs" />
     <Compile Include="IOrderBLL.cs" />
     <Compile Include="MovieBLL.cs" />
     <Compile Include="OrderBLL.cs" />
