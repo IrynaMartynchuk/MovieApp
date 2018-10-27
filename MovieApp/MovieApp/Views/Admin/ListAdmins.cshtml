@@ -31,7 +31,6 @@
                 <tr>
                     <th style="text-align:left">Username</th>
                     <th style="text-align:left">Manage</th>
-                    @*<th style="text-align:left">Password</th>*@
 
                 </tr>
             </thead>
@@ -45,9 +44,6 @@
                     <td>
                         @Html.ActionLink("Edit", "EditAdmin", new { id = item.adminID }, new { @class = "btn btn-success" })
                         @Html.ActionLink("Delete", "DeleteAdmin", new { id = item.adminID }, new { @class = "btn btn-danger" })
-                    </td>
-                    <td style="visibility:hidden">
-                        @Html.DisplayFor(modelItem => item.passwordAdmin)
                     </td>
 
                 </tr>

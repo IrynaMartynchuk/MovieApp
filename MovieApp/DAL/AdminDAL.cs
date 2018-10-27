@@ -32,8 +32,7 @@ namespace MovieApp.DAL
                                                select new dbAdmins()
                                                {
                                                    adminID = admin.adminID,
-                                                   adminUser = admin.adminUser,
-                                                   passwordAdmin = admin.passwordAdmin
+                                                   adminUser = admin.adminUser
                                                }).ToList();
                 return allAdmins;
             }
@@ -72,8 +71,7 @@ namespace MovieApp.DAL
                     var details = new dbAdmins()
                     {
                         adminID = admin.adminID,
-                        adminUser = admin.adminUser,
-                        passwordAdmin = admin.passwordAdmin
+                        adminUser = admin.adminUser
                     };
                     return details;
                 }
@@ -88,7 +86,6 @@ namespace MovieApp.DAL
             if (result != null)
             {
                 result.adminUser = admin.adminUser;
-                result.passwordAdmin = admin.passwordAdmin;
                 try
                 {
                     db.SaveChanges();
