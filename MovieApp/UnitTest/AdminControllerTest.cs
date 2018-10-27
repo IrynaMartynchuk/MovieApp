@@ -203,5 +203,56 @@ namespace UnitTest
             Assert.AreEqual(actionResult.ViewName, "");
         }
 
+        [TestMethod]
+        public void login_true()
+        {
+            //Arrange
+            var controller = new AdminController(new AdminBLL(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["admin"] = 1;
+            var admin = new Admin()
+            {
+                AdminID = 1,
+                Adminuser = "ira",
+                PasswordAdmin = "hello"
+            };
+            //Act
+            var result = (RedirectToRouteResult)controller.AdminLogin(admin);
+
+            //Assert
+            Assert.AreEqual(result.RouteName, "");
+            Assert.AreEqual(result.RouteValues.Values.First(), 1);
+        }
+
+        [TestMethod]
+        public void login_false()
+        {
+            //Arrange
+            var controller = new AdminController(new AdminBLL(new AdminRepositoryStub()));
+            var SessionMock = new TestControllerBuilder();
+            SessionMock.InitializeController(controller);
+            controller.Session["admin"] = 1;
+            controller.ViewData.ModelState.AddModelError("admin", "admin is null");
+            var admin = new Admin()
+            {
+                AdminID = 0,
+                Adminuser = "ira",
+                PasswordAdmin = "hello"
+            };
+            //Act
+            var result = (ViewResult)controller.AdminLogin(admin);
+
+            //Assert
+            Assert.IsTrue(result.ViewData.ModelState.Count == 1);
+            Assert.AreEqual(result.ViewName, "");
+        }
+
+
+
+
+
+
+
     }
 }

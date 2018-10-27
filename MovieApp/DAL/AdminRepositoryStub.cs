@@ -58,7 +58,13 @@ namespace MovieApp.DAL
             }
             else
             {
-                return Admin;
+                var admin = new Admin()
+                {
+                    AdminID = 1,
+                    Adminuser = "ira",
+                    PasswordAdmin = "hello"
+                };
+                return admin;
             }
         }
 
