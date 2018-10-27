@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace DAL
+namespace MovieApp.DAL
 {
-    class MovieRepositoryStub: DAL.IMovieRepository
+    public class MovieRepositoryStub: DAL.IMovieRepository
     {
         public List<Movie> retrieveAll()
         {

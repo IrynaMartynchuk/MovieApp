@@ -6,7 +6,7 @@ using MovieApp.Model;
 
 namespace MovieApp.DAL
 {
-    public class MovieDAL : DAL.IMovieRepository, IMovieRepository
+    public class MovieDAL : DAL.IMovieRepository
     {
         public List<Movie> retrieveAll() //in stub
         {
