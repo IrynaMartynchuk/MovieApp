@@ -83,7 +83,7 @@ namespace MovieApp.Controllers
             return View(admin);
         }
         [HttpPost]
-        public ActionResult DeleteAdmin(int id, Admin admin)
+        public ActionResult DeleteAdmin(int id, dbAdmins admin)
         {
 
             if (ModelState.IsValid)

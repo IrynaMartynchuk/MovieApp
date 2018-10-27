@@ -45,7 +45,7 @@ namespace MovieApp.DAL
             {
                 try
                 {
-                    dbAdmins admin = db.Admins.Single(a => a.adminID == id);
+                    dbAdmins admin = db.Admins.First(a => a.adminID == id);
                     db.Admins.Remove(admin);
                     db.SaveChanges();
                     return true;
