@@ -5,6 +5,7 @@ using System.Web;
 using System.Data.Entity;
 using MovieApp.Model;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.IO;
 
 namespace MovieApp.DAL
 {
@@ -139,9 +140,17 @@ namespace MovieApp.DAL
         public void changeConfirmedToTrue()
         {
             var db = new DBContext();
-            Order order = db.Orders.Single(x => x.Confirmed == false);
-            order.Confirmed = true;
-            db.SaveChanges();
+            try
+            {
+                Order order = db.Orders.Single(x => x.Confirmed == false);
+                order.Confirmed = true;
+                db.SaveChanges();
+            }
+            catch(Exception e)
+            {
+
+            }
+            
         }
 
         public List<Order> ListOrders()

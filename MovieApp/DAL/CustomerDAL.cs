@@ -6,7 +6,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using MovieApp.Model;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
-
+using System.IO;
 
 namespace MovieApp.DAL
 {
@@ -158,8 +158,15 @@ namespace MovieApp.DAL
             {
                 var loggedIn = db.Customers.SingleOrDefault(c => c.Email == Customer.Email && c.Password == Customer.Password);
                 var orders = db.Orders.SingleOrDefault(o => o.Confirmed == false);
-                loggedIn.Orders.Add(orders);
-                db.SaveChanges();
+                try
+                {
+                    loggedIn.Orders.Add(orders);
+                    db.SaveChanges();
+                }
+                catch(Exception e)
+                {
+                    Error.logError("Customer:login", e);
+                }
                 return loggedIn;
             }
         }

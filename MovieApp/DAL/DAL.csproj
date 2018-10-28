@@ -54,6 +54,7 @@
     <Compile Include="CustomerDAL.cs" />
     <Compile Include="CustomerRepositoryStub.cs" />
     <Compile Include="DB.cs" />
+    <Compile Include="Error.cs" />
     <Compile Include="IAdminRepository.cs" />
     <Compile Include="ICustomerRepository.cs" />
     <Compile Include="IMovieRepository.cs" />
@@ -73,6 +74,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="error_log.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
