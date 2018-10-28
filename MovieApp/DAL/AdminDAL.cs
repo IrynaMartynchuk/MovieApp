@@ -126,11 +126,19 @@ namespace MovieApp.DAL
 
         private static byte[] makeHash(string password)
         {
-            byte[] inData, outData;
-            var algorithm = System.Security.Cryptography.SHA256.Create();
-            inData = Encoding.ASCII.GetBytes(password);
-            outData = algorithm.ComputeHash(inData);
-            return outData;
+            try
+            {
+                byte[] inData, outData;
+                var algorithm = System.Security.Cryptography.SHA256.Create();
+                inData = Encoding.ASCII.GetBytes(password);
+                outData = algorithm.ComputeHash(inData);
+                return outData;
+            }
+            catch(Exception e)
+            {
+                Error.logError("Admin:makeHash", e);
+            }
+            return null;
         }
     }
 }
