@@ -147,9 +147,6 @@ namespace MovieApp.DAL
                 result.Name = customer.Name;
                 result.Surname = customer.Surname;
                 result.Email = customer.Email;
-                if (customer.Name != null && customer.Surname != null && customer.Email != null && customer.Password != null)
-                {
-
                     try
                     {
                         db.SaveChanges();
@@ -160,7 +157,7 @@ namespace MovieApp.DAL
                         Error.logError("Customer:editCustomer", e);
                         return false;
                     }
-                }
+                
             }
             return false;
         }

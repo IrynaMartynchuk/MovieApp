@@ -5,3 +5,9 @@ Parameter name: s<br/>
 20181028 10/28/2018 12:34:01 PM ==>: Admin:makeHash ==> ==>String reference not set to an instance of a String.
 Parameter name: s<br/>
 20181028 10/28/2018 12:37:58 PM ==>: Customer:login ==> ==>Object reference not set to an instance of an object.<br/>
+20181028 10/28/2018 1:08:00 PM ==>: Customer:saveCustomer ==> ==>An error occurred while updating the entries. See the inner exception for details.==>An error occurred while updating the entries. See the inner exception for details.<br/>
+20181028 10/28/2018 1:08:25 PM ==>: Customer:login ==> ==>Object reference not set to an instance of an object.<br/>
+20181028 10/28/2018 1:08:32 PM ==>: Admin:makeHash ==> ==>String reference not set to an instance of a String.
+Parameter name: s<br/>
+20181028 10/28/2018 1:08:35 PM ==>: Admin:makeHash ==> ==>String reference not set to an instance of a String.
+Parameter name: s<br/>
