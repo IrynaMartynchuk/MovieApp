@@ -81,29 +81,42 @@ namespace MovieApp.DAL
 
         public bool addMovie(Movie inMovie) //in stub
         {
-            var newMovie = new Movie()
+            try
             {
-                ImageAddress = inMovie.ImageAddress,
-                Title = inMovie.Title,
-                Description = inMovie.Description,
-                Price = inMovie.Price,
-                Genre = inMovie.Genre
-        };
+                if (inMovie.ImageAddress != null && inMovie.Title != null && inMovie.Description != null && inMovie.Genre != null && inMovie.Price != null)
+                {
+                    var newMovie = new Movie()
+                    {
+                        ImageAddress = inMovie.ImageAddress,
+                        Title = inMovie.Title,
+                        Description = inMovie.Description,
+                        Price = inMovie.Price,
+                        Genre = inMovie.Genre
+                    };
 
-            using (var db = new DBContext())
-            {
-                try
-                {
-                    db.Movies.Add(newMovie);
-                    db.SaveChanges();
-                    return true;
-                }
-                catch (Exception e)
-                {
-                    Error.logError("Movie:addMovie", e);
-                    return false;
+
+                    using (var db = new DBContext())
+                    {
+                        try
+                        {
+                            db.Movies.Add(newMovie);
+                            db.SaveChanges();
+                            return true;
+                        }
+                        catch (Exception e)
+                        {
+                            Error.logError("Movie:addMovie", e);
+                            return false;
+                        }
+                    }
                 }
             }
+            catch(Exception e)
+            {
+                Error.logError("Movie:addMovie", e);
+            }
+            return false;
         }
+        
     }
 }
