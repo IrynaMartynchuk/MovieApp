@@ -23,7 +23,14 @@ namespace MovieApp.DAL
 
         public bool DeleteAdmin(int id)
         {
-            throw new NotImplementedException();
+            if (id == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public bool editAdmin(int id, dbAdmins admin)

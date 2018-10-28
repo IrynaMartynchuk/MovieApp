@@ -22,12 +22,7 @@
                         $.ajax({
                             url: '@Url.Action("Cart", "Cart")',
                             success: function () {
-                                $.ajax({
-                                    url: '@Url.Action("Index","Home")',
-                                    success: function () {
                                         window.location.reload();
-                                    }
-                                });
                             }
                         });
                     }
