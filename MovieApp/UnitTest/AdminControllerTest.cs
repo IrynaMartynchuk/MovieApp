@@ -248,11 +248,57 @@ namespace UnitTest
             Assert.AreEqual(result.ViewName, "");
         }
 
+        [TestMethod]
+        public void delete()
+        {
+            //Arrange
+            var controller = new AdminController(new AdminBLL(new AdminRepositoryStub()));
 
+            //Act
+            var actionResult = (ViewResult)controller.DeleteAdmin(1);
+            var result = (dbAdmins)actionResult.Model;
 
+            //Assert
+            Assert.AreEqual(actionResult.ViewName, "");
+        }
 
+        [TestMethod]
+        public void delete_found()
+        {
+            //Arrange
+            var controller = new AdminController(new AdminBLL(new AdminRepositoryStub()));
+            var admin = new dbAdmins()
+            {
+                adminID = 1,
+                adminUser = "Iryna",
+                passwordAdmin = {}
+            };
 
+            //Act
+            var actionResult = (RedirectToRouteResult)controller.DeleteAdmin(1, admin);
 
+            //Assert
+            Assert.AreEqual(actionResult.RouteName, "");
+            Assert.AreEqual(actionResult.RouteValues.Values.First(), "ListAdmins");
+        }
 
+        [TestMethod]
+        public void delete_notfound()
+        {
+            //Arrange
+            var controller = new AdminController(new AdminBLL(new AdminRepositoryStub()));
+            var admin = new dbAdmins()
+            {
+                adminID = 1,
+                adminUser = "Iryna",
+                passwordAdmin = { }
+            };
+
+            //Act
+            var actionResult = (ViewResult)controller.DeleteAdmin(0, admin);
+
+            //Assert
+            Assert.AreEqual(actionResult.ViewName, "");
+        }
     }
 }
