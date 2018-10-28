@@ -189,11 +189,10 @@ namespace UnitTest
                 Genre = "Fantasy"
             };
             // Act
-            var result = (RedirectToRouteResult)controller.EditMovie(1, inMovie);
+            var result = (ViewResult)controller.EditMovie(1, inMovie);
 
             // Assert
-            Assert.AreEqual(result.RouteName, "");
-            Assert.AreEqual(result.RouteValues.Values.First(), "ListMovies");
+            Assert.AreEqual(result.ViewName, "");
         }
 
         [TestMethod]

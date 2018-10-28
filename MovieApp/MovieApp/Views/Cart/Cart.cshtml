@@ -22,7 +22,7 @@
                         $.ajax({
                             url: '@Url.Action("Cart", "Cart")',
                             success: function () {
-                                        window.location.reload();
+                                window.location.reload();
                             }
                         });
                     }
@@ -30,15 +30,15 @@
             });
 
             $('#confirm').click(function () {
-               $.ajax({
-                   url: '@Url.Action("Confirmation", "Cart")',
-                   success: function (message) {
-                               alert(message);
-                              window.location.reload();
-                           }
+                $.ajax({
+                    url: '@Url.Action("Confirmation", "Cart")',
+                    success: function (message) {
+                            alert(message);
+                            window.location.reload();
+                    }
+                });
 });
-          });
-        });
+            });
 
     </script>
 </head>
