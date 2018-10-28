@@ -149,6 +149,8 @@ namespace UnitTest
             Assert.AreEqual(expected_result.Genre, result.Genre);
         }
 
+
+        [TestMethod]
         public void details_Fail()
         {
             //Arrange
@@ -189,10 +191,11 @@ namespace UnitTest
                 Genre = "Fantasy"
             };
             // Act
-            var result = (ViewResult)controller.EditMovie(1, inMovie);
+            var result = (RedirectToRouteResult)controller.EditMovie(1, inMovie);
 
             // Assert
-            Assert.AreEqual(result.ViewName, "");
+            Assert.AreEqual(result.RouteName, "");
+            Assert.AreEqual(result.RouteValues.Values.First(), "ListMovies");
         }
 
         [TestMethod]
@@ -228,7 +231,7 @@ namespace UnitTest
             };
 
             // Act
-            var result = (ViewResult)controller.EditMovie(1, inMovie);
+            var result = (ViewResult)controller.EditMovie(0, inMovie);
 
             // Assert
             Assert.AreEqual(result.ViewName, "");
