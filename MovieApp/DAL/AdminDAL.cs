@@ -103,24 +103,29 @@ namespace MovieApp.DAL
 
         public bool addAdmin(Admin admin)
         {
-            
+
             using (var db = new DBContext())
             {
-                try
+                if (admin.Adminuser != null && admin.PasswordAdmin != null)
                 {
-                    var newAdmin = new dbAdmins();
-                    byte[] password = makeHash(admin.PasswordAdmin);
-                    newAdmin.passwordAdmin = password;
-                    newAdmin.adminUser = admin.Adminuser;
-                    db.Admins.Add(newAdmin);
-                    db.SaveChanges();
-                    return true;
+                    try
+                    {
+
+                        var newAdmin = new dbAdmins();
+                        byte[] password = makeHash(admin.PasswordAdmin);
+                        newAdmin.passwordAdmin = password;
+                        newAdmin.adminUser = admin.Adminuser;
+                        db.Admins.Add(newAdmin);
+                        db.SaveChanges();
+                        return true;
+                    }
+                    catch (Exception e)
+                    {
+                        Error.logError("Customer:login", e);
+                        return false;
+                    }
                 }
-                catch (Exception e)
-                {
-                    Error.logError("Customer:login", e);
-                    return false;
-                }
+                return false;
             }
         }
 

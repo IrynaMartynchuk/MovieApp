@@ -159,8 +159,13 @@ namespace MovieApp.DAL
             try
             {
                 Order order = db.Orders.Single(x => x.Confirmed == false);
-                order.Confirmed = true;
-                db.SaveChanges();
+                if(order.OrderLines.Count != 0)
+                {
+                    order.Confirmed = true;
+                    db.SaveChanges();
+                }
+
+                
             }
             catch(Exception e)
             {
