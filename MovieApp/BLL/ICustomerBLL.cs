@@ -9,10 +9,10 @@ namespace MovieApp.BLL
 {
     public interface ICustomerBLL
     {
-        bool addCustomer(Customer inCustomer); //done
-        List<Customer> listCustomers(); //done
-        bool deleteCustomer(int id); //done
-        bool editCustomer(int id, Customer customer); //done
-        Customer viewDetails(int id); //done
+        bool addCustomer(Customer inCustomer); 
+        List<Customer> listCustomers(); 
+        bool deleteCustomer(int id); 
+        bool editCustomer(int id, Customer customer); 
+        Customer viewDetails(int id); 
     }
 }

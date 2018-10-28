@@ -45,13 +45,5 @@ namespace MovieApp.BLL
             bool insertOK = _repository.addMovie(newMovie);
             return insertOK;
         }
-
-        /*
-        public bool deleteMovie(int id)
-        {
-            var movieDAL = new MovieDAL();
-            return movieDAL.deleteMovie(id);
-        } */
-       
     }
 }

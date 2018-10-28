@@ -19,24 +19,24 @@ namespace MovieApp.Controllers
         {
             _customerBLL = stub;
         }
-        // GET: Customer
+        
         public ActionResult Index()
         {
             return View();
         }
 
-        //TESTED
+        
         public ActionResult RegisterCustomer()
         {
             return View();
         }
-        //TESTED
+        
         [HttpPost]
         public ActionResult RegisterCustomer(Customer inCustomer)
         {
             if (ModelState.IsValid)
             {
-                //var db = new CustomerBLL();
+                
                 bool insertOK = _customerBLL.addCustomer(inCustomer);
                 if (insertOK)
                 {
@@ -46,27 +46,26 @@ namespace MovieApp.Controllers
             ViewBag.Message = "Some mistake occured or user with such email already exists!";
             return View();
         }
-        //TESTED
+        
         public ActionResult ListCustomers()
         {
             List<Customer> allCustomers = _customerBLL.listCustomers();
             return View(allCustomers);
         }
-        //TESTED
+        
         public ActionResult ViewDetails(int id) {
             
             Customer customer = _customerBLL.viewDetails(id);
             return View(customer);
         }
-        //TESTED
+        
         public ActionResult DeleteCustomer(int id)
         {
         
             Customer customer = _customerBLL.viewDetails(id);
-            //ViewData["test"] = "Delete1 OK";
             return View(customer);
         }
-        //TESTED
+        
         [HttpPost]
         public ActionResult DeleteCustomer(int id, Customer customer)
         {
@@ -75,32 +74,27 @@ namespace MovieApp.Controllers
                 bool deleteOK = _customerBLL.deleteCustomer(id);
                 if (deleteOK)
                 {
-                    //ViewData["test"] = "Delete2 OK";
                     return RedirectToAction("ListCustomers");
                 }
-                //ViewData["test"] = "Modal state NOT valid";
             }
-            //ViewData["test"] = "Delete NOT OK";
+            
             return View();
         } 
 
-        //TESTED
+        
         public ActionResult EditCustomer(int id) {
-
-            //var db = new CustomerBLL();
+            
             Customer customer = _customerBLL.viewDetails(id);
-            //ViewData["test"] = "edit ok";
             return View(customer);
         }
 
-        //TESTED
+        
         [HttpPost]
         public ActionResult EditCustomer(int id, Customer inCustomer)
         {
             ViewData["test"] = "test";
             if (ModelState.IsValid)
             {
-                //var db = new CustomerBLL();
                 bool changeOK = _customerBLL.editCustomer(inCustomer.Id, inCustomer);
                 if (changeOK)
                 {

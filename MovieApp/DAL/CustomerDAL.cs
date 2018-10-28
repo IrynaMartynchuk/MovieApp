@@ -170,17 +170,5 @@ namespace MovieApp.DAL
                 return loggedIn;
             }
         }
-
-
-
-        /*
-        public bool checkCustomer(Customer inCustomer)
-        {
-            using (var db = new DBContext())
-                var checkID = db.Customers.Find(inCustomer.Id);
-            if (checkID == null) {
-                //Pop-Up message (?)
-            }
-        } */
     }
 }

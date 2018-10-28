@@ -11,7 +11,6 @@ namespace MovieApp.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
         public ActionResult Index()
         {
             return RedirectToAction("ListMovies");
@@ -47,7 +46,6 @@ namespace MovieApp.Controllers
         {
             var db = new HomeBLL();
             string sessionId = this.Session.SessionID;
-            //var db = new DBOrder();
             db.checkIfOldOrderExists(sessionId);
             
             if (Session["Cart"] == null || (bool)Session["Cart"] == false)
@@ -66,7 +64,6 @@ namespace MovieApp.Controllers
             {
                 db.createOrder(sessionId);
             }
-            //var Db = new DBMovie();
             List<Movie> allMovies = db.retrieveAll();
             return View(allMovies);
         }
@@ -101,7 +98,7 @@ namespace MovieApp.Controllers
             else
             {
                 ViewBag.triedOnce = true;
-                return View(); //if failed - error message 
+                return View(); 
             }
         }
 

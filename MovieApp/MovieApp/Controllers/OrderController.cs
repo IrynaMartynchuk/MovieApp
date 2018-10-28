@@ -20,7 +20,7 @@ namespace MovieApp.Controllers
         {
             _orderBLL = stub;
         }
-        // GET: Order
+        
         public ActionResult Index()
         {
             return View();
