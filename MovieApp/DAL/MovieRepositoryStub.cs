@@ -47,30 +47,37 @@ namespace MovieApp.DAL
             }
             else
             {
-                return false;
+                return true;
             }
         }
 
         public Movie viewDetails(int id)
         {
-                if (id == 0)
+            var movie = new Movie()
+            {
+                Id = 1,
+                ImageAddress = "movieImageAddress.jpg",
+                Title = "Title",
+                Description = "Blockbaster",
+                Price = 12,
+                Genre = "Fantasy"
+            };
+            if (id == 0)
                 {
-                    var movie= new Movie();
-                    movie.Id = 0;
-                return movie;
+                return null;
                 }
                 else
                 {
-                    var movie = new Movie()
-                    {
-                        Id = 1,
-                        ImageAddress = "movieImageAddress.jpg",
-                        Title = "Title",
-                        Description = "Blockbaster",
-                        Price = 12,
-                        Genre = "Fantasy"
-                    };
-                    return movie;
+                var details = new Movie()
+                {
+                    Id = movie.Id,
+                    ImageAddress = movie.ImageAddress,
+                    Title = movie.Title,
+                    Description = movie.Description,
+                    Price = movie.Price,
+                    Genre = movie.Genre
+                };
+                return details;
                 }
         }
 
