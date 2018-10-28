@@ -65,7 +65,7 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Orders)
+                @Html.ActionLink("Check orders", "getOrders", "Order", new { id = Model.Id }, new { id = "linkId" })
             </dd>
 
         </dl>

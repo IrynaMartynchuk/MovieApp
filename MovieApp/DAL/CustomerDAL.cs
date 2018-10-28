@@ -147,15 +147,19 @@ namespace MovieApp.DAL
                 result.Name = customer.Name;
                 result.Surname = customer.Surname;
                 result.Email = customer.Email;
-                try
+                if (customer.Name != null && customer.Surname != null && customer.Email != null && customer.Password != null)
                 {
-                    db.SaveChanges();
-                    return true;
-                }
-                catch (Exception e)
-                {
-                    Error.logError("Customer:editCustomer", e);
-                    return false;
+
+                    try
+                    {
+                        db.SaveChanges();
+                        return true;
+                    }
+                    catch (Exception e)
+                    {
+                        Error.logError("Customer:editCustomer", e);
+                        return false;
+                    }
                 }
             }
             return false;
