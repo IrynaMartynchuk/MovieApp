@@ -51,6 +51,7 @@ namespace MovieApp.DAL
                 }
                 catch (Exception e)
                 {
+                    Error.logError("Customer:login", e);
                     return false;
                 }
             }
@@ -93,6 +94,7 @@ namespace MovieApp.DAL
                 }
                 catch (Exception e)
                 {
+                    Error.logError("Customer:login", e);
                     return false;
                 }
             }
@@ -116,6 +118,7 @@ namespace MovieApp.DAL
                 }
                 catch (Exception e)
                 {
+                    Error.logError("Customer:login", e);
                     return false;
                 }
             }

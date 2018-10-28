@@ -33,8 +33,9 @@ namespace MovieApp.DAL
 
                         return true;
                     }
-                    catch (Exception feil)
+                    catch (Exception e)
                     {
+                        Error.logError("Customer:saveCustomer", e);
                         return false;
                     }
                 }
@@ -44,31 +45,37 @@ namespace MovieApp.DAL
             }
         }
 
+
         public bool addCustomer(Customer inCustomer)
         {
-            var newCustomer = new Customer()
+            try
             {
-                Name = inCustomer.Name,
-                Surname = inCustomer.Surname,
-                Email = inCustomer.Email,
-                Password = inCustomer.Password
-        };
-            
-            using (var db = new DBContext())
-            {
-                try
+                if (inCustomer.Name != null && inCustomer.Surname != null && inCustomer.Email != null && inCustomer.Password != null)
                 {
-                    db.Customers.Add(newCustomer);
-                    db.SaveChanges();
-                    return true;
-                }
-                catch (Exception e)
-                {
-                    return false;
+                    var newCustomer = new Customer()
+                    {
+                        Name = inCustomer.Name,
+                        Surname = inCustomer.Surname,
+                        Email = inCustomer.Email,
+                        Password = inCustomer.Password
+                    };
+
+
+                    using (var db = new DBContext())
+                    {
+                        db.Customers.Add(newCustomer);
+                        db.SaveChanges();
+                        return true;
+                    }
                 }
             }
+            catch (Exception e)
+            {
+                Error.logError("Customer:addCustomer", e);
+            }
+            return false;
         }
- 
+
         public List<Customer> listCustomers()
         {
             using (var db = new DBContext()) 
@@ -124,6 +131,7 @@ namespace MovieApp.DAL
                 }
                 catch (Exception e)
                 {
+                    Error.logError("Customer:delete", e);
                     return false;
                 }
             }
@@ -146,6 +154,7 @@ namespace MovieApp.DAL
                 }
                 catch (Exception e)
                 {
+                    Error.logError("Customer:editCustomer", e);
                     return false;
                 }
             }

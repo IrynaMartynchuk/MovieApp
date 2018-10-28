@@ -28,14 +28,21 @@ namespace MovieApp.DAL
             var orderExist = db.Orders.SingleOrDefault(x => x.Confirmed == false);
             if (orderExist == null)
             {
-                Order newOrder = new Order
+                try
                 {
-                    Date = DateTime.Now,
-                    Confirmed = false,
-                    SessionId = Id
-                };
-                db.Orders.Add(newOrder);
-                db.SaveChanges();
+                    Order newOrder = new Order
+                    {
+                        Date = DateTime.Now,
+                        Confirmed = false,
+                        SessionId = Id
+                    };
+                    db.Orders.Add(newOrder);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    Error.logError("Order:createOrder", e);
+                }
             }
         }
 
@@ -46,15 +53,21 @@ namespace MovieApp.DAL
             var orderExist = db.Orders.SingleOrDefault(x => x.Confirmed == false);
             if (orderExist == null)
             {
-                Order newOrder = new Order
+                try
                 {
-                    Date = DateTime.Now,
-                    Confirmed = false,
-                    SessionId = sessionid,
-                    Customer = customer
-                };
-                db.Orders.Add(newOrder);
-                db.SaveChanges();
+                    Order newOrder = new Order
+                    {
+                        Date = DateTime.Now,
+                        Confirmed = false,
+                        SessionId = sessionid,
+                        Customer = customer
+                    };
+                    db.Orders.Add(newOrder);
+                    db.SaveChanges();
+                }
+                catch(Exception e) {
+                    Error.logError("Order:createOrderCId", e);
+                }
             }
         }
 
@@ -69,13 +82,15 @@ namespace MovieApp.DAL
             };
             if (checkOrderline(newOrderline))
             {
-
-                var orderlines = new List<Orderline>();
-                orderlines.Add(newOrderline);
-            }
-            else
-            {
-
+                try
+                {
+                    var orderlines = new List<Orderline>();
+                    orderlines.Add(newOrderline);
+                }
+                catch (Exception e)
+                {
+                    Error.logError("Order:addOrderLine", e);
+                }
             }
         }
 
@@ -90,9 +105,9 @@ namespace MovieApp.DAL
                     db.Orderlines.Add(newOrderline);
                     db.SaveChanges();
                 }
-                catch (Exception error)
+                catch (Exception e)
                 {
-
+                    Error.logError("Order:checkOrderline", e);
                 }
                 return true;
             }
@@ -131,8 +146,9 @@ namespace MovieApp.DAL
                 db.SaveChanges();
                 return true;
             }
-            catch (Exception error)
+            catch (Exception e)
             {
+                Error.logError("Order:deleteCartItem", e);
                 return false;
             }
         }
@@ -148,7 +164,7 @@ namespace MovieApp.DAL
             }
             catch(Exception e)
             {
-
+                Error.logError("Order:changeConfirmed", e);
             }
             
         }
@@ -202,6 +218,7 @@ namespace MovieApp.DAL
                 }
                 catch (Exception e)
                 {
+                    Error.logError("Order:deleteOrder", e);
                     return false;
                 }
             }
@@ -223,6 +240,7 @@ namespace MovieApp.DAL
                 }
                 catch (Exception e)
                 {
+                    Error.logError("Order:editOrder", e);
                     return false;
                 }
             }

@@ -72,6 +72,7 @@ namespace MovieApp.DAL
                 }
                 catch (Exception e)
                 {
+                    Error.logError("Movie:editMovie", e);
                     return false;
                 }
             }
@@ -99,6 +100,7 @@ namespace MovieApp.DAL
                 }
                 catch (Exception e)
                 {
+                    Error.logError("Movie:addMovie", e);
                     return false;
                 }
             }
