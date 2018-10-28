@@ -47,9 +47,9 @@ namespace MovieApp.Controllers
             }
             else
             {
-                var ok = "You will receive confirmation email with receipt!";
                 var db = new CartBLL();
                 db.changeConfirmationStatus();
+                var ok = "You will receive confirmation email with receipt!";
                 return ok;
             }
 
