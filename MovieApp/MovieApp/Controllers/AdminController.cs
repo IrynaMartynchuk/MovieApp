@@ -19,7 +19,6 @@ namespace MovieApp.Controllers
         {
             _adminBLL = stub;
         }
-        // GET: Admin
 
         public ActionResult AdminIndex()
         {

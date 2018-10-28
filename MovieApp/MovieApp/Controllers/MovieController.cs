@@ -19,12 +19,12 @@ namespace MovieApp.Controllers
         {
             _movieBLL = stub;
         }
-        // GET: Customer
+        
         public ActionResult Index()
         {
             return View();
         }
-        // GET: Movie
+        
 
         public ActionResult AddMovie()
         {
@@ -36,7 +36,6 @@ namespace MovieApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                //var db = new MovieBLL();
                 bool insertOK = _movieBLL.addMovie(newMovie);
                 if (insertOK)
                 {
@@ -48,21 +47,18 @@ namespace MovieApp.Controllers
 
         public ActionResult ListMovies()
         {
-            //var db = new MovieBLL();
             List<Movie> allMovies = _movieBLL.retrieveAll();
             return View(allMovies);
         }
 
         public ActionResult Details(int id)
         {
-           // var db = new MovieBLL();
             Movie movie = _movieBLL.viewDetails(id);
             return View(movie);
         }
 
         public ActionResult EditMovie(int id)
         {
-           // var db = new MovieBLL();
             Movie movie = _movieBLL.viewDetails(id);
             return View(movie);
         }
@@ -73,7 +69,7 @@ namespace MovieApp.Controllers
         {
             if (ModelState.IsValid)
             {
-               // var db = new MovieBLL();
+              
                 bool changeOK = _movieBLL.editMovie(id, inMovie);
                 if (changeOK)
                 {
@@ -91,35 +87,5 @@ namespace MovieApp.Controllers
             }
             return View();
         }
-
-        /*
-        public ActionResult DeleteMovie(int id)
-        {
-            var db = new MovieBLL();
-            Movie movie = db.viewDetails(id);
-            ViewData["test"] = "DeleteMovie OK";
-            return View(movie);
-        }
-
-        [HttpPost]
-        public ActionResult DeleteMovie(int id, Movie movie)
-        {
-            if (ModelState.IsValid)
-            {
-                var db = new MovieBLL();
-                bool deleteOK = db.deleteMovie(id);
-                if (deleteOK)
-                {
-
-                    ViewData["test"] = "deleteOK";
-                    return RedirectToAction("ListMovies");
-                }
-            }
-
-            ViewData["test"] = "Delete NOT ok, some mistake occured";
-            ViewBag.Message = "Some mistake occured";
-            return View();
-        } */
-
     }
 }

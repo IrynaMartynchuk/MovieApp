@@ -10,7 +10,6 @@ namespace MovieApp.Controllers
 {
     public class CartController : Controller
     {
-        // GET: Cart
         public ActionResult Index()
         {
             return View();
@@ -52,19 +51,6 @@ namespace MovieApp.Controllers
                 var ok = "You will receive confirmation email with receipt!";
                 return ok;
             }
-
-
-
         }
-
-
-        /*public void changeConfirmationStatus()
-        {
-            if (Session["customer"] != null)
-            {
-                var db = new DBOrder();
-                db.changeConfirmedToTrue();
-            }
-        }*/
     }
 }

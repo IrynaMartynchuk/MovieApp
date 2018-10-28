@@ -103,25 +103,5 @@ namespace MovieApp.DAL
                 }
             }
         }
-
-
-        /*
-        public bool deleteMovie(int id)
-        {
-            using (var db = new DBContext())
-            {
-                try
-                {
-                    Movie movie = db.Movies.Find(id);
-                    db.Movies.Remove(movie);
-                    db.SaveChanges();
-                    return true;
-                }
-                catch (Exception e)
-                {
-                    return false;
-                }
-            }
-        } */
     }
 }
