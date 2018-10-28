@@ -1,2 +1,6 @@
-﻿20181028 10/28/2018 9:56:50 AM ==>: Customer:login ==> ==>Object reference not set to an instance of an object.20181028 10/28/2018 12:27:21 PM ==>: Admin:makeHash ==> ==>String reference not set to an instance of a String.
-Parameter name: s
+﻿20181028 10/28/2018 9:56:50 AM ==>: Customer:login ==> ==>Object reference not set to an instance of an object.
+20181028 10/28/2018 12:27:21 PM ==>: Admin:makeHash ==> ==>String reference not set to an instance of a String. Parameter name: s
+20181028 10/28/2018 12:33:55 PM ==>: Admin:makeHash ==> ==>String reference not set to an instance of a String.
+Parameter name: s<br/>
+20181028 10/28/2018 12:34:01 PM ==>: Admin:makeHash ==> ==>String reference not set to an instance of a String.
+Parameter name: s<br/>
