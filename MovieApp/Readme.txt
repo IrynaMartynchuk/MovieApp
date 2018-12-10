@@ -2,6 +2,7 @@ Admin credentials:
 user: per
 password: hansen
 url to deployed app: https://movieapplatest.azurewebsites.net/Home/ListMovies
+the url does not work, since we do not have access to server now.
 
 NOTE: We have noticed that it sometimes takes time to apply all changes to the deployed version (especially
 for the functionalities in the Cart view - i.e. alert that pops out after confirming the order and remove
